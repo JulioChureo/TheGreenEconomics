@@ -1,0 +1,24 @@
+<!-- templates/journals/desc.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ entry.titulo }}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+    <header class="bg-blue-500 text-white p-4 text-center">
+        <h1 class="text-3xl font-bold">{{ entry.titulo }}</h1>
+    </header>
+    <main class="container mx-auto mt-8">
+        <div class="bg-white p-6 shadow-md rounded-lg">
+            <p class="text-sm text-gray-600 mb-4">{{ entry.fecha_creacion|date:"d M, Y" }}</p>
+            <div class="text-gray-700 leading-relaxed">
+                {{ entry.content|linebreaks }}
+            </div>
+        </div>
+        <a href="/" class="block mt-4 text-blue-600 hover:underline">← Regresar</a>
+    </main>
+</body>
+</html>

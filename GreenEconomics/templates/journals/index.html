@@ -1,0 +1,27 @@
+<!-- templates/journals/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journals</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+    <header class="bg-blue-500 text-white p-4 text-center">
+        <h1 class="text-3xl font-bold">Journals</h1>
+    </header>
+    <main class="container mx-auto mt-8">
+        <ul class="space-y-4">
+            {% for entry in entries %}
+                <li class="bg-white p-4 shadow-md rounded-lg">
+                    <a href="{{ entry.slug }}" class="text-blue-600 text-lg font-semibold hover:underline">
+                        {{ entry.titulo }}
+                    </a>
+                    <p class="text-sm text-gray-600">{{ entry.fecha_creacion|date:"d M, Y" }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    </main>
+</body>
+</html>
