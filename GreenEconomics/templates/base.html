@@ -1,0 +1,41 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <title>{{title}}</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<script src="https://cdn.tailwindcss.com"></script>
+		{% tailwind_css %}
+	</head>
+	<body>
+		<header>
+			<nav class="bg-green-400">
+				<div class="mx-auto max-w-7xl px-2 xl:px-6 lg:px-8">
+				  <div class="relative flex h-16 items-center justify-between">
+					<!-- Izquierda: Dos enlaces -->
+					<div class="flex items-center space-x-4">
+					  <a href="#" class="rounded-md px-3 py-2 text-xl font-medium text-emerald-800 hover:bg-green-900 hover:text-emerald-800">Inicio</a>
+					  <a href="#" class="rounded-md px-3 py-2 text-xl font-medium text-emerald-800 hover:bg-green-900 hover:text-emerald-800">Publicaciones</a>
+					</div>
+					
+					<!-- Centro: Imagen -->
+					<div class="flex items-center justify-center flex-1 mx-4">
+					  <img class="h-8 w-auto" src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">
+					</div>
+					
+					<!-- Derecha: Dos enlaces -->
+					<div class="flex items-center space-x-4">
+					  <a href="#" class="rounded-md px-3 py-2 text-xl font-medium text-emerald-800 hover:bg-green-900 hover:text-emerald-800">Quienes Somos</a>
+					  <a href="#" class="rounded-md px-3 py-2 text-xl font-medium text-emerald-800 hover:bg-green-900 hover:text-emerald-800">Publicación de libro</a>
+					</div>
+				  </div>
+				</div>
+			</nav>			  
+		</header>
+	  {% block content %}
+		
+	  {% endblock content %}
+	</body>
+</html>
