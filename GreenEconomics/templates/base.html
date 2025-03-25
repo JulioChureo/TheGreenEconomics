@@ -9,7 +9,26 @@
 		<script src="https://cdn.tailwindcss.com"></script>
 		{% tailwind_css %}
 	</head>
-	<body>
+	<style>
+		body {
+            background-image: url('{% static 'FondoWeb.jpg' %}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Oscurece la imagen sin afectar el contenido */
+            z-index: -1;
+        }
+	</style>
+	<body  >
 		<header>
 			<nav class="bg-green-400">
 				<div class="mx-auto max-w-7xl px-2 xl:px-6 lg:px-8">

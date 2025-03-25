@@ -1,28 +1,41 @@
 {% extends "base.html" %}
 {% block content %}
+<!-- Nuevas publicaciones-->
 <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 ">
         <!-- Lado izquierdo: Listado de publicaciones -->
         <div class="space-y-4">
-            <h2 class="text-3xl font-semibold text-emerald-800">Novedades</h2>
+            <h2 class="text-3xl font-semibold text-white">Novedades</h2>
             <ul class="space-y-2">
                 <li class="bg-white p-4 rounded-md shadow-md hover:bg-gray-100">
-                    <a href="#" class="text-xl text-green-600 hover:text-green-800">Publicación 1</a>
-                    <h1 class="text-sm text-green-600 ">Fecha de publicación:DD/MM/AAAA</h1>
+                    <a href="#" class="text-xl text-green-600 hover:text-green-800" onclick="openModal('Publicación 1')">Publicación 1</a>
+                    <h1 class="text-sm text-green-600">Fecha de publicación: DD/MM/AAAA</h1>
                 </li>
                 <li class="bg-white p-4 rounded-md shadow-md hover:bg-gray-100">
-                    <a href="#" class="text-xl text-green-600 hover:text-green-800">Publicación 2</a>
-                    <h1 class="text-sm text-green-600 ">Fecha de publicación:DD/MM/AAAA</h1>
+                    <a href="#" class="text-xl text-green-600 hover:text-green-800" onclick="openModal('Publicación 2')">Publicación 2</a>
+                    <h1 class="text-sm text-green-600">Fecha de publicación: DD/MM/AAAA</h1>
                 </li>
                 <li class="bg-white p-4 rounded-md shadow-md hover:bg-gray-100">
-                    <a href="#" class="text-xl text-green-600 hover:text-green-800">Publicación 3</a>
-                    <h1 class="text-sm text-green-600 ">Fecha de publicación:DD/MM/AAAA</h1>
+                    <a href="#" class="text-xl text-green-600 hover:text-green-800" onclick="openModal('Publicación 3')">Publicación 3</a>
+                    <h1 class="text-sm text-green-600">Fecha de publicación: DD/MM/AAAA</h1>
                 </li>
                 <li class="bg-white p-4 rounded-md shadow-md hover:bg-gray-100">
-                    <a href="#" class="text-xl text-green-600 hover:text-green-800">Publicación 4</a>
-                    <h1 class="text-sm text-green-600 ">Fecha de publicación:DD/MM/AAAA</h1>
+                    <a href="#" class="text-xl text-green-600 hover:text-green-800" onclick="openModal('Publicación 4')">Publicación 4</a>
+                    <h1 class="text-sm text-green-600">Fecha de publicación: DD/MM/AAAA</h1>
                 </li>
             </ul>
+        </div>
+        
+        <!-- Modal -->
+        <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+            <div class="bg-white p-6 rounded-lg shadow-lg w-96">
+                <h3 id="modal-title" class="text-xl font-semibold text-gray-800 mb-4"></h3>
+                <p class="text-gray-600">Aquí puedes previsualizar el contenido antes de descargarlo.</p>
+                <div class="mt-4 flex justify-end space-x-2">
+                    <button onclick="closeModal()" class="px-4 py-2 bg-red-500 text-white rounded-md">Cancelar</button>
+                    <button class="px-4 py-2 bg-green-600 text-white rounded-md">Descargar</button>
+                </div>
+            </div>
         </div>
 
         <!-- Lado derecho: Imagen -->
@@ -31,11 +44,17 @@
         </div>
     </div>
 </div>
+
+
+
+<!-- Publicaciones antiguas -->
+
+
 <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
     <div >
         <!-- Lado izquierdo: Listado de publicaciones -->
         <div class="space-y-4">
-            <h2 class="text-3xl font-semibold text-emerald-800">Antiguas publicaciones.</h2>
+            <h2 class="text-3xl font-semibold text-white">Antiguas publicaciones.</h2>
             <ul class="space-y-2">
                 <li class="bg-white p-4 rounded-md shadow-md hover:bg-gray-100">
                     <a href="#" class="text-xl text-green-600 hover:text-green-800">Publicación 1</a>
@@ -57,4 +76,15 @@
         </div>
     </div>
 </div>
+
+<script>
+    function openModal(title) {
+        document.getElementById('modal-title').textContent = title;
+        document.getElementById('modal').classList.remove('hidden');
+    }
+    
+    function closeModal() {
+        document.getElementById('modal').classList.add('hidden');
+    }
+</script>
 {% endblock content %}
