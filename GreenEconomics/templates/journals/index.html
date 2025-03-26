@@ -8,19 +8,19 @@
             <h2 class="text-3xl font-semibold text-white">Novedades</h2>
             <ul class="space-y-2">
                 <li class="bg-white p-4 rounded-md shadow-md hover:bg-gray-100">
-                    <a href="#" class="text-xl text-green-600 hover:text-green-800" onclick="openModal('Publicación 1')">Publicación 1</a>
+                    <a href="#" class="text-xl text-green-600 hover:text-green-800" onclick="openModal(0)">Publicación 1</a>
                     <h1 class="text-sm text-green-600">Fecha de publicación: DD/MM/AAAA</h1>
                 </li>
                 <li class="bg-white p-4 rounded-md shadow-md hover:bg-gray-100">
-                    <a href="#" class="text-xl text-green-600 hover:text-green-800" onclick="openModal('Publicación 2')">Publicación 2</a>
+                    <a href="#" class="text-xl text-green-600 hover:text-green-800" onclick="openModal(1)">Publicación 2</a>
                     <h1 class="text-sm text-green-600">Fecha de publicación: DD/MM/AAAA</h1>
                 </li>
                 <li class="bg-white p-4 rounded-md shadow-md hover:bg-gray-100">
-                    <a href="#" class="text-xl text-green-600 hover:text-green-800" onclick="openModal('Publicación 3')">Publicación 3</a>
+                    <a href="#" class="text-xl text-green-600 hover:text-green-800" onclick="openModal(2)">Publicación 3</a>
                     <h1 class="text-sm text-green-600">Fecha de publicación: DD/MM/AAAA</h1>
                 </li>
                 <li class="bg-white p-4 rounded-md shadow-md hover:bg-gray-100">
-                    <a href="#" class="text-xl text-green-600 hover:text-green-800" onclick="openModal('Publicación 4')">Publicación 4</a>
+                    <a href="#" class="text-xl text-green-600 hover:text-green-800" onclick="openModal(3)">Publicación 4</a>
                     <h1 class="text-sm text-green-600">Fecha de publicación: DD/MM/AAAA</h1>
                 </li>
             </ul>
@@ -28,7 +28,8 @@
         
         <!-- Modal -->
         <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
-            <div class="bg-white p-6 rounded-lg shadow-lg w-96">
+            <button onclick="prevPublication()" class="absolute left-2 bg-gray-300 p-2 rounded-full">&#9664;</button>
+            <div class="bg-white p-6 rounded-lg shadow-lg w-96 relative flex flex-col items-center">
                 <h3 id="modal-title" class="text-xl font-semibold text-gray-800 mb-4"></h3>
                 <p class="text-gray-600">Aquí puedes previsualizar el contenido antes de descargarlo.</p>
                 <div class="mt-4 flex justify-end space-x-2">
@@ -36,6 +37,7 @@
                     <button class="px-4 py-2 bg-green-600 text-white rounded-md">Descargar</button>
                 </div>
             </div>
+            <button onclick="nextPublication()" class="absolute right-2 bg-gray-300 p-2 rounded-full">&#9654;</button>
         </div>
 
         <!-- Lado derecho: Imagen -->
@@ -78,13 +80,29 @@
 </div>
 
 <script>
-    function openModal(title) {
-        document.getElementById('modal-title').textContent = title;
-        document.getElementById('modal').classList.remove('hidden');
+    let currentPublication = 0;
+    const publications = ["Publicación 1", "Publicación 2", "Publicación 3", "Publicación 4"];
+    
+    function openModal(index) {
+        currentPublication = index;
+        document.getElementById("modal-title").textContent = publications[currentPublication];
+        document.getElementById("modal").classList.remove("hidden");
     }
     
     function closeModal() {
-        document.getElementById('modal').classList.add('hidden');
+        document.getElementById("modal").classList.add("hidden");
+    }
+    
+    function prevPublication() {
+        if (currentPublication > 0) {
+            openModal(currentPublication - 1);
+        }
+    }
+    
+    function nextPublication() {
+        if (currentPublication < publications.length - 1) {
+            openModal(currentPublication + 1);
+        }
     }
 </script>
 {% endblock content %}
