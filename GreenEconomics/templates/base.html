@@ -29,33 +29,38 @@
         }
 	</style>
 	<body  >
-		<header>
-			<nav class="bg-green-600 shadow-lg">
-				<div class="mx-auto max-w-7xl px-4 xl:px-6 lg:px-8">
-					<div class="relative flex h-16 items-center justify-between">
-						<!-- Izquierda: Enlaces de navegación -->
-						<div class="flex items-center space-x-6">
-							<a href="#" class="rounded-md px-4 py-2 text-lg font-medium text-white hover:bg-green-700 transition duration-300">Inicio</a>
-							<a href="#" class="rounded-md px-4 py-2 text-lg font-medium text-white hover:bg-green-700 transition duration-300">Publicaciones</a>
-						</div>
-						
-						<!-- Centro: Logo -->
-						<div class="flex items-center justify-center flex-1">
-							<img class="h-16 w-16 rounded-full object-cover" src="{% static 'logo2.png' %}" alt="Your Company">
-						</div>
-						
-						<!-- Derecha: Enlaces adicionales -->
-						<div class="flex items-center space-x-6">
-							<a href="#" class="rounded-md px-4 py-2 text-lg font-medium text-white hover:bg-green-700 transition duration-300">Quiénes Somos</a>
-							<a href="#" class="rounded-md px-4 py-2 text-lg font-medium text-white hover:bg-green-700 transition duration-300">Publicación de libro</a>
-						</div>
-					</div>
-				</div>
-			</nav>		  
-		</header>
-	  {% block content %}
+	<!-- En tu template base.html -->
+<div class="flex min-h-screen">
+    <!-- Botón de toggle -->
+    <button id="menuToggle" class="fixed z-30 top-4 left-4 p-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition shadow-lg">
+        ☰ Menú
+    </button>
+
+    <!-- Barra de navegación lateral -->
+    <nav id="sidebar" class="w-72 bg-green-600 shadow-lg fixed h-full transform -translate-x-full transition-transform duration-300 z-20">
+        <!-- ... (mismo contenido del nav anterior) ... -->
+		<div class="flex justify-center mb-8 mt-4">
+			<img class="h-40 w-40 mt-8 rounded-full object-cover" src="{% static 'logo2.png' %}" alt="Your Company">
+		</div>
 		
-	  {% endblock content %}
+		<!-- Enlaces de navegación en columna -->
+		<div class="flex flex-col space-y-4 flex-grow">
+			<a href="#" class="rounded-md px-4 py-2 text-lg font-medium text-white hover:bg-green-700 transition duration-300">Inicio</a>
+			<a href="#" class="rounded-md px-4 py-2 text-lg font-medium text-white hover:bg-green-700 transition duration-300">Publicaciones</a>
+			<a href="#" class="rounded-md px-4 py-2 text-lg font-medium text-white hover:bg-green-700 transition duration-300">Quiénes Somos</a>
+			<a href="#" class="rounded-md px-4 py-2 text-lg font-medium text-white hover:bg-green-700 transition duration-300">Publicación de libro</a>
+		</div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main id="mainContent" class="flex-grow transition-all duration-300 px-4 md:px-8 pt-16">
+        {% block content %}
+        <!-- Contenido de las páginas -->
+        {% endblock %}
+    </main>
+</div>
+
+
 	  <footer class="bg-green-700 text-white py-6 mt-10">
 		<div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
 			<!-- Izquierda: Logo de la empresa y nombre -->
@@ -85,3 +90,51 @@
 	</footer>
 	</body>
 </html>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.getElementById('mainContent');
+        
+        // Estado del menú desde localStorage
+        let isMenuOpen = localStorage.getItem('menuOpen') === 'true';
+        
+        // Función para actualizar el layout
+        function updateLayout() {
+            if (isMenuOpen) {
+                sidebar.classList.remove('-translate-x-full');
+                mainContent.classList.add('md:ml-72', 'ml-0');
+            } else {
+                sidebar.classList.add('-translate-x-full');
+                mainContent.classList.remove('md:ml-72', 'ml-0');
+            }
+        }
+        
+        // Función para alternar el menú
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            localStorage.setItem('menuOpen', isMenuOpen);
+            updateLayout();
+        }
+        
+        // Event listeners
+        menuToggle.addEventListener('click', toggleMenu);
+        
+        // Inicialización adaptativa
+        if (window.innerWidth >= 768 && !localStorage.getItem('menuOpen')) {
+            isMenuOpen = true; // Estado inicial abierto solo en desktop
+        }
+        
+        updateLayout();
+        
+        // Ajustar en resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth >= 768) {
+                mainContent.classList.remove('ml-0');
+            } else {
+                mainContent.classList.remove('md:ml-72');
+            }
+            updateLayout();
+        });
+    });
+</script>
