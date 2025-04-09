@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+  {% for article in articles %}
+    <div class="article">
+      <h2>{{ article.title }}</h2>
+      <p>{{ article.abstract|truncatechars:200 }}</p>
+      <a href="{% url 'article_detail' article.slug %}">Ver detalle</a>
+    </div>
+  {% endfor %}
+{% endblock content %}

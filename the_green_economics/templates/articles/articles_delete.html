@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<!-- tag_confirm_delete.html -->
+<form method="post">
+    {% csrf_token %}
+    <p>¿Está seguro de eliminar "{{ object }}"?</p>
+    {% if related_articles > 0 %}
+    <div class="warning">
+      Esta etiqueta está asociada a {{ related_articles }} artículos
+    </div>
+    {% endif %}
+    {{ form.as_p }}
+    <button type="submit">Confirmar eliminación</button>
+  </form>
+{% endblock content %}
