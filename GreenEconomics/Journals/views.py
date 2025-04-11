@@ -2,6 +2,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView
 from Admin.models import JournalEntry
+from django.views.generic import TemplateView
 
 
 class JournalListView(ListView):
@@ -29,3 +30,15 @@ class JournalDetailView(DetailView):
 
     def get_object(self, queryset=None):
         return get_object_or_404(JournalEntry, slug=self.kwargs['slug'], estado='True')
+    
+class AboutView(TemplateView):
+    template_name = 'about.html'  # Asegúrate que está en templates/about.html
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['team_members'] = [
+            {'name': 'Juan Pérez', 'role': 'Fundador'},
+            {'name': 'María García', 'role': 'Directora'},
+            {'name': 'Carlos López', 'role': 'Diseñador'}
+        ]
+        return context
