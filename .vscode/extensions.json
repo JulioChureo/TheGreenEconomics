@@ -1,0 +1,13 @@
+{
+    "recommendations": [
+        "ms-python.python",
+        "njpwerner.autodocstring",
+        "ms-python.mypy-type-checker",
+        "ms-python.debugpy",
+        "donjayamanne.python-environment-manager",
+        "charliermarsh.ruff",
+        "donjayamanne.githistory",
+        "monosans.djlint",
+        "bibhasdn.django-html",
+    ]
+}

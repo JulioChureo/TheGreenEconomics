@@ -56,11 +56,11 @@
 
 
 {% endblock javascript %}
-</head>
+  </head>
 <body class="{% block bodyclass %}{% endblock bodyclass %}">
 
   
-
+<div class="flex flex-col flex-grow">
 {% block body %}
 
   {% block header %}
@@ -91,15 +91,16 @@
         {% endblock content %}
       {% endblock main %}
     </main>
-    
 
-  {% block footer %}
+  
+
+{% endblock body %}
+</div>
+{% block footer %}
     {% cache 600 footer %}
       {% include "components/footer.html" %}
     {% endcache %}
-  {% endblock footer %}
-
-{% endblock body %}
+{% endblock footer %}
   <!-- /container -->
   {% block modal %}
   {% endblock modal %}
