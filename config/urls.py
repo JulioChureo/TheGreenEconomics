@@ -19,6 +19,11 @@ urlpatterns = [
         TemplateView.as_view(template_name="pages/book.html"),
         name="book",
     ),
+    path(
+        "publications/",
+        TemplateView.as_view(template_name="pages/publications.html"),
+        name="publications",
+    ),
     # --- Django JET URLS ---
     path("jet/", include("jet.urls", "jet")),  # Django JET URLS
     path(
