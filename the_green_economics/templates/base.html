@@ -64,9 +64,7 @@
 {% block body %}
 
   {% block header %}
-    {% cache 600 header %}
-      {% include "components/header.html" %}
-    {% endcache %}
+    {% include "components/header.html" %}
   {% endblock header %}
   
     {% block message %}
@@ -97,9 +95,7 @@
 {% endblock body %}
 </div>
 {% block footer %}
-    {% cache 600 footer %}
-      {% include "components/footer.html" %}
-    {% endcache %}
+  {% include "components/footer.html" %}
 {% endblock footer %}
   <!-- /container -->
   {% block modal %}
