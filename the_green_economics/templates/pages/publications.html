@@ -1,9 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
+
 <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-    <h1 class="text-4xl font-bold text-white mb-8">Publicaciones Recientes</h1>
-    
+  <h1 class="text-4xl md:text-6xl font-serif font-bold text-center text-white mb-12 tracking-tight">
+    Publicaciones recientes
+  </h1>
+
     <!-- Contenedor de columnas -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div id="left-column" class="space-y-6"></div>
@@ -12,14 +15,14 @@
 
     <!-- Paginación -->
     <div class="mt-8 flex justify-center space-x-2">
-        <button onclick="cambiarPagina(-1)" 
+        <button onclick="cambiarPagina(-1)"
                class="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-md transition-colors pagination-btn">
             &laquo; Anteriores
         </button>
-        
+
         <span class="px-4 py-2 bg-green-600 text-white rounded-md" id="current-page">1</span>
-        
-        <button onclick="cambiarPagina(1)" 
+
+        <button onclick="cambiarPagina(1)"
                class="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-md transition-colors pagination-btn">
             Siguientes &raquo;
         </button>
@@ -61,9 +64,9 @@ const demoPublications = Array.from({length: 20}, (_, i) => ({
     id: i + 1,
     title: `Publicación ${i + 1}`,
     date: new Date(2024, 0, 20 - i).toLocaleDateString('es-ES'),
-    content: `Contenido completo de la publicación ${i + 1}. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit 
+    content: `Contenido completo de la publicación ${i + 1}. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
 in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ${i % 2 === 0 ? 'Texto adicional para demostrar el truncamiento efectivo. ' : ''}`
 })).reverse();
 
@@ -73,62 +76,62 @@ const publicationsPerPage = 8;
 function actualizarColumnas() {
     const startIndex = (currentPage - 1) * publicationsPerPage;
     const publicacionesPagina = demoPublications.slice(startIndex, startIndex + publicationsPerPage);
-    
+
     const mitad = Math.ceil(publicacionesPagina.length / 2);
     const columnaIzq = publicacionesPagina.slice(0, mitad);
     const columnaDer = publicacionesPagina.slice(mitad);
-    
+
     document.getElementById('left-column').innerHTML = generarColumnHTML(columnaIzq);
     document.getElementById('right-column').innerHTML = generarColumnHTML(columnaDer);
     document.getElementById('current-page').textContent = currentPage;
 }
 
 function generarColumnHTML(publicaciones) {
-    return publicaciones.map(publicacion => {
-        const index = demoPublications.indexOf(publicacion);
-        return `
-        <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow mb-6">
-            <div class="flex justify-between items-start mb-4">
-                <div>
-                    <h2 class="text-2xl font-semibold text-green-600">
-                        ${publicacion.title}
-                    </h2>
-                    <p class="text-sm text-gray-500 mt-1">
-                        Publicado el: ${publicacion.date}
-                    </p>
-                </div>
-                <button class="text-gray-400 hover:text-gray-600 transition-colors">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                    </svg>
-                </button>
-            </div>
-            
-            <div class="text-gray-600 mb-4">
-                ${truncateText(publicacion.content, 100)}
-            </div>
-            
-            <div class="flex justify-between items-center border-t pt-4">
-                <a href="#" class="text-green-600 hover:text-green-800 flex items-center">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
-                    </svg>
-                    Descargar
-                </a>
-                <button onclick="openModal(${index})" 
-                        class="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-md transition-colors">
-                    Ver más
-                </button>
-            </div>
-        </div>
-        `;
-    }).join('');
+  return publicaciones.map(publicacion => {
+      const index = demoPublications.indexOf(publicacion);
+      return `
+      <div class="bg-white/10 backdrop-blur-sm rounded-lg shadow-lg p-6 hover:bg-white/20 transition-all duration-300 mb-6 border border-white/10 hover:border-white/20">
+          <div class="flex justify-between items-start mb-4">
+              <div>
+                  <h2 class="text-2xl font-semibold text-white hover:text-white">
+                      ${publicacion.title}
+                  </h2>
+                  <p class="text-sm text-gray-300 mt-1">
+                      Publicado el: ${publicacion.date}
+                  </p>
+              </div>
+              <button class="text-gray-300 hover:text-gray-100 transition-colors">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                  </svg>
+              </button>
+          </div>
+
+          <div class="text-gray-300 mb-4">
+              ${truncateText(publicacion.content, 100)}
+          </div>
+
+          <div class="flex justify-between items-center border-t border-white/20 pt-4">
+              <a href="#" class="text-green-200/80 hover:text-green-100 flex items-center">
+                  <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                  </svg>
+                  Descargar
+              </a>
+              <button onclick="openModal(${index})"
+                      class="px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-md transition-all duration-300 border border-white/10 hover:border-white/20">
+                  Ver más
+              </button>
+          </div>
+      </div>
+      `;
+  }).join('');
 }
 
 function cambiarPagina(delta) {
     const newPage = currentPage + delta;
     const maxPage = Math.ceil(demoPublications.length / publicationsPerPage);
-    
+
     if (newPage > 0 && newPage <= maxPage) {
         currentPage = newPage;
         actualizarColumnas();
