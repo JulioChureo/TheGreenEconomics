@@ -276,3 +276,5 @@ the_green_economics/media/
 
 
 node_modules/*
+
+.database/*

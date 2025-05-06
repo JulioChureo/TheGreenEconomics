@@ -1,11 +1,12 @@
-{% extends "base.html" %}
+{% extends "adminBase.html" %}
 
+{% load crispy_forms_tags %}
 
 {% block content %}
 <!-- article_form.html -->
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ form|crispy }}
     <button type="submit">{{ view.title|default:"Guardar" }}</button>
   </form>
 {% endblock content %}

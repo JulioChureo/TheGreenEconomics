@@ -26,11 +26,11 @@
                             <a href="{% url "adminHome" %}" class="text-gray-600 hover:text-gray-900 px-1 pt-1 text-sm font-medium">
                                 Inicio
                             </a>
-                            <a href="#" class="text-gray-600 hover:text-gray-900 px-1 pt-1 text-sm font-medium">
+                            <a href="{% url "articles:create" %}" class="text-gray-600 hover:text-gray-900 px-1 pt-1 text-sm font-medium">
                                 Crear Post
                             </a>
-                            <a href="#" class="text-gray-600 hover:text-gray-900 px-1 pt-1 text-sm font-medium">
-                                Modificar Post
+                            <a href="{% url "articles:list" %}" class="text-gray-600 hover:text-gray-900 px-1 pt-1 text-sm font-medium">
+                                Lista Post
                             </a>
                         </div>
                     </div>

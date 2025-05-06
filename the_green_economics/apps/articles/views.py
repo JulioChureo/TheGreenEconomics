@@ -19,38 +19,35 @@ from .models import ArticleTag
 # Vistas para Artículos Científicos
 class ArticleListView(ListView):
     model = Article
-    template_name = "articles/article_list.html"
+    template_name = "articles/articles_list.html"
     context_object_name = "articles"
     paginate_by = 10
 
     def get_queryset(self):
         if self.request.user.is_staff:
             return Article.objects.all().order_by("-publication_date")
-        return Article.objects.filter(status=Article.Status.PUBLISHED).order_by(
+        return Article.objects.filter().order_by(
             "-publication_date",
         )
 
 
 class ArticleDetailView(DetailView):
     model = Article
-    template_name = "articles/article_detail.html"
+    template_name = "articles/articles_detail.html"
     context_object_name = "article"
     slug_url_kwarg = "slug"
 
     def get_queryset(self):
         if self.request.user.is_staff:
             return Article.objects.all()
-        return Article.objects.filter(status=Article.Status.PUBLISHED)
+        return Article.objects.filter()
 
 
-class ArticleCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
+class ArticleCreateView( CreateView):
     model = Article
     form_class = ArticleForm
-    template_name = "articles/article_form.html"
-    success_url = reverse_lazy("article_list")
-
-    def test_func(self):
-        return self.request.user.is_staff
+    template_name = "articles/articles_create.html"
+    success_url = reverse_lazy("articles:list")
 
     def form_valid(self, form):
         form.instance.owner = self.request.user
@@ -60,21 +57,21 @@ class ArticleCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Article
     form_class = ArticleForm
-    template_name = "articles/article_form.html"
+    template_name = "articles/articles_form.html"
     slug_url_kwarg = "slug"
 
     def test_func(self):
         return self.request.user.is_staff
 
     def get_success_url(self):
-        return reverse_lazy("article_detail", kwargs={"slug": self.object.slug})
+        return reverse_lazy("articles:detail", kwargs={"slug": self.object.slug})
 
 
 class ArticleDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Article
     form_class = DeleteArticleForm
-    template_name = "articles/article_confirm_delete.html"
-    success_url = reverse_lazy("article_list")
+    template_name = "articles/articles_confirm_delete.html"
+    success_url = reverse_lazy("articles:list")
     slug_url_kwarg = "slug"
 
     def test_func(self):
