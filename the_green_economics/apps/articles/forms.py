@@ -19,7 +19,6 @@ class ArticleForm(forms.ModelForm):
             "authors",
             "publication_date",
             "abstract",
-            "summary",
             "body",
             "pdf",
             "tags",

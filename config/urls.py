@@ -30,6 +30,8 @@ urlpatterns = [
     # --- app URLS ---
     path("", include("the_green_economics.apps.home.urls", namespace="home")),
     path("users/", include("the_green_economics.apps.users.urls", namespace="users")),
+    path("articles/", include("the_green_economics.apps.articles.urls", namespace="articles")),
+    path("news/", include("the_green_economics.apps.news.urls", namespace="news")),
     # --- static files/media ---
     *static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),
 ]

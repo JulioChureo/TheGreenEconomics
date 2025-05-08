@@ -20,6 +20,9 @@ class ArticleTag(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse("articles:tag_detail", kwargs={"slug": self.slug})
+
     def get_articles(self):
         return self.articles.all()
 

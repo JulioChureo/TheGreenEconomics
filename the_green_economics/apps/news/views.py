@@ -25,19 +25,12 @@ class NewsListView(ListView):
     paginate_by = 10
 
     def get_queryset(self):
-        cache_key = f"news_list_{self.request.user.is_staff}"
-        queryset = cache.get(cache_key)
-
-        if not queryset:
-            if self.request.user.is_staff:
-                queryset = News.objects.all().order_by("-publication_date")
-            else:
-                queryset = News.objects.filter(status=News.Status.PUBLISHED).order_by(
-                    "-publication_date",
-                )
-
-            cache.set(cache_key, queryset, 60 * 15)  # Cache por 15 minutos
-
+        if self.request.user.is_staff:
+            queryset = News.objects.all().order_by("-publication_date")
+        else:
+            queryset = News.objects.filter(status=News.Status.PUBLISHED).order_by(
+                "-publication_date",
+            )
         return queryset
 
 
@@ -57,7 +50,7 @@ class NewsCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = News
     form_class = NewsForm
     template_name = "news/news_create.html"
-    success_url = reverse_lazy("news_list")
+    success_url = reverse_lazy("news:list")
 
     def test_func(self):
         if not self.request.user:
@@ -66,7 +59,6 @@ class NewsCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 
     def form_valid(self, form):
         response = super().form_valid(form)
-        cache.delete(f"news_list_{True}")  # Limpiar cache de administradores
         return response
 
     def get_context_data(self, **kwargs):
@@ -85,13 +77,10 @@ class NewsUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return self.request.user.is_staff
 
     def get_success_url(self):
-        return reverse_lazy("news_detail", kwargs={"slug": self.object.slug})
+        return self.object.get_absolute_url()
 
     def form_valid(self, form):
         response = super().form_valid(form)
-        cache.delete_many(
-            [f"news_list_{True}", f"news_list_{False}", f"news_{self.object.slug}"]
-        )
         return response
 
     def get_context_data(self, **kwargs):
@@ -104,20 +93,13 @@ class NewsDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = News
     form_class = DeleteNewsForm
     template_name = "news/news_delete.html"
-    success_url = reverse_lazy("news_list")
+    success_url = reverse_lazy("news:list")
     slug_url_kwarg = "slug"
 
     def test_func(self):
         return self.request.user.is_staff
 
     def delete(self, request, *args, **kwargs):
-        cache.delete_many(
-            [
-                f"news_list_{True}",
-                f"news_list_{False}",
-                f"news_{self.get_object().slug}",
-            ],
-        )
         return super().delete(request, *args, **kwargs)
 
 

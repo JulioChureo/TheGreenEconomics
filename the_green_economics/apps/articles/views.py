@@ -19,7 +19,7 @@ from .models import ArticleTag
 # Vistas para Artículos Científicos
 class ArticleListView(ListView):
     model = Article
-    template_name = "articles/article_list.html"
+    template_name = "articles/articles_list.html"
     context_object_name = "articles"
     paginate_by = 10
 
@@ -33,7 +33,7 @@ class ArticleListView(ListView):
 
 class ArticleDetailView(DetailView):
     model = Article
-    template_name = "articles/article_detail.html"
+    template_name = "articles/articles_retrieve.html"
     context_object_name = "article"
     slug_url_kwarg = "slug"
 
@@ -46,8 +46,8 @@ class ArticleDetailView(DetailView):
 class ArticleCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = Article
     form_class = ArticleForm
-    template_name = "articles/article_form.html"
-    success_url = reverse_lazy("article_list")
+    template_name = "articles/articles_create.html"
+    success_url = reverse_lazy("articles:list")
 
     def test_func(self):
         return self.request.user.is_staff
@@ -60,21 +60,21 @@ class ArticleCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Article
     form_class = ArticleForm
-    template_name = "articles/article_form.html"
+    template_name = "articles/articles_update.html"
     slug_url_kwarg = "slug"
 
     def test_func(self):
         return self.request.user.is_staff
 
     def get_success_url(self):
-        return reverse_lazy("article_detail", kwargs={"slug": self.object.slug})
+        return self.object.get_absolute_url()
 
 
 class ArticleDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Article
     form_class = DeleteArticleForm
-    template_name = "articles/article_confirm_delete.html"
-    success_url = reverse_lazy("article_list")
+    template_name = "articles/articles_delete.html"
+    success_url = reverse_lazy("articles:list")
     slug_url_kwarg = "slug"
 
     def test_func(self):
@@ -84,7 +84,7 @@ class ArticleDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 # Vistas para Etiquetas
 class TagListView(ListView):
     model = ArticleTag
-    template_name = "articles/tag_list.html"
+    template_name = "articles/article_tags/tag_list.html"
     context_object_name = "tags"
     paginate_by = 20
 
@@ -92,8 +92,8 @@ class TagListView(ListView):
 class TagCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = ArticleTag
     form_class = ArticleTagForm
-    template_name = "articles/tag_form.html"
-    success_url = reverse_lazy("tag_list")
+    template_name = "articles/article_tags/tag_create.html"
+    success_url = reverse_lazy("articles:tag-list")
 
     def test_func(self):
         return self.request.user.is_staff
@@ -102,8 +102,8 @@ class TagCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 class TagUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = ArticleTag
     form_class = ArticleTagForm
-    template_name = "articles/tag_form.html"
-    success_url = reverse_lazy("tag_list")
+    template_name = "articles/article_tags/tag_update.html"
+    success_url = reverse_lazy("articles:tag-list")
     slug_url_kwarg = "slug"
 
     def test_func(self):
@@ -113,8 +113,8 @@ class TagUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 class TagDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = ArticleTag
     form_class = DeleteArticleTagForm
-    template_name = "articles/tag_confirm_delete.html"
-    success_url = reverse_lazy("tag_list")
+    template_name = "articles/article_tags/tag_confirm_delete.html"
+    success_url = reverse_lazy("articles:tag-list")
     slug_url_kwarg = "slug"
 
     def test_func(self):
