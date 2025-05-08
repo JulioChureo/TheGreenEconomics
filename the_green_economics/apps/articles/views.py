@@ -121,3 +121,16 @@ class TagDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         context = super().get_context_data(**kwargs)
         context["related_articles"] = self.object.articles.count()
         return context
+
+    class ArticleAuditView(LoginRequiredMixin, UserPassesTestMixin, ListView):
+        model = Article
+        template_name = "auditPage.html"
+        context_object_name = "articles"
+        queryset = Article.objects.all().order_by("-created_at")
+        paginate_by = 20
+
+        def get_queryset(self):
+            if self.request.user.is_staff:
+                return Article.objects.all().order_by("-publication_date")
+            return Article.objects.filter(status=Article.Status.PUBLISHED).order_by("-publication_date")
+
