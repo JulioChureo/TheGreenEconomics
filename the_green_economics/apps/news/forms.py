@@ -31,7 +31,6 @@ class NewsForm(forms.ModelForm):
             "featured_image",
             "publication_date",
             "status",
-            "author",
             "tags",
         ]
         labels = {
