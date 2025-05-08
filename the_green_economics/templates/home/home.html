@@ -177,54 +177,52 @@ Para ocupar Con Django:
 -->
 
 {% endblock content %}
-
 {% block inline_javascript %}
-<script>
+    <script>
+      let currentPublication = 0;
+      const publications = Array.from(document.querySelectorAll('[data-title]'));
 
-let currentPublication = 0;
-const publications = Array.from(document.querySelectorAll('[data-title]'));
+      function updateModalData(index) {
+        const publication = publications[index];
+        document.getElementById("modal-title").textContent = publication.dataset.title;
+        document.getElementById("modal-content").textContent = publication.dataset.content;
+        document.getElementById("modal-date").textContent = `Publicado el: ${publication.dataset.date}`;
+      }
 
-function updateModalData(index) {
-    const publication = publications[index];
-    document.getElementById("modal-title").textContent = publication.dataset.title;
-    document.getElementById("modal-content").textContent = publication.dataset.content;
-    document.getElementById("modal-date").textContent = `Publicado el: ${publication.dataset.date}`;
-}
+      function openModal(index) {
+        currentPublication = index;
+        updateModalData(index);
+        document.getElementById("modal").classList.remove("hidden");
+        document.body.classList.add("overflow-hidden");
+      }
 
-function openModal(index) {
-    currentPublication = index;
-    updateModalData(index);
-    document.getElementById("modal").classList.remove("hidden");
-    document.body.classList.add("overflow-hidden");
-}
+      function closeModal() {
+        document.getElementById("modal").classList.add("hidden");
+        document.body.classList.remove("overflow-hidden");
+      }
 
-function closeModal() {
-    document.getElementById("modal").classList.add("hidden");
-    document.body.classList.remove("overflow-hidden");
-}
+      function prevPublication() {
+        if (currentPublication > 0) {
+          currentPublication--;
+          updateModalData(currentPublication);
+        }
+      }
 
-function prevPublication() {
-    if (currentPublication > 0) {
-        currentPublication--;
-        updateModalData(currentPublication);
-    }
-}
+      function nextPublication() {
+        if (currentPublication < publications.length - 1) {
+          currentPublication++;
+          updateModalData(currentPublication);
+        }
+      }
 
-function nextPublication() {
-    if (currentPublication < publications.length - 1) {
-        currentPublication++;
-        updateModalData(currentPublication);
-    }
-}
+      // Cerrar modal al hacer clic fuera
+      document.getElementById('modal').addEventListener('click', function(e) {
+        if (e.target === this) closeModal();
+      });
 
-// Cerrar modal al hacer clic fuera
-document.getElementById('modal').addEventListener('click', function(e) {
-    if (e.target === this) closeModal();
-});
-
-// Cerrar con ESC
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeModal();
-});
-</script>
+      // Cerrar con ESC
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeModal();
+      });
+    </script>
 {% endblock inline_javascript %}

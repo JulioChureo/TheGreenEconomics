@@ -64,7 +64,7 @@ class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return self.request.user.is_staff
 
     def get_success_url(self):
-        return reverse_lazy("articles:detail", kwargs={"slug": self.object.slug})
+        return self.object.get_absolute_url()
 
 
 class ArticleDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
@@ -81,7 +81,7 @@ class ArticleDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 # Vistas para Etiquetas
 class TagListView(ListView):
     model = ArticleTag
-    template_name = "articles/tag_list.html"
+    template_name = "articles/article_tags/tag_list.html"
     context_object_name = "tags"
     paginate_by = 20
 
@@ -89,8 +89,8 @@ class TagListView(ListView):
 class TagCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = ArticleTag
     form_class = ArticleTagForm
-    template_name = "articles/tag_form.html"
-    success_url = reverse_lazy("tag_list")
+    template_name = "articles/article_tags/tag_create.html"
+    success_url = reverse_lazy("articles:tag-list")
 
     def test_func(self):
         return self.request.user.is_staff
@@ -99,8 +99,8 @@ class TagCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 class TagUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = ArticleTag
     form_class = ArticleTagForm
-    template_name = "articles/tag_form.html"
-    success_url = reverse_lazy("tag_list")
+    template_name = "articles/article_tags/tag_update.html"
+    success_url = reverse_lazy("articles:tag-list")
     slug_url_kwarg = "slug"
 
     def test_func(self):
@@ -110,8 +110,8 @@ class TagUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 class TagDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = ArticleTag
     form_class = DeleteArticleTagForm
-    template_name = "articles/tag_confirm_delete.html"
-    success_url = reverse_lazy("tag_list")
+    template_name = "articles/article_tags/tag_confirm_delete.html"
+    success_url = reverse_lazy("articles:tag-list")
     slug_url_kwarg = "slug"
 
     def test_func(self):

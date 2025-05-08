@@ -1,112 +1,127 @@
+{% load static i18n compress tailwind_tags cache %}
 
-{% load static i18n compress tailwind_tags cache %}<!DOCTYPE html>
+<!DOCTYPE html>
 {% get_current_language as LANGUAGE_CODE %}
 <html lang="{{ LANGUAGE_CODE }}">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
       {% block title %}
-      The Green Economics
+        The Green Economics
       {% endblock title %}
-  </title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="description"
-        content="Behold My Awesome Project!" />
-  <meta name="author"
-        content="Diego Rivera, Julio Chureo" />
-  <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}" />
-  <script src="https://cdn.tailwindcss.com"></script>
-{% block css %}
-
-  {% tailwind_css %}
-  {% compress css %}
-    <link href="{% static 'css/project.css' %}" rel="stylesheet" />
-    <style>
-      body {
-            background-image: url('{% static 'images/background.jpg' %}');
+    </title>
+    <meta name="author" content="Sebastiano... ,Diego Rivera, Julio Chureo" />
+    <meta name="description"
+          content="The Green Economics. A website about the green economy." />
+    <meta name="keywords"
+          content="green, economy, economics, green economy, circle economics, news" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="googlebot-news"
+          content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <link rel="canonical" href="https://www.thegreeneconomics.com/" />
+    <meta property="og:title"
+          content="The Green Economics. A website about the green economy." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.thegreeneconomics.com/" />
+    <meta property="og:image"
+          content="https://www.thegreeneconomics.com/static/images/logo.png" />
+    <meta property="og:description"
+          content="The Green Economics. A website about the green economy." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@thegreeneconomics" />
+    <meta name="twitter:creator" content="@thegreeneconomics" />
+    <meta name="twitter:title"
+          content="The Green Economics. A website about the green economy." />
+    <meta name="twitter:description"
+          content="The Green Economics. A website about the green economy." />
+    <meta name="twitter:image"
+          content="https://www.thegreeneconomics.com/static/images/logo.png" />
+    <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    {% block css %}
+      {% tailwind_css %}
+      {% compress css %}
+        <link href="{% static 'css/project.css' %}" rel="stylesheet" />
+        <style>
+          body {
+            background-image: url('{% static "images/background.jpg" %}');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             position: relative;
-        }
-        body::before {
+          }
+
+          body::before {
             content: "";
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); /* Oscurece la imagen sin afectar el contenido */
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Oscurece la imagen sin afectar el contenido */
             z-index: -1;
-        }
-    </style>
-  {% endcompress %}
-{% endblock css %}
-
-{# Placed at the top of the document so pages load faster with defer #}
-{% block javascript %}
-
-
-{% compress js %}
-  <script defer src="{% static 'js/project.js' %}"></script>
-  <script defer src="{% static 'js/navbar.js' %}"></script>
-{% endcompress %}
-
-
-{% endblock javascript %}
+          }
+        </style>
+      {% endcompress %}
+    {% endblock css %}
+    {# Placed at the top of the document so pages load faster with defer #}
+    {% block javascript %}
+      <script defer
+              src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+      {% compress js %}
+        <script defer src="{% static 'js/project.js' %}"></script>
+        <script defer src="{% static 'js/navbar.js' %}"></script>
+      {% endcompress %}
+    {% endblock javascript %}
   </head>
-<body class="{% block bodyclass %}{% endblock bodyclass %}">
-
-  
-<div class="flex flex-col flex-grow">
-{% block body %}
-
-  {% block header %}
-    {% include "components/header.html" %}
-  {% endblock header %}
-  
-    {% block message %}
-      <div class="container">
-        {% if messages %}
-          {% for message in messages %}
-            <div class="alert alert-dismissible {% if message.tags %}alert-{{ message.tags }}{% endif %}">
-              {{ message }}
-              <button type="button"
-                      class="btn-close"
-                      data-bs-dismiss="alert"
-                      aria-label="Close"></button>
-            </div>
-          {% endfor %}
-        {% endif %}
-    {% endblock message %}
-
-    <main id="mainContent" class="flex-grow transition-all duration-300 px-4 md:px-8 pt-16">
-      {% block main %}
-        {% block content %}
-          <p>Use this document as a way to quick start any new project.</p>
-        {% endblock content %}
-      {% endblock main %}
-    </main>
-
-  
-
-{% endblock body %}
-</div>
-{% block footer %}
-  {% include "components/footer.html" %}
-{% endblock footer %}
-  <!-- /container -->
-  {% block modal %}
-  {% endblock modal %}
-
-  {% compress js %}
-    {% block inline_javascript %}
-      <script>
-        console.log('Hello, world!');
-      </script>
-    {% endblock inline_javascript %}
-  {% endcompress %}
-</body>
+  <body class="{% block bodyclass %}{% endblock bodyclass %}">
+    <div class="flex flex-col flex-grow">
+      {% block body %}
+        {% block header %}
+          {% include "components/header.html" %}
+        {% endblock header %}
+        {% block message %}
+          <div class="container">
+            {% if messages %}
+              {% for message in messages %}
+                <div class="alert alert-dismissible {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                  {{ message }}
+                  <button type="button"
+                          class="btn-close"
+                          data-bs-dismiss="alert"
+                          aria-label="Close"></button>
+                </div>
+              {% endfor %}
+            {% endif %}
+          </div>
+        {% endblock message %}
+        <main id="mainContent"
+              class="flex-grow transition-all duration-300 px-4 md:px-8 pt-16">
+          {% block main %}
+            {% block content %}
+              <p>Use this document as a way to quick start any new project.</p>
+            {% endblock content %}
+          {% endblock main %}
+        </main>
+      {% endblock body %}
+    </div>
+    {% block footer %}
+      {% include "components/footer.html" %}
+    {% endblock footer %}
+    <!-- /container -->
+    {% block modal %}
+      {% include "components/modal.html" %}
+    {% endblock modal %}
+    {% compress js %}
+      {% block inline_javascript %}
+        <script>
+          console.log('Hello, world!');
+        </script>
+      {% endblock inline_javascript %}
+    {% endcompress %}
+  </body>
 </html>
