@@ -1,1 +1,40 @@
 {% extends "dashboards/_base.html" %}
+
+{% block content %}
+    <h1 class="text-3xl font-bold mb-6 text-gray-800">Panel de Administración</h1>
+    <section id="dashboard-quick-links"
+             class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <article class="bg-white shadow-md rounded-lg p-6">
+            <h2 class="text-xl font-semibold mb-4">Auditoría</h2>
+            <p class="text-gray-700">Revisa y gestiona los cambios</p>
+            <a href="" class="mt-4 inline-block text-blue-600 hover:text-blue-900">Ver Publicaciones</a>
+        </article>
+        <article class="bg-white shadow-md rounded-lg p-6">
+            <h2 class="text-xl font-semibold mb-4">Artículos</h2>
+            <p class="text-gray-700">Gestiona los artículos científicos</p>
+            <a href="{% url 'dashboards:article-list' %}"
+               class="mt-4 inline-block text-blue-600 hover:text-blue-900">Ver Artículos</a>
+        </article>
+        <article class="bg-white shadow-md rounded-lg p-6">
+            <h2 class="text-xl font-semibold mb-4">Noticias</h2>
+            <p class="text-gray-700">Gestiona las noticias</p>
+            <a href="{% url 'dashboards:news-list' %}"
+               class="mt-4 inline-block text-blue-600 hover:text-blue-900">Ver Noticias</a>
+        </article>
+    </section>
+    <section id="dashboard-quick-links"
+             class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 pt-6">
+        <article class="bg-white shadow-md rounded-lg p-6">
+            <h2 class="text-xl font-semibold mb-4">Base de datos</h2>
+            <p class="text-gray-700">Gestiona la base de datos</p>
+            <a href="{% url 'admin:index' %}"
+               target="_blank"
+               class="mt-4 inline-block text-blue-600 hover:text-blue-900">Ver Base de Datos</a>
+        </article>
+        <article class="bg-white shadow-md rounded-lg p-6">
+            <h2 class="text-xl font-semibold mb-4">Archivos</h2>
+            <p class="text-gray-700">Gestiona los archivos</p>
+            <a href="" class="mt-4 inline-block text-blue-600 hover:text-blue-900">No Implementado</a>
+        </article>
+    </section>
+{% endblock content %}
