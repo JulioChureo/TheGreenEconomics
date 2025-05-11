@@ -43,7 +43,7 @@ class ArticleDetailView(DetailView):
         return Article.objects.filter()
 
 
-class ArticleCreateView( CreateView):
+class ArticleCreateView(CreateView):
     model = Article
     form_class = ArticleForm
     template_name = "articles/articles_create.html"
@@ -132,5 +132,6 @@ class TagDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         def get_queryset(self):
             if self.request.user.is_staff:
                 return Article.objects.all().order_by("-publication_date")
-            return Article.objects.filter(status=Article.Status.PUBLISHED).order_by("-publication_date")
-
+            return Article.objects.filter(status=Article.Status.PUBLISHED).order_by(
+                "-publication_date"
+            )

@@ -1,15 +1,14 @@
 {% extends "adminBase.html" %}
 
 {% block content %}
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
-  {% for article in object_list %}
-    <div class="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition duration-300">
-      <h2 class="text-xl font-bold mb-2 text-gray-800">{{ article.title }}</h2>
-      <p class="text-gray-600 mb-4">{{ article.abstract|truncatechars:200 }}</p>
-      <a href="{% url 'articles:detail' article.slug %}" class="text-blue-600 font-medium hover:underline">
-        Ver detalle →
-      </a>
-    </div>
-  {% endfor %}
-</div>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+    {% for article in object_list %}
+      <div class="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition duration-300">
+        <h2 class="text-xl font-bold mb-2 text-gray-800">{{ article.title }}</h2>
+        <p class="text-gray-600 mb-4">{{ article.abstract|truncatechars:200 }}</p>
+        <a href="{% url 'articles:detail' article.slug %}"
+           class="text-blue-600 font-medium hover:underline">Ver detalle →</a>
+      </div>
+    {% endfor %}
+  </div>
 {% endblock content %}
