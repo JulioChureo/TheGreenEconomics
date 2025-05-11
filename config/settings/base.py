@@ -96,6 +96,7 @@ DJANGO_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
+    "auditlog",
     "tailwind",
     "crispy_forms",
     "crispy_tailwind",
