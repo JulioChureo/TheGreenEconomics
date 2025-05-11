@@ -10,15 +10,15 @@
                     <div class="hidden md:flex space-x-8 ml-10">
                         <a href="{% url 'dashboards:home' %}"
                            class="text-gray-600 hover:text-gray-900 px-1 pt-1 text-sm font-medium">Inicio</a>
-                        <a href="{% url 'dashboards:article-create' %}"
-                           class="text-gray-600 hover:text-gray-900 px-1 pt-1 text-sm font-medium">Crear Post</a>
                         <a href="{% url 'dashboards:article-list' %}"
-                           class="text-gray-600 hover:text-gray-900 px-1 pt-1 text-sm font-medium">Lista Post</a>
+                           class="text-gray-600 hover:text-gray-900 px-1 pt-1 text-sm font-medium">Articulos</a>
                     </div>
                 </div>
                 <!-- Right side -->
                 <div class="hidden md:flex items-center space-x-4">
-                    <span class="text-gray-600 text-sm">Sistema de Auditoría</span>
+                    <span class="text-gray-600 text-sm">
+                        <a href="{% url 'dashboards:audit-list' %}">Sistema de Auditoría</a>
+                    </span>
                 </div>
                 <!-- Mobile menu button -->
                 <div class="flex items-center md:hidden">
