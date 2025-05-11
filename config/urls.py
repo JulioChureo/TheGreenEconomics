@@ -23,11 +23,6 @@ urlpatterns = [
         TemplateView.as_view(template_name="pages/publications.html"),
         name="publications",
     ),
-    path(
-        "adminHome/",
-        TemplateView.as_view(template_name="admin/auditPage.html"),
-        name="adminHome",
-    ),
     # --- Django JET URLS ---
     path("jet/", include("jet.urls", "jet")),  # Django JET URLS
     path(
