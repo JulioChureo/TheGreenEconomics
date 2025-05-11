@@ -1,21 +1,7 @@
-from django.contrib.auth.mixins import AccessMixin
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.mixins import UserPassesTestMixin
-from django.core.cache import cache
-from django.urls import reverse_lazy
-from django.utils.translation import gettext_lazy as _
-from django.views.generic import CreateView
-from django.views.generic import DeleteView
 from django.views.generic import DetailView
 from django.views.generic import ListView
-from django.views.generic import UpdateView
 
-from .forms import DeleteNewsForm
-from .forms import DeleteNewsTagForm
-from .forms import NewsForm
-from .forms import NewsTagForm
-from .models import News
-from .models import NewsTag
+from the_green_economics.apps.news.models import News
 
 
 class NewsListView(ListView):
@@ -34,6 +20,9 @@ class NewsListView(ListView):
         return queryset
 
 
+news_list_view = NewsListView.as_view()
+
+
 class NewsDetailView(DetailView):
     model = News
     template_name = "news/news_retrieve.html"
@@ -46,103 +35,4 @@ class NewsDetailView(DetailView):
         return News.objects.filter(status=News.Status.PUBLISHED)
 
 
-class NewsCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
-    model = News
-    form_class = NewsForm
-    template_name = "news/news_create.html"
-    success_url = reverse_lazy("news:list")
-
-    def test_func(self):
-        if not self.request.user:
-            return False
-        return self.request.user.is_staff or self.request.user.is_superuser
-
-    def form_valid(self, form):
-        response = super().form_valid(form)
-        return response
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["title"] = _("Crear Nueva Noticia")
-        return context
-
-
-class NewsUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-    model = News
-    form_class = NewsForm
-    template_name = "news/news_update.html"
-    slug_url_kwarg = "slug"
-
-    def test_func(self):
-        return self.request.user.is_staff
-
-    def get_success_url(self):
-        return self.object.get_absolute_url()
-
-    def form_valid(self, form):
-        response = super().form_valid(form)
-        return response
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["title"] = _("Editar Noticia")
-        return context
-
-
-class NewsDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-    model = News
-    form_class = DeleteNewsForm
-    template_name = "news/news_delete.html"
-    success_url = reverse_lazy("news:list")
-    slug_url_kwarg = "slug"
-
-    def test_func(self):
-        return self.request.user.is_staff
-
-    def delete(self, request, *args, **kwargs):
-        return super().delete(request, *args, **kwargs)
-
-
-# Vistas para Etiquetas
-class NewsTagListView(ListView):
-    model = NewsTag
-    template_name = "articles/NewsTag_list.html"
-    context_object_name = "NewsTags"
-    paginate_by = 20
-
-
-class NewsTagCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
-    model = NewsTag
-    form_class = NewsTagForm
-    template_name = "articles/NewsTag_form.html"
-    success_url = reverse_lazy("NewsTag_list")
-
-    def test_func(self):
-        return self.request.user.is_staff
-
-
-class NewsTagUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-    model = NewsTag
-    form_class = NewsTagForm
-    template_name = "articles/NewsTag_form.html"
-    success_url = reverse_lazy("NewsTag_list")
-    slug_url_kwarg = "slug"
-
-    def test_func(self):
-        return self.request.user.is_staff
-
-
-class NewsTagDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-    model = NewsTag
-    form_class = DeleteNewsTagForm
-    template_name = "articles/NewsTag_confirm_delete.html"
-    success_url = reverse_lazy("NewsTag_list")
-    slug_url_kwarg = "slug"
-
-    def test_func(self):
-        return self.request.user.is_staff
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["related_articles"] = self.object.articles.count()
-        return context
+news_detail_view = NewsDetailView.as_view()

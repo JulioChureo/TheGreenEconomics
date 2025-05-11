@@ -1,7 +1,6 @@
 # ruff: noqa: ERA001, E501
 """Base settings to build other settings files upon."""
 
-from os import path
 from pathlib import Path
 
 import environ
@@ -105,9 +104,11 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     "the_green_economics.theme",
+    "the_green_economics.apps.utils",
     "the_green_economics.apps.users",
     "the_green_economics.apps.articles",
     "the_green_economics.apps.news",
+    "the_green_economics.apps.dashboards",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps

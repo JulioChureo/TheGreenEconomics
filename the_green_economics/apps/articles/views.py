@@ -1,19 +1,7 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.mixins import UserPassesTestMixin
-from django.urls import reverse_lazy
-from django.utils.translation import gettext_lazy as _
-from django.views.generic import CreateView
-from django.views.generic import DeleteView
 from django.views.generic import DetailView
 from django.views.generic import ListView
-from django.views.generic import UpdateView
 
-from .forms import Article
-from .forms import ArticleForm
-from .forms import ArticleTagForm
-from .forms import DeleteArticleForm
-from .forms import DeleteArticleTagForm
-from .models import ArticleTag
+from the_green_economics.apps.articles.forms import Article
 
 
 # Vistas para Artículos Científicos
@@ -41,83 +29,3 @@ class ArticleDetailView(DetailView):
         if self.request.user.is_staff:
             return Article.objects.all()
         return Article.objects.filter()
-
-
-class ArticleCreateView( CreateView):
-    model = Article
-    form_class = ArticleForm
-    template_name = "articles/articles_create.html"
-    success_url = reverse_lazy("articles:list")
-
-    def form_valid(self, form):
-        form.instance.owner = self.request.user
-        return super().form_valid(form)
-
-
-class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-    model = Article
-    form_class = ArticleForm
-    template_name = "articles/articles_form.html"
-    slug_url_kwarg = "slug"
-
-    def test_func(self):
-        return self.request.user.is_staff
-
-    def get_success_url(self):
-        return self.object.get_absolute_url()
-
-
-class ArticleDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-    model = Article
-    form_class = DeleteArticleForm
-    template_name = "articles/articles_confirm_delete.html"
-    success_url = reverse_lazy("articles:list")
-    slug_url_kwarg = "slug"
-
-    def test_func(self):
-        return self.request.user.is_staff
-
-
-# Vistas para Etiquetas
-class TagListView(ListView):
-    model = ArticleTag
-    template_name = "articles/article_tags/tag_list.html"
-    context_object_name = "tags"
-    paginate_by = 20
-
-
-class TagCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
-    model = ArticleTag
-    form_class = ArticleTagForm
-    template_name = "articles/article_tags/tag_create.html"
-    success_url = reverse_lazy("articles:tag-list")
-
-    def test_func(self):
-        return self.request.user.is_staff
-
-
-class TagUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-    model = ArticleTag
-    form_class = ArticleTagForm
-    template_name = "articles/article_tags/tag_update.html"
-    success_url = reverse_lazy("articles:tag-list")
-    slug_url_kwarg = "slug"
-
-    def test_func(self):
-        return self.request.user.is_staff
-
-
-class TagDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-    model = ArticleTag
-    form_class = DeleteArticleTagForm
-    template_name = "articles/article_tags/tag_confirm_delete.html"
-    success_url = reverse_lazy("articles:tag-list")
-    slug_url_kwarg = "slug"
-
-    def test_func(self):
-        return self.request.user.is_staff
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["related_articles"] = self.object.articles.count()
-        return context

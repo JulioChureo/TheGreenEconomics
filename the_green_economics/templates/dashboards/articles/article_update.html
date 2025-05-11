@@ -1,10 +1,10 @@
-{% extends "base.html" %}
+{% extends "dashboards/_base.html" %}
 
 {% block content %}
-    <!-- form.html -->
+    <!-- article_form.html -->
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">{{ title }}</button>
+        <button type="submit">{{ view.title|default:"Guardar" }}</button>
     </form>
 {% endblock content %}

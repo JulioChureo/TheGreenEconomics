@@ -5,14 +5,17 @@
     },
     "[python]": {
         "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.convertImportFormat": "explicit",
+            "source.organizeImports": "explicit",
+            "source.fixAll": "explicit",
+            "source.fixAll.ruff": "explicit"
+        },
         "editor.defaultFormatter": "charliermarsh.ruff"
     },
     "[shellscript]": {
         "files.eol": "\n",
         "editor.defaultColorDecorators": "never"
-    },
-    "editor.codeActionsOnSave": {
-      "source.organizeImports": "explicit"
     },
     "files.eol": "\n", 
 }

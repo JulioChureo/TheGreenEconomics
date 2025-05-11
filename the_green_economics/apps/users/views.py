@@ -14,11 +14,10 @@ from django.views.generic import FormView
 from django.views.generic import RedirectView
 from django.views.generic import UpdateView
 
+from the_green_economics.apps.users.forms import UserCreationForm
+from the_green_economics.apps.users.forms import UserLoginForm
+from the_green_economics.apps.users.forms import UserLogOutForm
 from the_green_economics.apps.users.models import User
-
-from .forms import UserCreationForm
-from .forms import UserLoginForm
-from .forms import UserLogOutForm
 
 
 class UserCreateView(CreateView):
@@ -39,7 +38,7 @@ class UserCreateView(CreateView):
 
     model = User
     form_class = UserCreationForm
-    template_name = "users/views/user_create.html"
+    template_name = "users/user_create.html"
 
     def get_object(self, queryset: Any):
         return super().get_object(queryset)
@@ -51,7 +50,7 @@ class UserCreateView(CreateView):
 user_create_view = UserCreateView.as_view()
 
 
-class UserLoginFormView(FormView):
+class UserLoginView(FormView):
     """Login form view.
 
     Description: This view is used to log in a user.
@@ -68,7 +67,7 @@ class UserLoginFormView(FormView):
     """
 
     form_class = UserLoginForm
-    template_name = "users/views/user_login.html"
+    template_name = "users/user_login.html"
 
     def get_success_url(self) -> str:
         """Get the URL to redirect to after the user is logged in.
@@ -83,12 +82,15 @@ class UserLoginFormView(FormView):
 
         if not self.request.user.is_authenticated:
             return reverse("users:create")
-        return reverse("users:me")
+        if self.request.GET["next"]:
+            return self.request.GET["next"]
+        return reverse("dashboards:home")
 
     def form_valid(self, form: UserLoginForm):
         """Check credentials and log in user.
 
-        Description: This method is used to check the credentials of the user and log in the user if they are valid.
+        Description: This method is used to check the credentials of the user and log in
+        the user if they are valid.
 
         Args:
             form (UserLoginForm): The form used to log in the user.
@@ -112,7 +114,7 @@ class UserLoginFormView(FormView):
         return super().form_valid(form)
 
 
-user_login_view = UserLoginFormView.as_view()
+user_login_view = UserLoginView.as_view()
 
 
 class UserLogOutView(FormView, LoginRequiredMixin, SuccessMessageMixin):
@@ -131,7 +133,7 @@ class UserLogOutView(FormView, LoginRequiredMixin, SuccessMessageMixin):
 
     """
 
-    template_name = "users/views/user_logout.html"
+    template_name = "users/user_logout.html"
     form_class = UserLogOutForm
     success_message = _("Successfully logged out")
 
@@ -165,7 +167,7 @@ class UserDetailView(LoginRequiredMixin, DetailView):
     model = User
     slug_field = "username"
     slug_url_kwarg = "username"
-    template_name = "users/views/user_detail.html"
+    template_name = "users/user_detail.html"
 
     def get_object(self):
         return self.request.user
@@ -193,11 +195,11 @@ class UserUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = User
     fields = ["name"]
     success_message = _("Information successfully updated")
-    template_name = "users/views/user_update.html"
+    template_name = "users/user_update.html"
 
     def get_success_url(self) -> str:
         assert self.request.user.is_authenticated  # type guard
-        return self.request.user.get_absolute_url()
+        return self.request.user.get_absolute_url()  # type: ignore
 
     def get_object(self, queryset: QuerySet | None = None) -> User:
         assert self.request.user.is_authenticated  # type guard

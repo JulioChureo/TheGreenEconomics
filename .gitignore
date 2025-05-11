@@ -272,9 +272,11 @@ the_green_economics/media/
 
 .pytest_cache/
 
-.cache/
+.cache/*
 
 
 node_modules/*
 
 .database/*
+.database/db.sqlite3
+.env

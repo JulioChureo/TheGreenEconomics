@@ -1,10 +1,10 @@
-{% extends "adminBase.html" %}
+{% extends "dashboards/_base.html" %}
 
 {% load crispy_forms_tags %}
 
 {% block content %}
-<!-- article_form.html -->
-<form method="post" enctype="multipart/form-data">
+  <!-- article_form.html -->
+  <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form|crispy }}
     <button type="submit">{{ view.title|default:"Guardar" }}</button>

@@ -1,7 +1,6 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include
 from django.urls import path
 from django.views import defaults as default_views
@@ -40,17 +39,22 @@ urlpatterns = [
     # --- app URLS ---
     path("", include("the_green_economics.apps.home.urls", namespace="home")),
     path("users/", include("the_green_economics.apps.users.urls", namespace="users")),
-    path("articles/", include("the_green_economics.apps.articles.urls", namespace="articles")),
+    path(
+        "articles/",
+        include("the_green_economics.apps.articles.urls", namespace="articles"),
+    ),
     path("news/", include("the_green_economics.apps.news.urls", namespace="news")),
-
+    path(
+        "dashboards/",
+        include("the_green_economics.apps.dashboards.urls", namespace="dashboards"),
+    ),
     # --- static files/media ---
     *static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),
 ]
 
 
 if settings.DEBUG:
-    # Static file serving when using Gunicorn + Uvicorn for local web socket development
-    urlpatterns += staticfiles_urlpatterns()
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 if settings.DEBUG:
