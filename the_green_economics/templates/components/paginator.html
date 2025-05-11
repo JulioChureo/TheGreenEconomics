@@ -1,0 +1,17 @@
+<div class="flex justify-center">
+    <div class="mt-4">
+        {% if page_obj.has_other_pages %}
+            <div class="flex space-x-2 mb-2">
+                <button {% if page_obj.has_previous %}onclick="window.location.href='?page={{ page_obj.previous_page_number }}'" {% else %} disabled {% endif %}
+                        class="px-4 py-2 bg-gray-200 rounded-md transition-colors  {% if page_obj.has_previous %}hover:bg-gray-300{% endif %}">
+                    Anterior
+                </button>
+                <span class="px-4 py-2 {% if text_color %} {{ text_color }} {% else %} text-gray-700 {% endif %}">Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+                <button {% if page_obj.has_next %}onclick="window.location.href='?page={{ page_obj.next_page_number }}'" {% else %} disabled {% endif %}
+                        class="px-4 py-2 bg-gray-200 rounded-md transition-colors  {% if page_obj.has_next %}hover:bg-gray-300{% endif %}">
+                    Siguiente
+                </button>
+            </div>
+        {% endif %}
+    </div>
+</div>
