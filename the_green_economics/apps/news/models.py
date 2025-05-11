@@ -1,3 +1,4 @@
+from auditlog.registry import auditlog
 from django.core.cache import cache
 from django.db import models
 from django.urls import reverse
@@ -22,7 +23,7 @@ class NewsTag(models.Model):
         return self.name
 
     def get_articles(self):
-        return self.articles.all()
+        return self.news.all()
 
 
 class News(models.Model):
@@ -92,3 +93,8 @@ class News(models.Model):
             unique_slug = f"{base_slug}-{counter}"
             counter += 1
         return unique_slug
+
+
+# Register the models with auditlog
+auditlog.register(News)
+auditlog.register(NewsTag)

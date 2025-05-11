@@ -43,4 +43,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         updateLayout();
     });
+    
+    navigation.addEventListener('navigate', () => {
+        localStorage.setItem('menuOpen', false);
+        updateLayout();
+    });
+    document.addEventListener("visibilitychange", () => {
+        localStorage.setItem('menuOpen', false);
+        updateLayout();
+    })
 });

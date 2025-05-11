@@ -8,4 +8,6 @@
       <a href="{% url 'news_detail' article.slug %}">Leer más</a>
     </article>
   {% endfor %}
+  <!-- paginacion -->
+  {% include "components/paginator.html" %}
 {% endblock content %}
