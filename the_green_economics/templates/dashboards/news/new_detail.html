@@ -1,0 +1,10 @@
+{% extends "dashboards/_base.html" %}
+
+{% block content %}
+    <!-- detail.html -->
+    <article>
+        <h1>{{ news.title }}</h1>
+        <img src="{{ news.featured_image_url }}" alt="{{ news.title }}" />
+        <div>{{ news.body|safe }}</div>
+    </article>
+{% endblock content %}

@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto px-4 py-8">
+    <!-- Encabezado -->
+    <h1 class="text-4xl md:text-6xl font-serif font-bold text-center text-white mb-12 tracking-tight">
+        Sobre Nosotros
+    </h1>
+    
+    <!-- Contenido principal -->
+    <div class="prose max-w-none space-y-8">
+        <!-- Sección unificada con efecto glassmorphism -->
+        <div class="bg-white bg-opacity-10 p-6 rounded-xl backdrop-blur-sm border border-white border-opacity-20 shadow-xl">
+            <!-- Nuestra Esencia -->
+            <div class="mb-8">
+                <h2 class="text-2xl font-semibold text-white mb-4 text-center">Nuestra Esencia</h2>
+                <p class="text-lg text-justify text-white leading-relaxed">
+                    Somos un journal de ciencia que selecciona las investigaciones más relevantes para combatir 
+                    con éxito los problemas medioambientales. Visibilizamos y compartimos el trabajo científico 
+                    de excelencia en economía verde, haciéndolo accesible a todos los interesados.
+                </p>
+            </div>
+
+            <!-- Misión -->
+            <div class="mb-8">
+                <h2 class="text-2xl font-semibold text-white mb-4 text-center">Misión</h2>
+                <p class="text-lg text-justify text-white leading-relaxed">
+                    Brindar un espacio para investigadores en economía verde, facilitando la difusión de sus trabajos 
+                    a través de nuestro repositorio, formando una comunidad científica comprometida con el bienestar 
+                    humano y la protección del medioambiente.
+                </p>
+            </div>
+
+            <!-- Visión -->
+            <div class="mb-8">
+                <h2 class="text-2xl font-semibold text-white mb-4 text-center">Visión</h2>
+                <p class="text-lg text-justify text-white leading-relaxed">
+                    Ser la principal revista científica especializada en economía verde a nivel global, con investigaciones 
+                    que trasciendan lo teórico para generar impactos tangibles y a gran escala en la calidad de vida de las 
+                    personas y la sostenibilidad ambiental.
+                </p>
+            </div>
+
+            <!-- Fundador -->
+            <div class="pt-8 border-opacity-20">
+                <h2 class="text-2xl font-semibold text-white mb-4 text-center">Fundador</h2>
+                <p class="text-lg text-justify text-white leading-relaxed">
+                    Sebastiano Monetta, profesional dedicado a la educación e investigación desde sus inicios. 
+                    Comprometido con transformar la ciencia económica en una herramienta eficaz para mejorar 
+                    la calidad de vida y proteger el medioambiente.<br><br>
+                    
+                    Formación:
+                    <ul>
+                        <li class="text-lg text-justify text-white leading-relaxed"> - Bachiller en Ciencias de la Ingeniería</li>
+                        <li class="text-lg text-justify text-white leading-relaxed"> - Ingeniero Industrial</li>
+                        <li class="text-lg text-justify text-white leading-relaxed"> - Máster en Economía Circular y Medioambiente.</li>
+                    </ul>  
+                </p>
+            </div>
+        </div>
+
+        <!-- Sección del equipo -->
+        <div class="mt-12">
+            <h2 class="text-3xl font-semibold text-white mb-8 border-b pb-2 border-white border-opacity-20">Nuestro Equipo</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-transform duration-300">
+                    <div class="text-center">
+                        <div class="mb-4">
+                            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" 
+                                 alt="Sebastian Monetta" 
+                                 class="w-24 h-24 rounded-full mx-auto object-cover border-2 border-white shadow-md hover:scale-105 transition-transform">
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-1">Sebastiano Monetta</h3>
+                        <p class="text-gray-600 mb-4">Fundador</p>
+                        
+                        <a href="https://www.linkedin.com/in/sebastiano-monetta-a9a9b3252/" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           class="inline-flex items-center justify-center space-x-2 text-blue-600 hover:text-blue-800 transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                            </svg>
+                            <span class="text-sm font-medium">Perfil LinkedIn</span>
+                        </a>
+                        
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-transform duration-300">
+                    <div class="text-center">
+                        <div class="mb-4">
+                            <img src="https://media.licdn.com/dms/image/v2/C4D03AQFU_E2a3_Tqow/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1523778784137?e=1750291200&amp;v=beta&amp;t=-N1XUiTNXUhLEfbD23_fzxcmHNjoKGdt8NR_iiSjmnk" 
+                                 alt="Julio Chureo" 
+                                 class="w-24 h-24 rounded-full mx-auto object-cover border-2 border-white shadow-md hover:scale-105 transition-transform">
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-1">Julio Chureo</h3>
+                        <p class="text-gray-600 mb-4">Desarrollador - Programador - Diseñador</p>
+                        
+                        <a href="https://www.linkedin.com/in/julio-chureo/" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           class="inline-flex items-center justify-center space-x-2 text-blue-600 hover:text-blue-800 transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                            </svg>
+                            <span class="text-sm font-medium">Perfil LinkedIn</span>
+                        </a>
+                        
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-transform duration-300">
+                    <div class="text-center">
+                        <div class="mb-4">
+                            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" 
+                                 alt="Diego Rivera" 
+                                 class="w-24 h-24 rounded-full mx-auto object-cover border-2 border-white shadow-md hover:scale-105 transition-transform">
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-1">Diego Rivera</h3>
+                        <p class="text-gray-600 mb-4">Desarrollador - Programador</p>
+                        
+                        <a href="https://www.linkedin.com/in/carloslopez" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           class="inline-flex items-center justify-center space-x-2 text-blue-600 hover:text-blue-800 transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                            </svg>
+                            <span class="text-sm font-medium">Perfil LinkedIn</span>
+                        </a>
+                        
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+

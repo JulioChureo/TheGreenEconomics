@@ -1,0 +1,36 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>
+            {% block title %}
+                Admin The Green Economics
+            {% endblock title %}
+        </title>
+        <!-- Tailwind CSS via CDN (para desarrollo, en producción usa la compilación) -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        {% block extra_css %}
+        {% endblock extra_css %}
+    </head>
+    <body class="bg-gray-50">
+        {% include "dashboards/layout/header.html" %}
+        <!-- Main content -->
+        <main class="mt-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+                {% block content %}<!-- El contenido específico de cada página irá aquí -->{% endblock %}
+            </div>
+        </main>
+        <!-- Script para el menú móvil -->
+        <script>
+          document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+          });
+        </script>
+        {% block extra_js %}
+        {% endblock extra_js %}
+    </body>
+</html>

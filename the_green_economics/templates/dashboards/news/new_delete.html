@@ -1,0 +1,11 @@
+{% extends "dashboards/_base.html" %}
+
+{% block content %}
+    <!-- confirm_delete.html -->
+    <form method="post">
+        {% csrf_token %}
+        <p>¿Está seguro de eliminar "{{ object }}"?</p>
+        {{ form.as_p }}
+        <button type="submit">Eliminar definitivamente</button>
+    </form>
+{% endblock content %}
