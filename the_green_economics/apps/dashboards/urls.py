@@ -13,6 +13,8 @@ from the_green_economics.apps.dashboards.views.articles_views import (
 from the_green_economics.apps.dashboards.views.articles_views import (
     dashboard_article_update_view,
 )
+from the_green_economics.apps.dashboards.views.audits_views import audit_detail_view
+from the_green_economics.apps.dashboards.views.audits_views import audit_list_view
 from the_green_economics.apps.dashboards.views.news_views import (
     dashboard_news_create_view,
 )
@@ -45,4 +47,6 @@ urlpatterns = [
     path("news/detail/<slug:slug>/", dashboard_news_detail_view, name="news-detail"),
     path("news/create/", dashboard_news_create_view, name="news-create"),
     path("news/update/<slug:slug>/", dashboard_news_update_view, name="news-update"),
+    path("audits/", audit_list_view, name="audit-list"),
+    path("audits/detail/<int:pk>/", audit_detail_view, name="audit-detail"),
 ]

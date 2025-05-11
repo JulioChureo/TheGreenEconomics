@@ -1,0 +1,43 @@
+{% extends "dashboards/_base.html" %}
+
+{% block content %}
+    <!-- pagina que muestra las diferencias de un registro de auditoría -->
+    <h1 class="text-3xl font-bold mb-6 text-gray-800">Detalle Auditoría</h1>
+    <div class="flex justify-between mb-4">
+        <button onclick="history.back()"
+                class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-xl shadow-md transition duration-300">
+            Volver
+        </button>
+    </div>
+    <section class="overflow-x-auto bg-white rounded-lg shadow-md">
+        <div class="p-6">
+            <h2 class="text-2xl font-bold mb-4">Datos de la Auditoría</h2>
+            <p class="text-gray-700 mb-4">ID: {{ audit.pk }}</p>
+            <p class="text-gray-700 mb-4">Tipo: {{ audit.content_type }}</p>
+            <p class="text-gray-700 mb-4">
+                Acción:
+                {% if audit.action == 0 %}
+                    <span class="text-green 600">Creado</span>
+                {% elif audit.action == 1 %}
+                    <span class="text-blue-600">Actualizado</span>
+                {% elif audit.action == 2 %}
+                    <span class="text-red-600">Eliminado</span>
+                {% elif audit.action == 3 %}
+                    <span class="text-yellow-600">Acceso</span>
+                {% endif %}
+            </p>
+            <p class="text-gray-700 mb-4">Fecha: {{ audit.timestamp }}</p>
+        </div>
+    </section>
+    <section class="overflow-x-auto bg-white rounded-lg shadow-md mt-6">
+        <h1 class="text-2xl font-bold mb-4">Detalles de la Auditoría</h1>
+        <div class="p-6">
+            {% for key, value in audit.changes.items %}
+                <article class="mb-4">
+                    <h3 class="text-lg font-semibold mb-2">{{ key }}</h3>
+                    <p class="text-gray-700 mb-2">{{ value.0 }} -> {{ value.1 }}</p>
+                </article>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock content %}

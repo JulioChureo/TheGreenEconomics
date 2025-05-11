@@ -1,3 +1,4 @@
+from auditlog.registry import auditlog
 from django.core.validators import FileExtensionValidator
 from django.db import models
 from django.template.defaultfilters import slugify
@@ -32,6 +33,7 @@ class Article(models.Model):
         DRAFT = "DF", _("Borrador")
         PUBLISHED = "PB", _("Publicado")
         UNDER_REVIEW = "UR", _("En revisión")
+        ARCHIVED = "AR", _("Archivado")
 
     title = models.CharField(_("article title"), max_length=200)
     slug = models.SlugField(_("article slug"), max_length=200, unique=True)
@@ -84,3 +86,7 @@ class Article(models.Model):
 
     def get_absolute_url(self):
         return reverse("articles:detail", kwargs={"slug": self.slug})
+
+
+auditlog.register(Article)
+auditlog.register(ArticleTag)

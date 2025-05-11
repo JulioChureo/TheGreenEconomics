@@ -1,0 +1,69 @@
+{% extends "dashboards/_base.html" %}
+
+{% block title %}
+    Auditoría de The Green Economics
+{% endblock title %}
+{% block content %}
+    <h1 class="text-3xl font-bold mb-6 text-gray-800">Auditoría</h1>
+    <div class="overflow-x-auto bg-white rounded-lg shadow-md">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-100">
+                <tr>
+                    <th scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Id</th>
+                    <th scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Tipo
+                    </th>
+                    <th scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Acción
+                    </th>
+                    <th scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Fecha
+                    </th>
+                    <th scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Detalles
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+                {% for audit in audits %}
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ audit.pk }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                            {% if audit.content_type %}
+                                {{ audit.content_type }}
+                            {% else %}
+                                <span class="text-gray-500">Sin tipo</span>
+                            {% endif %}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                            {% if audit.action == 0 %}
+                                <span class="text-green 600">Creado</span>
+                            {% elif audit.action == 1 %}
+                                <span class="text-blue-600">Actualizado</span>
+                            {% elif audit.action == 2 %}
+                                <span class="text-red-600">Eliminado</span>
+                            {% elif audit.action == 3 %}
+                                <span class="text-yellow-600">Acceso</span>
+                            {% endif %}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ audit.timestamp }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                            {% if audit.pk %}
+                                <a href="{% url 'dashboards:audit-detail' audit.object_id %}"
+                                   class="text-blue-600 hover:text-blue-900">Ver</a>
+                            {% else %}
+                                <span class="text-gray-500">Sin detalles</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% include "components/paginator.html" %}
+{% endblock content %}
