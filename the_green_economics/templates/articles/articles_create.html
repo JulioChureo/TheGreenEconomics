@@ -3,10 +3,13 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-  <!-- article_form.html -->
-  <form method="post" enctype="multipart/form-data">
+<!-- article_form.html -->
+<form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form|crispy }}
-    <button type="submit">{{ view.title|default:"Guardar" }}</button>
+    <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-xl shadow-md transition duration-300">
+      {{ view.title|default:"Guardar" }}
+  </button>
+
   </form>
 {% endblock content %}
