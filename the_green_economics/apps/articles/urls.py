@@ -1,10 +1,10 @@
 from django.urls import path
 
-from the_green_economics.apps.articles.views import ArticleDetailView
-from the_green_economics.apps.articles.views import ArticleListView
+from the_green_economics.apps.articles.views import article_detail_view
+from the_green_economics.apps.articles.views import article_list_view
 
 app_name = "articles"
 urlpatterns = [
-    path("", ArticleListView.as_view(), name="list"),
-    path("<slug:slug>/", ArticleDetailView.as_view(), name="detail"),
+    path("", article_list_view, name="list"),
+    path("<slug:slug>/", article_detail_view, name="detail"),
 ]

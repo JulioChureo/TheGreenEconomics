@@ -5,13 +5,22 @@ from the_green_economics.apps.articles.models import ArticleTag
 
 
 class ArticleFilter(django_filters.FilterSet):
+    title = django_filters.CharFilter(
+        field_name="title",
+        lookup_expr="icontains",
+        label="Título",
+    )
+
     class Meta:
         model = Article
-        fields = ["publication_date", "title"]
+        fields = ["title"]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.filters["publication_date"].field.widget.attrs["class"] = "w-full"
+        self.filters["title"].field.widget.attrs["placeholder"] = kwargs.get(
+            "title_placeholder",
+            "Buscar por título",
+        )
         self.filters["title"].field.widget.attrs["class"] = "w-full"
 
 
