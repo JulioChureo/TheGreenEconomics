@@ -35,8 +35,8 @@ class Article(models.Model):
         UNDER_REVIEW = "UR", _("En revisión")
         ARCHIVED = "AR", _("Archivado")
 
-    title = models.CharField(_("article title"), max_length=200)
-    slug = models.SlugField(_("article slug"), max_length=200, unique=True)
+    title = models.CharField(_("Titulo Articulo"), max_length=200)
+    slug = models.SlugField(_("Slug Articulo"), max_length=200, unique=True)
     authors = models.CharField(_("article authors"), max_length=200, blank=True)
     publication_date = models.DateField(
         _("article publication date"),
@@ -44,12 +44,13 @@ class Article(models.Model):
         null=True,
     )
 
-    abstract = models.TextField(_("article abstract"))
-    body = models.TextField(_("article body"))
+    abstract = models.TextField(_("article abstract"), blank=True)
+    body = models.TextField(_("article body"), blank=True)
     pdf = models.FileField(
         _("archivo PDF"),
         upload_to="articles/pdfs/",
         validators=[FileExtensionValidator(["pdf"])],
+        null=True,
     )
     tags = models.ManyToManyField(
         ArticleTag,
@@ -63,7 +64,10 @@ class Article(models.Model):
         choices=Status.choices,
         default=Status.DRAFT,
     )
-    created_at = models.DateTimeField(_("fecha de creación"), auto_now_add=True)
+    created_at = models.DateTimeField(
+        _("fecha de creación"),
+        auto_now_add=True,
+    )
     updated_at = models.DateTimeField(_("fecha de actualización"), auto_now=True)
 
     class Meta:
