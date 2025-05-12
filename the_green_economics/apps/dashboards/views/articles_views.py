@@ -1,16 +1,16 @@
-from django.core.paginator import Paginator
 from django.db.models import Q
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.views.generic import DeleteView
 from django.views.generic import DetailView
-from django.views.generic import ListView
 from django.views.generic import UpdateView
 
+from the_green_economics.apps.articles.filters import ArticleFilter
 from the_green_economics.apps.articles.forms import ArticleForm
 from the_green_economics.apps.articles.forms import DeleteArticleForm
 from the_green_economics.apps.articles.models import Article
 from the_green_economics.apps.utils.mixins import AdminUserMixin
+from the_green_economics.apps.utils.mixins import PaginatedFilteredListView
 
 DASHBOARD_ARTICLES_QUERYSET = Article.objects.filter(
     Q(status=Article.Status.PUBLISHED)
@@ -19,12 +19,12 @@ DASHBOARD_ARTICLES_QUERYSET = Article.objects.filter(
 ).order_by("-updated_at")
 
 
-class DashboardArticleListView(AdminUserMixin, ListView):
+class DashboardArticleListView(AdminUserMixin, PaginatedFilteredListView):
     model = Article
     template_name = "dashboards/articles/article_list.html"
     context_object_name = "articles"
     queryset = DASHBOARD_ARTICLES_QUERYSET
-    paginator_class = Paginator
+    filterset_class = ArticleFilter
     paginate_by = 10
 
 
