@@ -1,12 +1,10 @@
 # ruff: noqa: E501
-import os
-from pathlib import Path
 
-from .base import *  # noqa: F403
-from .base import BASE_DIR
-from .base import INSTALLED_APPS
-from .base import MIDDLEWARE
-from .base import env
+from config.settings.base import *  # noqa: F403
+from config.settings.base import BASE_DIR
+from config.settings.base import INSTALLED_APPS
+from config.settings.base import MIDDLEWARE
+from config.settings.base import env
 
 # GENERAL
 # ------------------------------------------------------------------------------
@@ -79,3 +77,10 @@ INSTALLED_APPS += ["django_extensions"]
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+
+# Tailwind CSS
+# ------------------------------------------------------------------------------
+NPM_BIN_PATH = env.str(
+    "NPM_BIN_PATH",
+    default="C:\\Program Files\\nodejs\\npm.cmd",
+)

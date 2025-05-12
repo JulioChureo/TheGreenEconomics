@@ -1,7 +1,8 @@
 # ruff: noqa: E501
-from .base import *  # noqa: F403
-from .base import INSTALLED_APPS
-from .base import env
+from config.settings.base import *  # noqa: F403
+from config.settings.base import BASE_DIR
+from config.settings.base import INSTALLED_APPS
+from config.settings.base import env
 
 # GENERAL
 # ------------------------------------------------------------------------------
@@ -96,6 +97,20 @@ INSTALLED_APPS += ["anymail"]
 # https://anymail.readthedocs.io/en/stable/esps
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 ANYMAIL = {}
+
+# Media
+# ------------------------------------------------------------------------------
+# https://docs.djangoproject.com/en/dev/ref/settings/#media-root
+MEDIA_ROOT = env(
+    "DJANGO_MEDIA_ROOT",
+    default=str(BASE_DIR / "media"),
+)
+
+MEDIA_URL = env(
+    "DJANGO_MEDIA_URL",
+    default="/media/",
+)
+
 
 # django-compressor
 # ------------------------------------------------------------------------------
