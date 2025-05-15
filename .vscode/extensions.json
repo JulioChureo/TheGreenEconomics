@@ -4,10 +4,13 @@
         "njpwerner.autodocstring",
         "ms-python.mypy-type-checker",
         "ms-python.debugpy",
+        "njqdev.vscode-python-typehint",
         "donjayamanne.python-environment-manager",
         "charliermarsh.ruff",
         "donjayamanne.githistory",
         "monosans.djlint",
         "bibhasdn.django-html",
+        "streetsidesoftware.code-spell-checker",
+        "streetsidesoftware.code-spell-checker-spanish"
     ]
 }
