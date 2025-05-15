@@ -2,8 +2,8 @@ from django import forms
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 
-from .models import Article
-from .models import ArticleTag
+from the_green_economics.apps.articles.models import Article
+from the_green_economics.apps.articles.models import ArticleTag
 
 
 class ArticleForm(forms.ModelForm):
@@ -21,7 +21,7 @@ class ArticleForm(forms.ModelForm):
             "abstract",
             "body",
             "pdf",
-            #"tags",
+            # "tags",
             "status",
         ]
         labels = {
@@ -30,7 +30,7 @@ class ArticleForm(forms.ModelForm):
             "summary": _("sumario ejecutivo"),
             "body": _("cuerpo del artículo"),
             "pdf": _("archivo PDF"),
-            #"tags": _("etiquetas"),
+            # "tags": _("etiquetas"),
             "status": _("estado"),
         }
         help_texts = {
@@ -38,12 +38,12 @@ class ArticleForm(forms.ModelForm):
         }
         widgets = {
             "status": forms.Select(choices=Article.Status.choices),
-            #"tags": forms.SelectMultiple(attrs={"class": "select2"}),
+            # "tags": forms.SelectMultiple(attrs={"class": "select2"}),
         }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        #self.fields["tags"].queryset = ArticleTag.objects.all()
+        # self.fields["tags"].queryset = ArticleTag.objects.all()
 
         # Generar slug automáticamente si es nuevo artículo
         if not self.instance.pk:
@@ -65,6 +65,19 @@ class ArticleForm(forms.ModelForm):
                 counter += 1
             return unique_slug
         return slug
+
+
+class ArticleRestoreForm(forms.ModelForm):
+    class Meta:
+        model = Article
+        fields = ["status"]
+        labels = {"status": _("estado")}
+        widgets = {
+            "status": forms.Select(choices=Article.Status.choices),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
 
 class DeleteArticleForm(forms.ModelForm):

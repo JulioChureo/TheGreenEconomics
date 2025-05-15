@@ -5,10 +5,19 @@ from the_green_economics.apps.dashboards.views.articles_views import (
     dashboard_article_create_view,
 )
 from the_green_economics.apps.dashboards.views.articles_views import (
+    dashboard_article_delete_view,
+)
+from the_green_economics.apps.dashboards.views.articles_views import (
     dashboard_article_detail_view,
 )
 from the_green_economics.apps.dashboards.views.articles_views import (
+    dashboard_article_list_archived_view,
+)
+from the_green_economics.apps.dashboards.views.articles_views import (
     dashboard_article_list_view,
+)
+from the_green_economics.apps.dashboards.views.articles_views import (
+    dashboard_article_restore_view,
 )
 from the_green_economics.apps.dashboards.views.articles_views import (
     dashboard_article_update_view,
@@ -42,6 +51,21 @@ urlpatterns = [
         "articles/update/<slug:slug>/",
         dashboard_article_update_view,
         name="article-update",
+    ),
+    path(
+        "articles/delete/<slug:slug>/",
+        dashboard_article_delete_view,
+        name="article-delete",
+    ),
+    path(
+        "articles/restore/<slug:slug>/",
+        dashboard_article_restore_view,
+        name="article-restore",
+    ),
+    path(
+        "articles/archived/",
+        dashboard_article_list_archived_view,
+        name="article-list-archived",
     ),
     path("news/", dashboard_news_list_view, name="news-list"),
     path("news/detail/<slug:slug>/", dashboard_news_detail_view, name="news-detail"),

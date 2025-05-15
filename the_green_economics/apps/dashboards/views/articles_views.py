@@ -1,4 +1,5 @@
 from django.db.models import Q
+from django.shortcuts import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.views.generic import DeleteView
@@ -7,6 +8,7 @@ from django.views.generic import UpdateView
 
 from the_green_economics.apps.articles.filters import ArticleFilter
 from the_green_economics.apps.articles.forms import ArticleForm
+from the_green_economics.apps.articles.forms import ArticleRestoreForm
 from the_green_economics.apps.articles.forms import DeleteArticleForm
 from the_green_economics.apps.articles.models import Article
 from the_green_economics.apps.utils.mixins import AdminUserMixin
@@ -70,9 +72,46 @@ class DashboardArticleDeleteView(AdminUserMixin, DeleteView):
     model = Article
     form_class = DeleteArticleForm
     template_name = "dashboards/articles/article_delete.html"
-    success_url = reverse_lazy("articles:list")
+    context_object_name = "article"
+    success_url = reverse_lazy("dashboards:article-list")
     slug_url_kwarg = "slug"
     queryset = DASHBOARD_ARTICLES_QUERYSET
 
+    def form_valid(self, form):
+        success_url = self.get_success_url()
+        self.object = self.get_object()
+        self.object.status = Article.Status.ARCHIVED
+        self.object.save()
+        return HttpResponseRedirect(success_url)
+
 
 dashboard_article_delete_view = DashboardArticleDeleteView.as_view()
+
+
+class DashboardArticleListArchivedView(AdminUserMixin, PaginatedFilteredListView):
+    model = Article
+    template_name = "dashboards/articles/article_list_archived.html"
+    context_object_name = "articles"
+    queryset = Article.objects.filter(status=Article.Status.ARCHIVED).order_by(
+        "-updated_at",
+    )
+    filterset_class = ArticleFilter
+    paginate_by = 10
+
+
+dashboard_article_list_archived_view = DashboardArticleListArchivedView.as_view()
+
+
+class DashboardArticleRestoreView(AdminUserMixin, UpdateView):
+    model = Article
+    form_class = ArticleRestoreForm
+    template_name = "dashboards/articles/article_restore.html"
+    success_url = reverse_lazy("dashboards:article-list")
+    slug_url_kwarg = "slug"
+    context_object_name = "article"
+    queryset = Article.objects.filter(status=Article.Status.ARCHIVED).order_by(
+        "-updated_at",
+    )
+
+
+dashboard_article_restore_view = DashboardArticleRestoreView.as_view()

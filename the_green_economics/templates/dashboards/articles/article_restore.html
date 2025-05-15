@@ -1,0 +1,27 @@
+{% extends "dashboards/_base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <!-- article_form.html -->
+    <h1 class="text-3xl font-bold mb-6 text-gray-800">Editar Artículo</h1>
+    <section class="overflow-x-auto bg-white rounded-lg shadow-md">
+        <div class="flex justify-between items-center p-4">
+            <h2 class="text-xl font-semibold">Articulo: {{ article.title }}</h2>
+            <h2 class="text-xl font-semibold">Estado: {{ article.get_status_display }}</h2>
+            <h2 class="text-xl font-semibold">Creado: {{ article.created_at|date:"d/m/Y H:i" }}</h2>
+        </div>
+    </section>
+    <form class="mt-4 bg-white shadow-md rounded-lg p-6"
+          method="post"
+          enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit"
+                class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-xl shadow-md transition duration-300">
+            {{ view.title|default:"Guardar" }}
+        </button>
+        <a href="{% url 'dashboards:article-list' %}"
+           class="inline-block bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700">Cancelar</a>
+    </form>
+{% endblock content %}
