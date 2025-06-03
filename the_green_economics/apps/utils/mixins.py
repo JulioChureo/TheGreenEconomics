@@ -4,7 +4,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.core.cache import cache
 from django.db.models import QuerySet
+from django.http import FileResponse
 from django.views.decorators.cache import cache_page
+from django.views.generic import DetailView
 from django.views.generic import ListView
 
 CACHE_ERROR_MESSAGE = "Cache timeout exceeded"
@@ -104,3 +106,24 @@ class AdminUserMixin(LoginRequiredMixin, UserPassesTestMixin):
         if not self.request.user:
             return False
         return self.request.user.is_staff or self.request.user.is_superuser
+
+
+class DetailedFileDownloadView(DetailView):
+    file = None
+
+    def get_file(self):
+        if not hasattr(self, "file") or self.file is None:
+            raise AttributeError(CACHE_KEY_ERROR_MESSAGE)
+        return self.file
+
+    def get(self, request, *args, **kwargs):
+        file = self.get_file()
+        if not file:
+            raise FileNotFoundError("File not found")
+        response: FileResponse = FileResponse(
+            as_attachment=True,
+            filename=file,
+        )
+        response["Content-Disposition"] = "attachment; filename=" + file.name
+        response["X-Accel-Redirect"] = file
+        return response

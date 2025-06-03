@@ -4,6 +4,7 @@ from django.views.generic import DetailView
 
 from the_green_economics.apps.articles.filters import ArticleFilter
 from the_green_economics.apps.articles.forms import Article
+from the_green_economics.apps.utils.mixins import DetailedFileDownloadView
 from the_green_economics.apps.utils.mixins import PaginatedFilteredListView
 
 ARTICLES_QUERYSET = Article.objects.filter(
@@ -43,3 +44,19 @@ class ArticleDetailView(DetailView):
 
 
 article_detail_view = ArticleDetailView.as_view()
+
+
+class ArticleDownloadView(DetailedFileDownloadView):
+    model = Article
+    context_object_name = "article"
+    slug_url_kwarg = "slug"
+    queryset = ARTICLES_QUERYSET
+
+    def get_file(self):
+        article = self.get_object()
+        if article.pdf:
+            return article.pdf
+        return None
+
+
+article_download_view = ArticleDownloadView.as_view()
