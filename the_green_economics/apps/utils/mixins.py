@@ -5,6 +5,7 @@ from django.contrib.auth.mixins import UserPassesTestMixin
 from django.core.cache import cache
 from django.db.models import QuerySet
 from django.http import FileResponse
+from django.template.response import SimpleTemplateResponse
 from django.views.decorators.cache import cache_page
 from django.views.generic import DetailView
 from django.views.generic import ListView
@@ -108,18 +109,25 @@ class AdminUserMixin(LoginRequiredMixin, UserPassesTestMixin):
         return self.request.user.is_staff or self.request.user.is_superuser
 
 
+FILE_RESPONSE_ERROR_MESSAGE = "File response error: file not found or not set"
+FILE_ATTRIBUTE_ERROR_MESSAGE = "File attribute not set"
+
+
 class DetailedFileDownloadView(DetailView):
     file = None
 
     def get_file(self):
         if not hasattr(self, "file") or self.file is None:
-            raise AttributeError(CACHE_KEY_ERROR_MESSAGE)
+            raise AttributeError(FILE_ATTRIBUTE_ERROR_MESSAGE)
         return self.file
 
     def get(self, request, *args, **kwargs):
         file = self.get_file()
         if not file:
-            raise FileNotFoundError("File not found")
+            return SimpleTemplateResponse(
+                template="404.html",
+                status=404,
+            )
         response: FileResponse = FileResponse(
             as_attachment=True,
             filename=file,
