@@ -40,6 +40,15 @@ EMAIL_BACKEND = env(
     default="django.core.mail.backends.console.EmailBackend",
 )
 
+# Tailwind CSS
+# ------------------------------------------------------------------------------
+INSTALLED_APPS += ["tailwind", "the_green_economics.theme"]
+TAILWIND_APP_NAME = "theme"
+NPM_BIN_PATH = env.str(
+    "NPM_BIN_PATH",
+    default="C:\\Program Files\\nodejs\\npm.cmd",
+)
+
 # WhiteNoise
 # ------------------------------------------------------------------------------
 # http://whitenoise.evans.io/en/latest/django.html#using-whitenoise-in-development
@@ -77,10 +86,3 @@ INSTALLED_APPS += ["django_extensions"]
 
 # Your stuff...
 # ------------------------------------------------------------------------------
-
-# Tailwind CSS
-# ------------------------------------------------------------------------------
-NPM_BIN_PATH = env.str(
-    "NPM_BIN_PATH",
-    default="C:\\Program Files\\nodejs\\npm.cmd",
-)

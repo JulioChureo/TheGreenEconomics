@@ -1,8 +1,12 @@
 # ruff: noqa: E501
+import pymysql
+
 from config.settings.base import *  # noqa: F403
 from config.settings.base import BASE_DIR
 from config.settings.base import INSTALLED_APPS
 from config.settings.base import env
+
+pymysql.install_as_MySQLdb()
 
 # GENERAL
 # ------------------------------------------------------------------------------
@@ -175,17 +179,6 @@ LOGGING = {
     },
 }
 
-
-# Cachalot
-# ------------------------------------------------------------------------------
-INSTALLED_APPS += ["cachalot"]
-CACHALOT_ENABLED = True
-CACHALOT_CACHE = "default"
-CACHALOT_TIMEOUT = 60 * 60 * 24  # 24 hours
-CACHALOT_ONLY_CACHABLE_TABLES = [
-    "the_green_economics.Article",
-    "the_green_economics.News",
-]
 
 # Your stuff...
 # ------------------------------------------------------------------------------

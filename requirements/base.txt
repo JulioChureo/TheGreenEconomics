@@ -3,8 +3,6 @@ Pillow==11.1.0  # https://github.com/python-pillow/Pillow
 rcssmin==1.1.2  # https://github.com/ndparker/rcssmin
 argon2-cffi==23.1.0  # https://github.com/hynek/argon2_cffi
 whitenoise==6.9.0  # https://github.com/evansd/whitenoise
-redis==5.2.1  # https://github.com/redis/redis-py
-hiredis==3.1.0  # https://github.com/redis/hiredis-py
 uvicorn[standard]==0.34.0  # https://github.com/encode/uvicorn
 uvicorn-worker==0.3.0  # https://github.com/Kludex/uvicorn-worker
 
@@ -21,4 +19,3 @@ django-auditlog==3.1.2 # https://github.com/jazzband/django-auditlog
 django-compressor==4.5.1  # https://github.com/django-compressor/django-compressor
 django-cotton==1.5.1  # https://github.com/wrabit/django-cotton
 diskcache2==0.1.2 # https://github.com/grantjenks/python-diskcache
-django-cachalot==2.7.0  # https://github.com/noripyt/django-cachalot

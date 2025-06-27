@@ -38,7 +38,7 @@ LANGUAGES = [
 # https://docs.djangoproject.com/en/dev/ref/settings/#site-id
 SITE_ID = 1
 # https://docs.djangoproject.com/en/dev/ref/settings/#use-i18n
-USE_I18N = True
+USE_I18N = False
 # https://docs.djangoproject.com/en/dev/ref/settings/#use-tz
 USE_TZ = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#locale-paths
@@ -97,14 +97,12 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     "auditlog",
-    "tailwind",
     "crispy_forms",
     "crispy_tailwind",
 ]
 
 
 LOCAL_APPS = [
-    "the_green_economics.theme",
     "the_green_economics.apps.utils",
     "the_green_economics.apps.users",
     "the_green_economics.apps.articles",
@@ -123,7 +121,6 @@ INSTALLED_APPS = PRIORITY_APPS + DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 # Tailwind
 # ------------------------------------------------------------------------------
 # https://django-tailwind.readthedocs.io/en/latest/configuration.html#tailwind-settings
-TAILWIND_APP_NAME = "theme"
 
 
 # AUTHENTICATION
@@ -167,7 +164,9 @@ MIDDLEWARE = [
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
+    # "django.middleware.cache.UpdateCacheMiddleware",
     "django.middleware.common.CommonMiddleware",
+    # "django.middleware.cache.FetchFromCacheMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
