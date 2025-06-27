@@ -1,5 +1,5 @@
 from django.db.models import Q
-from django.shortcuts import HttpResponseRedirect
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.views.generic import DeleteView
@@ -48,7 +48,7 @@ class DashboardArticleCreateView(AdminUserMixin, CreateView):
     model = Article
     form_class = ArticleForm
     template_name = "dashboards/articles/article_create.html"
-    success_url = reverse_lazy("articles:list")
+    success_url = reverse_lazy("dashboards:article-list")
     queryset = DASHBOARD_ARTICLES_QUERYSET
 
 
@@ -59,7 +59,7 @@ class DashboardArticleUpdateView(AdminUserMixin, UpdateView):
     model = Article
     form_class = ArticleForm
     template_name = "dashboards/articles/article_update.html"
-    success_url = reverse_lazy("articles:list")
+    success_url = reverse_lazy("dashboards:article-list")
     slug_url_kwarg = "slug"
     context_object_name = "article"
     queryset = DASHBOARD_ARTICLES_QUERYSET
@@ -82,7 +82,7 @@ class DashboardArticleDeleteView(AdminUserMixin, DeleteView):
         self.object = self.get_object()
         self.object.status = Article.Status.ARCHIVED
         self.object.save()
-        return HttpResponseRedirect(success_url)
+        return redirect(success_url)
 
 
 dashboard_article_delete_view = DashboardArticleDeleteView.as_view()
