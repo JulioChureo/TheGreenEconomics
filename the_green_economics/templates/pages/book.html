@@ -1,110 +1,115 @@
 {% extends "base.html" %}
+
 {% load static %}
+
 {% block content %}
-<h1 class="text-4xl md:text-6xl font-serif font-bold text-center text-white mb-12 tracking-tight">
-        Teoría General de la Economía Verde
-    </h1>
-<section class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-
-  <!-- 🔄 Carrusel de imágenes -->
-  <div class="relative w-full mx-auto overflow-hidden rounded-xl shadow-xl border border-white/20 bg-white/10 backdrop-blur-sm">
-    <div id="carousel" class="relative">
-      <!-- Imágenes -->
-      <div class="carousel-slide">
-        <img src="{% static 'images/libro1.jpg' %}" alt="Libro 1" class="w-full h-96 object-cover rounded-xl"/>
+  <h1 class="text-4xl md:text-6xl font-serif font-bold text-center text-white mb-12 tracking-tight">
+    Teoría General de la Economía Verde
+  </h1>
+  <section class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+    <!-- Carrusel de imágenes -->
+    <div class="relative w-full mx-auto overflow-hidden rounded-xl shadow-xl border border-white/20 bg-white/10 backdrop-blur-sm">
+      <div id="carousel"
+           class="relative w-full mx-auto overflow-hidden rounded-xl shadow-xl border border-white/20 bg-white/10 backdrop-blur-sm flex justify-center items-center">
+        <!-- Imágenes -->
+        <div class="carousel-slide">
+          <img src="{% static 'images/libro1.jpeg' %}"
+               alt="Teoría General de la Economía Verde Book Cover"
+               style="width: 24rem"
+               class="max-w-full rounded-xl object-contain py-4" />
+        </div>
+        <div class="carousel-slide hidden">
+          <img src="{% static 'images/libro1.jpeg' %}"
+               alt="Teoría General de la Economía Verde Book Cover"
+               class="max-w-full h-auto rounded-xl object-contain py-4" />
+        </div>
+        <div class="carousel-slide hidden">
+          <img src="{% static 'images/libro1.jpeg' %}"
+               alt="Teoría General de la Economía Verde Book Cover"
+               class="max-w-full h-auto rounded-xl object-contain py-4" />
+        </div>
+        <!-- Flechas -->
+        <button onclick="prevSlide()"
+                class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 p-2 rounded-full text-white z-10">
+          &#10094;
+        </button>
+        <button onclick="nextSlide()"
+                class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 p-2 rounded-full text-white z-10">
+          &#10095;
+        </button>
       </div>
-      <div class="carousel-slide hidden">
-        <img src="{% static 'images/libro2.jpg' %}" alt="Libro 2" class="w-full h-96 object-cover rounded-xl"/>
+    </div>
+    <!-- 📝 Texto Promocional -->
+    <div class="bg-white bg-opacity-10 p-6 rounded-xl backdrop-blur-sm border border-white border-opacity-20 shadow-xl mt-10">
+      <!-- Nuestra Esencia -->
+      <div class="mb-8">
+        <h2 class="text-2xl font-semibold text-white mb-4 text-center">Nuestra Esencia</h2>
+        <p class="text-lg text-justify text-white leading-relaxed">
+          Somos un journal de ciencia que selecciona las investigaciones más relevantes para combatir
+          con éxito los problemas medioambientales. Visibilizamos y compartimos el trabajo científico
+          de excelencia en economía verde, haciéndolo accesible a todos los interesados.
+        </p>
       </div>
-      <div class="carousel-slide hidden">
-        <img src="{% static 'images/libro3.jpg' %}" alt="Libro 3" class="w-full h-96 object-cover rounded-xl"/>
+      <!-- Misión -->
+      <div class="mb-8">
+        <h2 class="text-2xl font-semibold text-white mb-4 text-center">Misión</h2>
+        <p class="text-lg text-justify text-white leading-relaxed">
+          Brindar un espacio para investigadores en economía verde, facilitando la difusión de sus trabajos
+          a través de nuestro repositorio, formando una comunidad científica comprometida con el bienestar
+          humano y la protección del medioambiente.
+        </p>
       </div>
-
-      <!-- Flechas -->
-      <button onclick="prevSlide()" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 p-2 rounded-full text-white z-10">
-        &#10094;
-      </button>
-      <button onclick="nextSlide()" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 p-2 rounded-full text-white z-10">
-        &#10095;
-      </button>
+      <!-- Visión -->
+      <div class="mb-8">
+        <h2 class="text-2xl font-semibold text-white mb-4 text-center">Visión</h2>
+        <p class="text-lg text-justify text-white leading-relaxed">
+          Ser la principal revista científica especializada en economía verde a nivel global, con investigaciones
+          que trasciendan lo teórico para generar impactos tangibles y a gran escala en la calidad de vida de las
+          personas y la sostenibilidad ambiental.
+        </p>
+      </div>
+      <!-- Fundador -->
+      <div class="pt-8 border-opacity-20">
+        <h2 class="text-2xl font-semibold text-white mb-4 text-center">Fundador</h2>
+        <p class="text-lg text-justify text-white leading-relaxed">
+          Sebastiano Monetta, profesional dedicado a la educación e investigación desde sus inicios.
+          Comprometido con transformar la ciencia económica en una herramienta eficaz para mejorar
+          la calidad de vida y proteger el medioambiente.
+          <br />
+          <br />
+          Formación:
+          <ul class="list-disc pl-5">
+            <li class="text-lg text-justify text-white leading-relaxed">Bachiller en Ciencias de la Ingeniería</li>
+            <li class="text-lg text-justify text-white leading-relaxed">Ingeniero Industrial</li>
+            <li class="text-lg text-justify text-white leading-relaxed">Máster en Economía Circular y Medioambiente.</li>
+          </ul>
+        </p>
+      </div>
     </div>
-  </div>
-
-  <!-- 📝 Texto Promocional -->
-  <div class="bg-white bg-opacity-10 p-6 rounded-xl backdrop-blur-sm border border-white border-opacity-20 shadow-xl mt-10">
-    <!-- Nuestra Esencia -->
-    <div class="mb-8">
-      <h2 class="text-2xl font-semibold text-white mb-4 text-center">Nuestra Esencia</h2>
-      <p class="text-lg text-justify text-white leading-relaxed">
-        Somos un journal de ciencia que selecciona las investigaciones más relevantes para combatir 
-        con éxito los problemas medioambientales. Visibilizamos y compartimos el trabajo científico 
-        de excelencia en economía verde, haciéndolo accesible a todos los interesados.
-      </p>
-    </div>
-
-    <!-- Misión -->
-    <div class="mb-8">
-      <h2 class="text-2xl font-semibold text-white mb-4 text-center">Misión</h2>
-      <p class="text-lg text-justify text-white leading-relaxed">
-        Brindar un espacio para investigadores en economía verde, facilitando la difusión de sus trabajos 
-        a través de nuestro repositorio, formando una comunidad científica comprometida con el bienestar 
-        humano y la protección del medioambiente.
-      </p>
-    </div>
-
-    <!-- Visión -->
-    <div class="mb-8">
-      <h2 class="text-2xl font-semibold text-white mb-4 text-center">Visión</h2>
-      <p class="text-lg text-justify text-white leading-relaxed">
-        Ser la principal revista científica especializada en economía verde a nivel global, con investigaciones 
-        que trasciendan lo teórico para generar impactos tangibles y a gran escala en la calidad de vida de las 
-        personas y la sostenibilidad ambiental.
-      </p>
-    </div>
-
-    <!-- Fundador -->
-    <div class="pt-8 border-opacity-20">
-      <h2 class="text-2xl font-semibold text-white mb-4 text-center">Fundador</h2>
-      <p class="text-lg text-justify text-white leading-relaxed">
-        Sebastiano Monetta, profesional dedicado a la educación e investigación desde sus inicios. 
-        Comprometido con transformar la ciencia económica en una herramienta eficaz para mejorar 
-        la calidad de vida y proteger el medioambiente.<br/><br/>
-
-        Formación:
-        <ul class="list-disc pl-5">
-          <li class="text-lg text-justify text-white leading-relaxed">Bachiller en Ciencias de la Ingeniería</li>
-          <li class="text-lg text-justify text-white leading-relaxed">Ingeniero Industrial</li>
-          <li class="text-lg text-justify text-white leading-relaxed">Máster en Economía Circular y Medioambiente.</li>
-        </ul>  
-      </p>
-    </div>
-  </div>
-
-</section>
+  </section>
 {% endblock content %}
-
 {% block inline_javascript %}
-<script>
-  let currentSlide = 0;
-  const slides = document.querySelectorAll(".carousel-slide");
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll(".carousel-slide");
 
-  function showSlide(index) {
-    slides.forEach((slide, i) => {
-      slide.classList.toggle("hidden", i !== index);
-    });
-  }
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle("hidden", i !== index);
+      });
+    }
 
-  function nextSlide() {
-    currentSlide = (currentSlide + 1) % slides.length;
-    showSlide(currentSlide);
-  }
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }
 
-  function prevSlide() {
-    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-    showSlide(currentSlide);
-  }
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      showSlide(currentSlide);
+    }
 
-  // Cambio automático de imagen
-  setInterval(nextSlide, 8000);
-</script>
+    // Cambio automático de imagen
+    setInterval(nextSlide, 8000);
+  </script>
 {% endblock inline_javascript %}
