@@ -1,0 +1,59 @@
+<article class="group cursor-pointer transform transition-all duration-300 hover:scale-[1.02]"
+         data-title="{{ article.title|escapejs }}"
+         data-slug="{{ article.slug }}"
+         data-content="{{ article.summary }}"
+         data-date="{{ article.publication_date|date:'d/m/Y' }}"
+         data-download="{% url 'articles:download' article.slug %}"
+         aria-labelledby="article-title-{{ article.slug }}"
+         aria-describedby="article-summary-{{ article.slug }}"
+         tabindex="0"
+         role="article"
+         itemscope
+         itemtype="https://schema.org/ScholarlyArticle">
+    <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-6 hover:bg-white/10 hover:border-white/20 transition-all duration-300">
+        <header class="mb-4">
+            <h3 id="article-title-{{ article.slug }}"
+                class="text-xl font-serif text-white group-hover:text-green-300 transition-colors duration-300 mb-2 leading-tight"
+                itemprop="headline">{{ article.title|truncatechars:50 }}</h3>
+            <div class="flex items-center text-xs text-white mb-3"
+                 aria-label="Fecha de publicación">
+                <svg class="w-4 h-4 mr-1"
+                     fill="currentColor"
+                     viewBox="0 0 20 20"
+                     aria-hidden="true">
+                    <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd">
+                    </path>
+                </svg>
+                <time datetime="{{ article.publication_date|date:'Y-m-d' }}"
+                      itemprop="datePublished">
+                    {{ article.publication_date|date:'F d, Y' }}
+                </time>
+            </div>
+        </header>
+        <div class="mb-4" itemprop="description">
+            <p id="article-summary-{{ article.slug }}"
+               class="text-gray-400 text-sm line-clamp-3">{{ article.summary|truncatewords:25 }}</p>
+        </div>
+        <footer class="flex justify-between items-center pt-4 border-t border-white/10">
+            <a href="{% url 'articles:download' article.slug %}"
+               class="text-green-300 hover:text-green-200 flex items-center text-sm transition-colors duration-300"
+               aria-label="Descargar PDF de {{ article.title|truncatechars:20 }}"
+               itemprop="url"
+               target="_blank"
+               rel="noopener noreferrer"
+               onclick="event.stopPropagation()">
+                <svg class="w-4 h-4 mr-2"
+                     fill="none"
+                     stroke="currentColor"
+                     viewBox="0 0 24 24"
+                     aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                    </path>
+                </svg>
+                Descargar PDF
+            </a>
+            <span class="text-xs text-white bg-green-600/20 px-2 py-1 rounded"
+                  itemprop="position">Vol. {{ index }}</span>
+        </footer>
+    </div>
+</article>
