@@ -27,7 +27,7 @@ urlpatterns = [
     # --- Django Admin, use {% url 'admin:index' %} ---
     path(settings.ADMIN_URL, admin.site.urls),
     # --- app URLS ---
-    path("", include("the_green_economics.apps.home.urls", namespace="home")),
+    path("", include("the_green_economics.apps.pages.urls", namespace="pages")),
     path("users/", include("the_green_economics.apps.users.urls", namespace="users")),
     path(
         "articles/",
