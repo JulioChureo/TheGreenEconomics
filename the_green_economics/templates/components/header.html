@@ -1,29 +1,159 @@
 {% load static %}
 
-<header>
-    <button id="menuToggle"
-            class="fixed z-30 top-4 left-4 p-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition shadow-lg">
-        ☰ Menú
-    </button>
-    <!-- Barra de navegación lateral -->
-    <nav id="sidebar"
-         class="w-72 bg-green-600 shadow-lg fixed h-full transform -translate-x-full transition-transform duration-300 z-20">
-        <!-- ... (mismo contenido del nav anterior) ... -->
-        <div class="flex justify-center mb-8 mt-4">
-            <img class="h-40 w-40 mt-8 rounded-full object-cover"
-                 src="{% static 'images/logos/logo_2.png' %}"
-                 alt="Your Company" />
+<header class="fixed top-0 left-0 right-0 z-40 bg-black/20 backdrop-blur-md border-b border-white/10">
+    <!-- Top Academic Header Bar -->
+    <div class="bg-gradient-to-r from-green-800 to-green-700 text-white py-2">
+        <div class="max-w-7xl mx-auto px-4 flex justify-between items-center text-sm">
+            <div class="flex items-center space-x-6">
+                <span class="font-medium">ISSN: 2789-4567</span>
+                <span>IF: 2.847</span>
+                <span>Acceso Abierto</span>
+            </div>
         </div>
-        <!-- Enlaces de navegación en columna -->
-        <div class="flex flex-col space-y-4 flex-grow">
-            <a href="{% url 'home:home' %}" 
-			class="rounded-md px-4 py-2 text-lg font-medium text-white hover:bg-green-700 transition duration-300">Inicio</a>
-            <a href="{% url 'articles:list' %}"
-               class="rounded-md px-4 py-2 text-lg font-medium text-white hover:bg-green-700 transition duration-300">Publicaciones</a>
-            <a href="{% url 'about' %}"
-               class="rounded-md px-4 py-2 text-lg font-medium text-white hover:bg-green-700 transition duration-300">Quiénes Somos</a>
-            <a href="{% url 'book' %}"
-               class="rounded-md px-4 py-2 text-lg font-medium text-white hover:bg-green-700 transition duration-300">Teoría General de la Economía Verde</a>
-        </div>
-    </nav>
+    </div>
+
+    <!-- Main Navigation -->
+    <div class="relative">
+        <button id="menuToggle"
+                class="fixed z-50 top-16 left-4 p-3 bg-green-600 text-white rounded-full hover:bg-green-700 transition shadow-xl lg:hidden">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </button>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden lg:block">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="flex justify-between items-center py-4">
+                    <!-- Logo and Title -->
+                    <div class="flex items-center space-x-4">
+                        <img class="h-12 w-12 rounded-full object-cover border-2 border-green-400"
+                             src="{% static 'images/logos/logo_2.png' %}"
+                             alt="The Green Economics Logo" />
+                        <div>
+                            <h1 class="text-xl font-serif font-medium text-white">The Green Economics</h1>
+                            <p class="text-sm text-gray-300">International Journal</p>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Links -->
+                    <div class="flex items-center space-x-8">
+                        <a href="{% url 'home:home' %}" 
+                           class="text-white hover:text-green-300 font-medium transition-colors duration-200 relative group">
+                            Inicio
+                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-400 transition-all duration-200 group-hover:w-full"></span>
+                        </a>
+                        <a href="{% url 'articles:list' %}"
+                           class="text-white hover:text-green-300 font-medium transition-colors duration-200 relative group">
+                            Publicaciones
+                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-400 transition-all duration-200 group-hover:w-full"></span>
+                        </a>
+                        <a href="{% url 'about' %}"
+                           class="text-white hover:text-green-300 font-medium transition-colors duration-200 relative group">
+                            Sobre Nosotros
+                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-400 transition-all duration-200 group-hover:w-full"></span>
+                        </a>
+                        <a href="{% url 'book' %}"
+                           class="text-white hover:text-green-300 font-medium transition-colors duration-200 relative group">
+                            Teoría General de la Economía Verde
+                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-400 transition-all duration-200 group-hover:w-full"></span>
+                        </a>
+                        <a href="{% url 'home:publish' %}" 
+                           class="text-white hover:text-green-300 font-medium transition-colors duration-200 relative group">
+                            Publica con nosotros
+                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-400 transition-all duration-200 group-hover:w-full"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Mobile Sidebar -->
+        <nav id="sidebar"
+             class="fixed inset-y-0 left-0 w-80 bg-gray-900/40 backdrop-blur-md border border-green-500 rounded-lg shadow-2xl transform -translate-x-full transition-transform duration-300 z-40 lg:hidden">
+            
+            <!-- Sidebar Header -->
+            <div class="p-6 border-b border-green-700 bg-green-800 bg-gradient-to-b from-green-800 to-green-900">
+                <div class="flex items-center space-x-4">
+                    <img class="h-16 w-16 rounded-full object-cover border-2 border-green-400 shadow-lg"
+                         src="{% static 'images/logos/logo_2.png' %}"
+                         alt="The Green Economics Logo" />
+                    <div>
+                        <h2 class="text-xl font-serif font-medium text-white">The Green Economics</h2>
+                        <p class="text-sm text-green-200">International Journal</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Links -->
+            <div class="flex flex-col space-y-2 p-6 bg-green-800 backdrop-blur-lg border border-green-400 rounded-lg shadow-lg">
+                <a href="{% url 'home:home' %}" 
+                class="flex items-center space-x-3 rounded-lg px-4 py-3 text-lg font-medium text-white hover:bg-green-700 transition duration-300 group">
+                    <svg class="w-5 h-5 text-green-300 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                    </svg>
+                    <span>Inicio</span>
+                </a>
+                <a href="{% url 'articles:list' %}"
+                class="flex items-center space-x-3 rounded-lg px-4 py-3 text-lg font-medium text-white hover:bg-green-700 transition duration-300 group">
+                    <svg class="w-5 h-5 text-green-300 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 011 1l4 4v9a2 2 0 01-2 2z"></path>
+                    </svg>
+                    <span>Publicaciones</span>
+                </a>
+                <a href="{% url 'about' %}"
+                class="flex items-center space-x-3 rounded-lg px-4 py-3 text-lg font-medium text-white hover:bg-green-700 transition duration-300 group">
+                    <svg class="w-5 h-5 text-green-300 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <span>Sobre Nosotros</span>
+                </a>
+                <a href="{% url 'book' %}"
+                class="flex items-center space-x-3 rounded-lg px-4 py-3 text-lg font-medium text-white hover:bg-green-700 transition duration-300 group">
+                    <svg class="w-5 h-5 text-green-300 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                    <span>Teoría General de la Economía Verde</span>
+                </a>
+            </div>
+
+        </nav>
+    </div>
+
+    <!-- Overlay for mobile sidebar -->
+    <div id="sidebarOverlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden z-30 lg:hidden"></div>
 </header>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+
+    function openSidebar() {
+        sidebar.classList.remove('-translate-x-full');
+        overlay.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden');
+    }
+
+    function closeSidebar() {
+        sidebar.classList.add('-translate-x-full');
+        overlay.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+    }
+
+    if (menuToggle) {
+        menuToggle.addEventListener('click', openSidebar);
+    }
+    
+    if (overlay) {
+        overlay.addEventListener('click', closeSidebar);
+    }
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeSidebar();
+        }
+    });
+});
+</script>

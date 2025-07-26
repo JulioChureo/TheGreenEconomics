@@ -9,65 +9,146 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
       {% block title %}
-        The Green Economics
+        The Green Economics - International Journal
       {% endblock title %}
     </title>
     <meta name="author" content="Sebastiano... ,Diego Rivera, Julio Chureo" />
     <meta name="description"
-          content="The Green Economics. A website about the green economy." />
+          content="The Green Economics International Journal - Leading research in sustainable economic theory, environmental policy, and green development." />
     <meta name="keywords"
-          content="green, economy, economics, green economy, circle economics, news" />
+          content="green economics, sustainable development, environmental economics, circular economy, green finance, academic journal, peer review" />
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow" />
     <meta name="googlebot-news"
           content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <link rel="canonical" href="https://www.thegreeneconomics.com/" />
     <meta property="og:title"
-          content="The Green Economics. A website about the green economy." />
+          content="The Green Economics - International Journal of Sustainable Development" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.thegreeneconomics.com/" />
     <meta property="og:image"
           content="https://www.thegreeneconomics.com/static/images/logo.png" />
     <meta property="og:description"
-          content="The Green Economics. A website about the green economy." />
+          content="Leading academic journal in green economics and sustainable development research." />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@thegreeneconomics" />
     <meta name="twitter:creator" content="@thegreeneconomics" />
     <meta name="twitter:title"
-          content="The Green Economics. A website about the green economy." />
+          content="The Green Economics - International Journal" />
     <meta name="twitter:description"
-          content="The Green Economics. A website about the green economy." />
+          content="Leading academic journal in green economics and sustainable development research." />
     <meta name="twitter:image"
           content="https://www.thegreeneconomics.com/static/images/logo.png" />
     <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}" />
+    
+    <!-- Google Fonts for better typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              'serif': ['Crimson Text', 'serif'],
+              'sans': ['Inter', 'sans-serif'],
+            },
+            colors: {
+              'journal-green': {
+                50: '#f0fdfa',
+                100: '#ccfbf1',
+                200: '#99f6e4',
+                300: '#5eead4',
+                400: '#2dd4bf',
+                500: '#14b8a6',
+                600: '#0d9488',
+                700: '#0f766e',
+                800: '#115e59',
+                900: '#134e4a',
+              }
+            }
+          }
+        }
+      }
+    </script>
+    
     {% block css %}
       {% tailwind_css %}
       {% compress css %}
         <link href="{% static 'css/project.css' %}" rel="stylesheet" />
         <style>
           body {
-            background-image: url('{% static "images/background.jpg" %}');
+            background-image: 
+              linear-gradient(135deg, rgba(15, 118, 110, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%),
+              url('{% static "images/background.jpg" %}');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            position: relative;
+            background-attachment: fixed;
+            font-family: 'Inter', sans-serif;
           }
 
-          body::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            /* Oscurece la imagen sin afectar el contenido */
-            z-index: -1;
+          .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+          }
+
+          .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+          }
+
+          /* Custom scrollbar */
+          ::-webkit-scrollbar {
+            width: 8px;
+          }
+
+          ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+          }
+
+          ::-webkit-scrollbar-thumb {
+            background: rgba(20, 184, 166, 0.5);
+            border-radius: 4px;
+          }
+
+          ::-webkit-scrollbar-thumb:hover {
+            background: rgba(20, 184, 166, 0.7);
+          }
+
+          /* Enhanced academic styling */
+          .academic-card {
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+          }
+
+          .academic-card:hover {
+            border-color: rgba(20, 184, 166, 0.3);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+          }
+
+          /* Typography improvements */
+          .journal-title {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            letter-spacing: 0.05em;
+          }
+
+          /* Smooth transitions */
+          * {
+            transition-property: color, background-color, border-color, transform, box-shadow;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
           }
         </style>
       {% endcompress %}
     {% endblock css %}
+    
     {# Placed at the top of the document so pages load faster with defer #}
     {% block javascript %}
       <script defer
@@ -78,20 +159,21 @@
       {% endcompress %}
     {% endblock javascript %}
   </head>
-  <body class="{% block bodyclass %}{% endblock bodyclass %}">
-    <div class="flex flex-col flex-grow">
+  <body class="{% block bodyclass %}min-h-screen{% endblock bodyclass %}">
+    <div class="flex flex-col min-h-screen">
       {% block body %}
         {% block header %}
           {% include "components/header.html" %}
         {% endblock header %}
+        
         {% block message %}
-          <div class="container">
+          <div class="container mx-auto px-4">
             {% if messages %}
               {% for message in messages %}
-                <div class="alert alert-dismissible {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                <div class="alert alert-dismissible {% if message.tags %}alert-{{ message.tags }}{% endif %} mb-4 p-4 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20">
                   {{ message }}
                   <button type="button"
-                          class="btn-close"
+                          class="btn-close ml-auto"
                           data-bs-dismiss="alert"
                           aria-label="Close"></button>
                 </div>
@@ -99,27 +181,41 @@
             {% endif %}
           </div>
         {% endblock message %}
-        <main id="mainContent"
-              class="flex-grow transition-all duration-300 px-4 md:px-8 pt-16">
+        
+        <main id="mainContent" class="flex-grow pt-20">
           {% block main %}
             {% block content %}
-              <p>Use this document as a way to quick start any new project.</p>
+              <div class="max-w-4xl mx-auto px-4 py-16 text-center">
+                <h1 class="text-4xl font-serif text-white mb-4">Welcome to The Green Economics</h1>
+                <p class="text-xl text-gray-300">Use this document as a way to quick start any new project.</p>
+              </div>
             {% endblock content %}
           {% endblock main %}
         </main>
       {% endblock body %}
     </div>
+    
     {% block footer %}
       {% include "components/footer.html" %}
     {% endblock footer %}
-    <!-- /container -->
+    
     {% block modal %}
       {% include "components/modal.html" %}
     {% endblock modal %}
+    
     {% compress js %}
       {% block inline_javascript %}
         <script>
-          console.log('Hello, world!');
+          // Enhanced console logging for development
+          console.log('The Green Economics Journal - Academic Platform Loaded');
+          
+          // Add smooth scroll behavior
+          document.documentElement.style.scrollBehavior = 'smooth';
+          
+          // Add loading states for better UX
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.classList.add('loaded');
+          });
         </script>
       {% endblock inline_javascript %}
     {% endcompress %}

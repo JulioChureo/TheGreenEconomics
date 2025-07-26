@@ -1,19 +1,49 @@
 {% load param_tags %}
 
-<div class="flex justify-center">
-    <div class="mt-4">
-        {% if page_obj.has_other_pages %}
-            <div class="flex space-x-2 mb-2">
+<div class="flex justify-center py-8">
+    {% if page_obj.has_other_pages %}
+        <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-2">
+            <div class="flex items-center space-x-2">
+                <!-- Previous Button -->
                 <button {% if page_obj.has_previous %}onclick="window.location.href='?{% param_replace page=page_obj.previous_page_number %}'" {% else %} disabled {% endif %}
-                        class="px-4 py-2 bg-gray-200 rounded-md transition-colors  {% if page_obj.has_previous %}hover:bg-gray-300{% endif %}">
-                    Anterior
+                        class="flex items-center px-4 py-2 rounded-md transition-all duration-200 {% if page_obj.has_previous %}bg-green-600 hover:bg-green-700 text-white{% else %}bg-gray-600 text-gray-400 cursor-not-allowed{% endif %}">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                    Previous
                 </button>
-                <span class="px-4 py-2 {% if text_color %} {{ text_color }} {% else %} text-gray-700 {% endif %}">Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+
+                <!-- Page Info -->
+                <div class="px-4 py-2 {% if text_color %}{{ text_color }}{% else %}text-white{% endif %} font-medium">
+                    <span class="text-sm">Page</span>
+                    <span class="text-lg font-bold mx-2">{{ page_obj.number }}</span>
+                    <span class="text-sm">of {{ page_obj.paginator.num_pages }}</span>
+                </div>
+
+                <!-- Next Button -->
                 <button {% if page_obj.has_next %}onclick="window.location.href='?{% param_replace page=page_obj.next_page_number %}'" {% else %} disabled {% endif %}
-                        class="px-4 py-2 bg-gray-200 rounded-md transition-colors  {% if page_obj.has_next %}hover:bg-gray-300{% endif %}">
-                    Siguiente
+                        class="flex items-center px-4 py-2 rounded-md transition-all duration-200 {% if page_obj.has_next %}bg-green-600 hover:bg-green-700 text-white{% else %}bg-gray-600 text-gray-400 cursor-not-allowed{% endif %}">
+                    Next
+                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
                 </button>
             </div>
-        {% endif %}
-    </div>
+            
+            <!-- Page indicators for larger page counts -->
+            {% if page_obj.paginator.num_pages > 3 %}
+                <div class="flex justify-center mt-2 space-x-1">
+                    {% for num in page_obj.paginator.page_range %}
+                        {% if num == page_obj.number %}
+                            <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                        {% elif num|add:"-1" == page_obj.number or num|add:"1" == page_obj.number %}
+                            <div class="w-2 h-2 bg-white/30 rounded-full"></div>
+                        {% elif num == 1 or num == page_obj.paginator.num_pages %}
+                            <div class="w-1 h-1 bg-white/20 rounded-full"></div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    {% endif %}
 </div>

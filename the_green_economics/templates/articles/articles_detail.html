@@ -1,18 +1,77 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load i18n %}
 
 {% block content %}
-    <!-- articles_detail.html -->
-    <h1>{{ article.title }}</h1>
-    <p>
-        <strong>Autor:</strong> {{ article.author }}
-    </p>
-    <p>
-        <strong>Fecha de publicación:</strong> {{ article.publication_date }}
-    </p>
-    <p>
-        <strong>Resumen:</strong> {{ article.abstract }}
-    </p>
-    <p>
-        <strong>Contenido:</strong>
-    </p>
+    <div class="relative bg-gradient-to-b from-black/70 to-black/50 py-16">
+        <div class="max-w-6xl mx-auto text-center px-4">
+            <div class="mb-8">
+                <h1 class="text-5xl md:text-6xl font-serif font-light text-white mb-4 tracking-wide leading-tight">
+                    {{ article.title }}
+                </h1>
+                <div class="w-32 h-0.5 bg-green-400 mx-auto mb-6"></div>
+                {% if article.authors %}
+                    <p class="text-lg text-white mt-4 max-w-2xl mx-auto font-light leading-relaxed">
+                        {% translate "Por" %} {{ article.authors }}
+                    </p>
+                {% endif %}
+                <p class="text-md text-white mt-2 max-w-2xl mx-auto font-light leading-relaxed">
+                    {% translate "Publicado el" %} {{ article.publication_date|date:'F d, Y' }}
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-8 shadow-xl">
+            {% if article.abstract %}
+                <div class="mb-8 pb-8 border-b border-white/10">
+                    <h2 class="text-3xl font-serif text-white mb-4">{% translate "Resumen" %}</h2>
+                    <p class="text-gray-300 leading-relaxed text-lg">
+                        {{ article.abstract|linebreaksbr }}
+                    </p>
+                </div>
+            {% endif %}
+
+            {% if article.body %}
+                <div class="mb-8 prose prose-lg prose-invert max-w-none text-gray-200">
+                    {{ article.body|linebreaksbr }}
+                </div>
+            {% endif %}
+
+            {% if article.tags.exists %}
+                <div class="mb-8 pt-6 border-t border-white/10">
+                    <h3 class="text-xl font-serif text-white mb-3">{% translate "Etiquetas" %}:</h3>
+                    <div class="flex flex-wrap gap-2">
+                        {% for tag in article.tags.all %}
+                            <span class="bg-green-600/20 text-green-300 px-3 py-1 rounded-full text-sm font-medium">
+                                {{ tag.name }}
+                            </span>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+
+            <div class="flex justify-between items-center pt-8 border-t border-white/10 mt-8">
+                <a href="{% url 'articles:list' %}"
+                   class="inline-flex items-center px-6 py-3 bg-gray-600 hover:bg-gray-700 text-white rounded-lg transition-colors duration-300 shadow-md">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"></path>
+                    </svg>
+                    {% translate "Volver a Publicaciones" %}
+                </a>
+                {% if article.pdf or True %}
+                    <button class="flex items-center px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors duration-200">
+                            <a href="" id="modal-download-link" class="flex items-center text-white">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                </svg>
+                                Descargar PDF
+                            </a>
+                        </button>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
 {% endblock content %}

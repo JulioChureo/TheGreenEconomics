@@ -2,20 +2,35 @@
 {% load static %}
 
 {% block content %}
-<div class="max-w-4xl mx-auto px-4 py-8">
-    <!-- Encabezado -->
-    <h1 class="text-4xl md:text-6xl font-serif font-bold text-center text-white mb-12 tracking-tight">
-        Sobre Nosotros
-    </h1>
-    
-    <!-- Contenido principal -->
-    <div class="prose max-w-none space-y-8">
-        <!-- Sección unificada con efecto glassmorphism -->
-        <div class="bg-white bg-opacity-10 p-6 rounded-xl backdrop-blur-sm border border-white border-opacity-20 shadow-xl">
-            <!-- Nuestra Esencia -->
+    <!-- Hero Section -->
+    <div class="relative bg-gradient-to-b from-black/70 to-black/50 py-16">
+        <div class="max-w-6xl mx-auto text-center px-4">
             <div class="mb-8">
-                <h2 class="text-2xl font-semibold text-white mb-4 text-center">Nuestra Esencia</h2>
-                <p class="text-lg text-justify text-white leading-relaxed">
+                <h1 class="text-5xl md:text-6xl font-serif font-light text-white mb-4 tracking-wide leading-tight">
+                    Sobre Nosotros
+                </h1>
+                <div class="w-32 h-0.5 bg-green-400 mx-auto mb-6"></div>
+                <p class="text-lg text-white mt-4 max-w-2xl mx-auto font-light leading-relaxed">
+                    Conoce nuestra misión, visión y el equipo detrás de The Green Economics
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <!-- Mission, Vision, Essence Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+            <!-- Nuestra Esencia -->
+            <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-8 hover:bg-white/10 transition-all duration-300">
+                <div class="text-center mb-6">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-600 to-green-800 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl font-serif text-white mb-4">Nuestra Esencia</h2>
+                </div>
+                <p class="text-white leading-relaxed">
                     Somos un journal de ciencia que selecciona las investigaciones más relevantes para combatir 
                     con éxito los problemas medioambientales. Visibilizamos y compartimos el trabajo científico 
                     de excelencia en economía verde, haciéndolo accesible a todos los interesados.
@@ -23,9 +38,16 @@
             </div>
 
             <!-- Misión -->
-            <div class="mb-8">
-                <h2 class="text-2xl font-semibold text-white mb-4 text-center">Misión</h2>
-                <p class="text-lg text-justify text-white leading-relaxed">
+            <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-8 hover:bg-white/10 transition-all duration-300">
+                <div class="text-center mb-6">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-600 to-green-800 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl font-serif text-white mb-4">Misión</h2>
+                </div>
+                <p class="text-white leading-relaxed">
                     Brindar un espacio para investigadores en economía verde, facilitando la difusión de sus trabajos 
                     a través de nuestro repositorio, formando una comunidad científica comprometida con el bienestar 
                     humano y la protección del medioambiente.
@@ -33,111 +55,162 @@
             </div>
 
             <!-- Visión -->
-            <div class="mb-8">
-                <h2 class="text-2xl font-semibold text-white mb-4 text-center">Visión</h2>
-                <p class="text-lg text-justify text-white leading-relaxed">
+            <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-8 hover:bg-white/10 transition-all duration-300">
+                <div class="text-center mb-6">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-600 to-green-800 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl font-serif text-white mb-4">Visión</h2>
+                </div>
+                <p class="text-white leading-relaxed">
                     Ser la principal revista científica especializada en economía verde a nivel global, con investigaciones 
                     que trasciendan lo teórico para generar impactos tangibles y a gran escala en la calidad de vida de las 
                     personas y la sostenibilidad ambiental.
                 </p>
             </div>
+        </div>
 
-            <!-- Fundador -->
-            <div class="pt-8 border-opacity-20">
-                <h2 class="text-2xl font-semibold text-white mb-4 text-center">Fundador</h2>
-                <p class="text-lg text-justify text-white leading-relaxed">
-                    Sebastiano Monetta, profesional dedicado a la educación e investigación desde sus inicios. 
-                    Comprometido con transformar la ciencia económica en una herramienta eficaz para mejorar 
-                    la calidad de vida y proteger el medioambiente.<br><br>
+        <!-- Founder Section -->
+        <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-8 mb-16">
+            <div class="border-b border-white/20 pb-6 mb-8">
+                <h2 class="text-3xl font-serif text-white mb-2 text-center">Fundador</h2>
+                <p class="text-white text-center">La visión detrás de The Green Economics</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <div class="text-center lg:text-left">
+                    <h3 class="text-2xl font-serif text-white mb-4">Sebastiano Monetta</h3>
+                    <p class="text-white leading-relaxed mb-6">
+                        Profesional dedicado a la educación e investigación desde sus inicios. 
+                        Comprometido con transformar la ciencia económica en una herramienta eficaz para mejorar 
+                        la calidad de vida y proteger el medioambiente.
+                    </p>
                     
-                    Formación:
-                    <ul>
-                        <li class="text-lg text-justify text-white leading-relaxed"> - Bachiller en Ciencias de la Ingeniería</li>
-                        <li class="text-lg text-justify text-white leading-relaxed"> - Ingeniero Industrial</li>
-                        <li class="text-lg text-justify text-white leading-relaxed"> - Máster en Economía Circular y Medioambiente.</li>
-                    </ul>  
-                </p>
-            </div>
-        </div>
-
-        <!-- Sección del equipo -->
-        <div class="mt-12">
-            <h2 class="text-3xl font-semibold text-white mb-8 border-b pb-2 border-white border-opacity-20">Nuestro Equipo</h2>
-            <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-white/5 border border-white/10 rounded-lg p-6">
+                        <h4 class="text-lg font-serif text-white mb-4">Formación Académica</h4>
+                        <ul class="space-y-2 text-white">
+                            <li class="flex items-center">
+                                <svg class="w-4 h-4 mr-3 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Bachiller en Ciencias de la Ingeniería
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-4 h-4 mr-3 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Ingeniero Industrial
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-4 h-4 mr-3 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Máster en Economía Circular y Medioambiente
+                            </li>
+                        </ul>
+                    </div>
+                </div>
                 
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-transform duration-300">
-                    <div class="text-center">
-                        <div class="mb-4">
-                            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" 
-                                 alt="Sebastian Monetta" 
-                                 class="w-24 h-24 rounded-full mx-auto object-cover border-2 border-white shadow-md hover:scale-105 transition-transform">
+                <div class="flex justify-center">
+                    <div class="relative">
+                        <img src="https://media.licdn.com/dms/image/v2/D4E03AQHL9wbNHEeYJQ/profile-displayphoto-shrink_200_200/B4EZbWRRWeHcAY-/0/1747351574931?e=1757548800&v=beta&t=1-5uO6wvr2vaCt8wUXGOihKCTpOez8Ly8NIbBp-RFjk" 
+                             alt="Sebastiano Monetta" 
+                             class="w-48 h-48 rounded-full object-cover border-4 border-green-400 shadow-2xl">
+                        <div class="absolute -bottom-2 -right-2 bg-green-600 rounded-full p-3">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                            </svg>
                         </div>
-                        <h3 class="text-xl font-semibold text-gray-800 mb-1">Sebastiano Monetta</h3>
-                        <p class="text-gray-600 mb-4">Fundador</p>
-                        
                         <a href="https://www.linkedin.com/in/sebastiano-monetta-a9a9b3252/" 
-                           target="_blank" 
-                           rel="noopener noreferrer"
-                           class="inline-flex items-center justify-center space-x-2 text-blue-600 hover:text-blue-800 transition-colors">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                            </svg>
-                            <span class="text-sm font-medium">Perfil LinkedIn</span>
-                        </a>
-                        
-                    </div>
-                </div>
-                
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-transform duration-300">
-                    <div class="text-center">
-                        <div class="mb-4">
-                            <img src="https://media.licdn.com/dms/image/v2/C4D03AQFU_E2a3_Tqow/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1523778784137?e=1750291200&amp;v=beta&amp;t=-N1XUiTNXUhLEfbD23_fzxcmHNjoKGdt8NR_iiSjmnk" 
-                                 alt="Julio Chureo" 
-                                 class="w-24 h-24 rounded-full mx-auto object-cover border-2 border-white shadow-md hover:scale-105 transition-transform">
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-800 mb-1">Julio Chureo</h3>
-                        <p class="text-gray-600 mb-4">Desarrollador - Programador - Diseñador</p>
-                        
-                        <a href="https://www.linkedin.com/in/julio-chureo/" 
-                           target="_blank" 
-                           rel="noopener noreferrer"
-                           class="inline-flex items-center justify-center space-x-2 text-blue-600 hover:text-blue-800 transition-colors">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                            </svg>
-                            <span class="text-sm font-medium">Perfil LinkedIn</span>
-                        </a>
-                        
-                    </div>
-                </div>
-                
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-transform duration-300">
-                    <div class="text-center">
-                        <div class="mb-4">
-                            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" 
-                                 alt="Diego Rivera" 
-                                 class="w-24 h-24 rounded-full mx-auto object-cover border-2 border-white shadow-md hover:scale-105 transition-transform">
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-800 mb-1">Diego Rivera</h3>
-                        <p class="text-gray-600 mb-4">Desarrollador - Programador</p>
-                        
-                        <a href="https://www.linkedin.com/in/carloslopez" 
-                           target="_blank" 
-                           rel="noopener noreferrer"
-                           class="inline-flex items-center justify-center space-x-2 text-blue-600 hover:text-blue-800 transition-colors">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                            </svg>
-                            <span class="text-sm font-medium">Perfil LinkedIn</span>
-                        </a>
-                        
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="inline-flex items-center space-x-2 text-white hover:text-green-300 transition-colors mt-6">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                        <span class="text-sm">LinkedIn</span>
+                    </a>  
                     </div>
                 </div>
                 
             </div>
         </div>
 
+        <!-- Team Section -->
+        <div class="border-b border-white/20 pb-6 mb-12">
+            <h2 class="text-3xl font-serif text-white mb-2 text-center">Nuestro Equipo</h2>
+            <p class="text-white text-center">Los profesionales detrás de la excelencia académica</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-6 hover:bg-white/10 transition-all duration-300 group">
+                <div class="text-center">
+                    <div class="relative mb-6">
+                        <img src="https://media.licdn.com/dms/image/v2/D4E03AQF1X9qovPpw3g/profile-displayphoto-shrink_200_200/B4EZb.OGWjHkAY-/0/1748021832314?e=1757548800&v=beta&t=b3sJiufO6SFi-ZCt3E4KQ1NNfmw-GWbo4E2AJSGuWTU" 
+                             alt="Julio Chureo" 
+                             class="w-24 h-24 rounded-full mx-auto object-cover border-2 border-green-400 shadow-lg group-hover:scale-105 transition-transform">
+                    </div>
+                    <h3 class="text-xl font-serif text-white mb-2">Julio Chureo</h3>
+                    <p class="text-green-300 text-sm mb-4">Desarrollador - Programador - Diseñador</p>
+                    
+                    <a href="https://www.linkedin.com/in/julio-chureo/" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="inline-flex items-center space-x-2 text-white hover:text-green-300 transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                        <span class="text-sm">LinkedIn</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-6 hover:bg-white/10 transition-all duration-300 group">
+                <div class="text-center">
+                    <div class="relative mb-6">
+                        <img src="https://media.licdn.com/dms/image/v2/D4D03AQEZqAEojnOMwA/profile-displayphoto-crop_800_800/B4DZf2.fcTHMAI-/0/1752195266830?e=1756339200&v=beta&t=Gw6cBOxC8uVTZZ6YcfQqQLT2STLGev6m0jwyQPCaATY" 
+                             alt="Diego Rivera" 
+                             class="w-24 h-24 rounded-full mx-auto object-cover border-2 border-green-400 shadow-lg group-hover:scale-105 transition-transform">
+                    </div>
+                    <h3 class="text-xl font-serif text-white mb-2">Diego Rivera</h3>
+                    <p class="text-green-300 text-sm mb-4">Desarrollador - Programador</p>
+                    
+                    <a href="https://www.linkedin.com/in/diego-rivera-estefano/" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="inline-flex items-center space-x-2 text-white hover:text-green-300 transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                        <span class="text-sm">LinkedIn</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-6 hover:bg-white/10 transition-all duration-300 group">
+                <div class="text-center">
+                    <div class="relative mb-6">
+                        <img src="https://media.licdn.com/dms/image/v2/D4E03AQEvxHO6POReqQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1722364023285?e=1757548800&v=beta&t=I-Wr18q3EtDRCmamaz12LS60rO4VZYqKypAzKq_dA3k" 
+                             alt="Pablo Ipince" 
+                             class="w-24 h-24 rounded-full mx-auto object-cover border-2 border-green-400 shadow-lg group-hover:scale-105 transition-transform">
+                    </div>
+                    <h3 class="text-xl font-serif text-white mb-2">Pablo Ipince</h3>
+                    <p class="text-green-300 text-sm mb-4">Editor General</p>
+                    
+                    <a href="https://www.linkedin.com/in/pabloipince/" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="inline-flex items-center space-x-2 text-white hover:text-green-300 transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                        <span class="text-sm">LinkedIn</span>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 {% endblock %}
-

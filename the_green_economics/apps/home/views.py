@@ -1,5 +1,8 @@
 from django.core.cache import cache
 from django.views.generic import TemplateView
+from django.shortcuts import render, redirect
+from django.views import View
+from django.contrib import messages
 
 from the_green_economics.apps.articles.models import Article
 
@@ -35,3 +38,28 @@ class HomeView(TemplateView):
         context = super().get_context_data(**kwargs)
         context["articles"] = list(self.get_queryset())
         return context
+    
+class PublicaConNosotrosView(View):
+    template_name = "home/publish.html"
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+    def post(self, request):
+        # Aquí puedes procesar el formulario
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        email = request.POST.get('email')
+        institution = request.POST.get('institution')
+        title = request.POST.get('title')
+        research_area = request.POST.get('research_area')
+        abstract = request.POST.get('abstract')
+        manuscript = request.FILES.get('manuscript')
+
+        # Ejemplo básico de manejo de archivo (solo impresión por ahora)
+        if manuscript:
+            print(f"Archivo recibido: {manuscript.name}")
+
+        # Aquí normalmente guardarías los datos en la base de datos o enviarías un correo
+        messages.success(request, "Tu propuesta fue enviada con éxito.")
+        return redirect("publish")  # Nombre de tu urlpattern
