@@ -3,213 +3,254 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-  <section class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-    <header class="text-center mb-12">
-      <h1 class="text-4xl md:text-6xl font-serif font-bold text-white tracking-tight">Publicaciones recientes</h1>
-    </header>
-    <section class="mb-8 flex justify-center" aria-label="Buscar publicaciones">
-      <style>
-        input[type="text"] {
-          width: 100%;
-          max-width: 20rem;
-          padding: 0.5rem 1rem;
-          border-radius: 0.5rem;
-          box-shadow: 0 0 1rem rgba(255, 255, 255, 0.2);
-          border: 1px solid rgba(255, 255, 255, 0.2);
-          background-color: rgba(255, 255, 255, 0.1);
-          color: white;
-          font-size: 1rem;
-          placeholder-color: #9ca3af;
-          outline: none;
-          transition: all 0.3s ease;
-        }
-
-        input[type="text"]:hover {
-          mouse: pointer;
-          border: 1px solid rgba(34, 197, 94, 0.4);
-          outline: none;
-          box-shadow: 0 0 1rem rgba(34, 197, 94, 0.4);
-          background-color: rgba(255, 255, 255, 0.2);
-        }
-
-        input[type="text"]:focus {
-          border: 1px solid rgba(34, 197, 94, 0.4);
-          outline: none;
-          box-shadow: 0 0 1rem rgba(34, 197, 94, 0.4);
-          background-color: rgba(255, 255, 255, 0.2);
-        }
-      </style>
-      <form method="get" class="items-center space-x-4">
-        {% for field in filter.form %}{{ field }}{% endfor %}
-      </form>
-      {% comment "" %}
-      <input type="text" id="searchInput" placeholder="Buscar publicaciones..." class="w-full max-w-md px-4 py-2 rounded-lg shadow-md border border-white/20 bg-white/10 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400 focus:bg-white/20 transition-all duration-300" oninput="filtrarPublicaciones()" />
-      {% endcomment %}
-    </section>
-    <section class="grid grid-cols-1 md:grid-cols-2 gap-6"
-             aria-label="Lista de publicaciones">
-      <div id="left-column" class="space-y-6">
-        {% for article in articles|slice:":5" %}
-          <article class="publicacion bg-white/10 backdrop-blur-sm rounded-lg shadow-lg p-6 hover:bg-white/20 transition-all duration-300 mb-6 border border-white/10 hover:border-white/20">
-            <header class="flex justify-between items-start mb-4">
-              <div>
-                <h2 class="titulo text-2xl font-semibold text-white hover:text-white">{{ article.title }}</h2>
-                <p class="text-sm text-gray-300 mt-1">Publicado el: {{ article.publication_date }}</p>
-              </div>
-            </header>
-            <p class="text-gray-300 mb-4">{{ article.abstract|truncatewords:20 }}</p>
-            <footer class="flex justify-between items-center border-t border-white/20 pt-4">
-              <a href="{% url 'articles:download' article.slug %}"
-                 class="text-green-200/80 hover:text-green-100 flex items-center">
-                <svg class="w-5 h-5 mr-2"
-                     fill="none"
-                     stroke="currentColor"
-                     viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                </svg>
-                Descargar
-              </a>
-              <button onclick="openModal(this)"
-                      class="px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-md transition-all duration-300 border border-white/10 hover:border-white/20"
-                      data-title="{{ article.title|escapejs }}"
-                      data-date="{{ article.publication_date }}"
-                      data-content="{{ article.abstract }}"
-                      data-download="{% url 'articles:download' article.slug %}">Ver más</button>
-            </footer>
-          </article>
-        {% endfor %}
-      </div>
-      <div id="right-column" class="space-y-6">
-        {% for article in articles|slice:"5:10" %}
-          <article class="publicacion bg-white/10 backdrop-blur-sm rounded-lg shadow-lg p-6 hover:bg-white/20 transition-all duration-300 mb-6 border border-white/10 hover:border-white/20">
-            <header class="flex justify-between items-start mb-4">
-              <div>
-                <h2 class="titulo text-2xl font-semibold text-white hover:text-white">{{ article.title }}</h2>
-                <p class="text-sm text-gray-300 mt-1">Publicado el: {{ article.publication_date }}</p>
-              </div>
-            </header>
-            <p class="text-gray-300 mb-4">{{ article.abstract|truncatewords:20 }}</p>
-            <footer class="flex justify-between items-center border-t border-white/20 pt-4">
-              <a href="{% url 'articles:download' article.slug %}"
-                 class="text-green-200/80 hover:text-green-100 flex items-center">
-                <svg class="w-5 h-5 mr-2"
-                     fill="none"
-                     stroke="currentColor"
-                     viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                </svg>
-                Descargar
-              </a>
-              <button onclick="openModal(this)"
-                      class="px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-md transition-all duration-300 border border-white/10 hover:border-white/20"
-                      data-title="{{ article.title|escapejs }}"
-                      data-date="{{ article.publication_date }}"
-                      data-content="{{ article.abstract }}"
-                      data-download="{% url 'articles:download' article.slug %}">Ver más</button>
-            </footer>
-          </article>
-        {% endfor %}
-      </div>
-    </section>
-    {% include "components/paginator.html" with text_color="text-white" %}
-  </section>
-  <!-- Modal -->
-  <section id="modal"
-           class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50"
-           aria-modal="true"
-           role="dialog">
-    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-2xl mx-4 relative">
-      <header class="flex justify-between items-center mb-4">
-        <h3 id="modal-title" class="text-2xl font-bold text-gray-800"></h3>
-        <button onclick="closeModal()"
-                class="text-gray-500 hover:text-gray-700 text-3xl"
-                aria-label="Cerrar modal">&times;</button>
-      </header>
-      <p id="modal-date" class="text-sm text-gray-500 mb-2"></p>
-      <p id="modal-content" class="text-gray-600 mb-6 whitespace-pre-line"></p>
-      <footer class="flex justify-between items-center">
-        <button onclick="prevPublication()"
-                class="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-md">← Anterior</button>
-        <button class="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-md">
-          <a href="" id="modal-download-link" class="text-white">Descargar</a>
-        </button>
-        <button onclick="nextPublication()"
-                class="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-md">Siguiente →</button>
-      </footer>
+    <!-- Hero Section similar al home -->
+    <div class="relative bg-gradient-to-b from-black/70 to-black/50 py-16">
+        <div class="max-w-6xl mx-auto text-center px-4">
+            <div class="mb-8">
+                <h1 class="text-5xl md:text-6xl font-serif font-light text-white mb-4 tracking-wide leading-tight">
+                    Publicaciones Recientes
+                </h1>
+                <div class="w-32 h-0.5 bg-green-400 mx-auto mb-6"></div>
+                <p class="text-lg text-white mt-4 max-w-2xl mx-auto font-light leading-relaxed">
+                    Explora nuestra colección de investigaciones en economía verde
+                </p>
+            </div>
+        </div>
     </div>
-  </section>
+    <!-- Search Section -->
+    <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+        <div class="mb-12 flex justify-center">
+            <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-6 w-full max-w-md">
+                <form method="get" class="flex flex-col space-y-4">
+                    <label class="text-white font-serif text-lg mb-2">Buscar publicaciones</label>
+                    {% for field in filter.form %}
+                        <div class="relative">
+                            {% load widget_tweaks %}
+
+                            {{ field|add_class:"w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400 focus:bg-white/15 transition-all duration-300" }}
+                        </div>
+                    {% endfor %}
+                </form>
+            </div>
+        </div>
+        <!-- Publications Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Left Column -->
+            <div class="space-y-8">
+                {% for article in articles|slice:":5" %}
+                    <article class="group cursor-pointer transform transition-all duration-300 hover:scale-[1.02]"
+                             onclick="openModal({{ forloop.counter0 }})"
+                             data-title="{{ article.title|escapejs }}"
+                             data-slug="{{ article.slug }}"
+                             data-content="{{ article.abstract }}"
+                             data-date="{{ article.publication_date|date:'d/m/Y' }}"
+                             data-download="{% url 'articles:download' article.slug %}">
+                        <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-6 hover:bg-white/10 hover:border-white/20 transition-all duration-300">
+                            <div class="mb-4">
+                                <h3 class="text-xl font-serif text-white group-hover:text-green-300 transition-colors duration-300 mb-2 leading-tight">
+                                    {{ article.title }}
+                                </h3>
+                                <div class="flex items-center text-xs text-white mb-3">
+                                    <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd">
+                                        </path>
+                                    </svg>
+                                    {{ article.publication_date|date:'F d, Y' }}
+                                </div>
+                                <p class="text-gray-400 text-sm line-clamp-3">{{ article.abstract|truncatewords:25 }}</p>
+                            </div>
+                            <div class="flex justify-between items-center pt-4 border-t border-white/10">
+                                <a href="{% url 'articles:download' article.slug %}"
+                                   class="text-green-300 hover:text-green-200 flex items-center text-sm transition-colors duration-300">
+                                    <svg class="w-4 h-4 mr-2"
+                                         fill="none"
+                                         stroke="currentColor"
+                                         viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                        </path>
+                                    </svg>
+                                    Descargar PDF
+                                </a>
+                                <span class="text-xs text-white bg-green-600/20 px-2 py-1 rounded">Vol. {{ forloop.counter }}</span>
+                            </div>
+                        </div>
+                    </article>
+                {% endfor %}
+            </div>
+            <!-- Right Column -->
+            <div class="space-y-8">
+                {% for article in articles|slice:"5:10" %}
+                    <article class="group cursor-pointer transform transition-all duration-300 hover:scale-[1.02]"
+                             onclick="openModal({{ forloop.counter0|add:'5' }})"
+                             data-title="{{ article.title|escapejs }}"
+                             data-slug="{{ article.slug }}"
+                             data-content="{{ article.abstract }}"
+                             data-date="{{ article.publication_date|date:'d/m/Y' }}"
+                             data-download="{% url 'articles:download' article.slug %}">
+                        <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-6 hover:bg-white/10 hover:border-white/20 transition-all duration-300">
+                            <div class="mb-4">
+                                <h3 class="text-xl font-serif text-white group-hover:text-green-300 transition-colors duration-300 mb-2 leading-tight">
+                                    {{ article.title }}
+                                </h3>
+                                <div class="flex items-center text-xs text-white mb-3">
+                                    <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd">
+                                        </path>
+                                    </svg>
+                                    {{ article.publication_date|date:'F d, Y' }}
+                                </div>
+                                <p class="text-gray-400 text-sm line-clamp-3">{{ article.abstract|truncatewords:25 }}</p>
+                            </div>
+                            <div class="flex justify-between items-center pt-4 border-t border-white/10">
+                                <a href="{% url 'articles:download' article.slug %}"
+                                   class="text-green-300 hover:text-green-200 flex items-center text-sm transition-colors duration-300">
+                                    <svg class="w-4 h-4 mr-2"
+                                         fill="none"
+                                         stroke="currentColor"
+                                         viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                        </path>
+                                    </svg>
+                                    Descargar PDF
+                                </a>
+                                <span class="text-xs text-white bg-green-600/20 px-2 py-1 rounded">Vol. {{ forloop.counter|add:'5' }}</span>
+                            </div>
+                        </div>
+                    </article>
+                {% endfor %}
+            </div>
+        </div>
+        {% include "components/paginator.html" with text_color="text-white" %}
+    </div>
+    <!-- Enhanced Modal similar al home -->
+    <div id="modal"
+         class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center hidden z-50 p-4">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden">
+            <!-- Modal Header -->
+            <div class="bg-gradient-to-r from-green-600 to-green-700 px-8 py-6 text-white">
+                <div class="flex justify-between items-start">
+                    <div class="flex-1 pr-4">
+                        <h3 id="modal-title"
+                            class="text-2xl font-serif font-medium mb-2 leading-tight"></h3>
+                        <div class="flex items-center text-green-100 text-sm">
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd">
+                                </path>
+                            </svg>
+                            <span id="modal-date"></span>
+                        </div>
+                    </div>
+                    <button onclick="closeModal()"
+                            class="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/20 transition-colors duration-200">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <!-- Modal Content -->
+            <div class="p-8 overflow-y-auto max-h-96">
+                <div class="prose prose-lg max-w-none">
+                    <p id="modal-content" class="text-gray-700 leading-relaxed"></p>
+                </div>
+            </div>
+            <!-- Modal Footer -->
+            <div class="bg-gray-50 px-8 py-6 border-t">
+                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+                    <div class="flex gap-3">
+                        <button onclick="prevPublication()"
+                                class="flex items-center px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg transition-colors duration-200">
+                            <svg class="w-4 h-4 mr-2"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                            </svg>
+                            Anterior
+                        </button>
+                        <button onclick="nextPublication()"
+                                class="flex items-center px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg transition-colors duration-200">
+                            Siguiente
+                            <svg class="w-4 h-4 ml-2"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </button>
+                        <a href="" id="modal-detailed-link">
+                            <button class="flex items-center px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg transition-colors duration-200">
+                                Ver detalle
+                            </button>
+                        </a>
+                    </div>
+                    <div class="flex gap-3">
+                        <button class="flex items-center px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors duration-200">
+                            <a href="" id="modal-download-link" class="flex items-center text-white">
+                                <svg class="w-4 h-4 mr-2"
+                                     fill="none"
+                                     stroke="currentColor"
+                                     viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                    </path>
+                                </svg>
+                                Descargar PDF
+                            </a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock content %}
 {% block inline_javascript %}
-  <script>
-    let currentPublication = 0;
-    const publications = Array.from(document.querySelectorAll('button[data-title]'));
+    <script>
+      let currentPublication = 0;
+      const publications = Array.from(document.querySelectorAll('[data-title]'));
 
-    function updateModalData(index) {
-      const publication = publications[index];
-      const title = publication.getAttribute("data-title");
-      const date = publication.getAttribute("data-date");
-      const content = publication.getAttribute("data-content");
-
-      document.getElementById("modal-title").textContent = title;
-      document.getElementById("modal-date").textContent = `Publicado el: ${date}`;
-      document.getElementById("modal-content").textContent = content;
-      document.getElementById("modal-download-link").setAttribute("href", publication.getAttribute("data-download"));
-    }
-
-    function openModal(buttonOrIndex) {
-      if (typeof buttonOrIndex === "number") {
-        currentPublication = buttonOrIndex;
-      } else {
-        currentPublication = publications.indexOf(buttonOrIndex);
+      function updateModalData(index) {
+        const publication = publications[index];
+        document.getElementById("modal-title").textContent = publication.dataset.title;
+        document.getElementById("modal-content").textContent = publication.dataset.content;
+        document.getElementById("modal-date").textContent = `Publicado: ${publication.dataset.date}`;
+        document.getElementById("modal-download-link").setAttribute("href", publication.dataset.download);
+        document.getElementById("modal-detailed-link").setAttribute("href", "/articles/"+publication.dataset.slug);
       }
 
-      updateModalData(currentPublication);
-      document.getElementById("modal").classList.remove("hidden");
-      document.body.classList.add("overflow-hidden");
-    }
-
-    function closeModal() {
-      document.getElementById("modal").classList.add("hidden");
-      document.body.classList.remove("overflow-hidden");
-    }
-
-    function prevPublication() {
-      if (currentPublication > 0) {
-        currentPublication--;
-        updateModalData(currentPublication);
+      function openModal(index) {
+        currentPublication = index;
+        updateModalData(index);
+        document.getElementById("modal").classList.remove("hidden");
+        document.body.classList.add("overflow-hidden");
       }
-    }
 
-    function nextPublication() {
-      if (currentPublication < publications.length - 1) {
-        currentPublication++;
-        updateModalData(currentPublication);
+      function closeModal() {
+        document.getElementById("modal").classList.add("hidden");
+        document.body.classList.remove("overflow-hidden");
       }
-    }
 
-    // Cerrar modal al hacer clic fuera
-    document.getElementById('modal').addEventListener('click', function(e) {
-      if (e.target === this) closeModal();
-    });
-
-    // Cerrar modal con ESC
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeModal();
-    });
-
-    function filtrarPublicaciones() {
-      const input = document.getElementById("searchInput");
-      const filtro = input.value.toLowerCase();
-      const publicaciones = document.querySelectorAll(".publicacion");
-
-      publicaciones.forEach(pub => {
-        const titulo = pub.querySelector(".titulo").textContent.toLowerCase();
-        if (titulo.includes(filtro)) {
-          pub.style.display = "";
-        } else {
-          pub.style.display = "none";
+      function prevPublication() {
+        if (currentPublication > 0) {
+          currentPublication--;
+          updateModalData(currentPublication);
         }
+      }
+
+      function nextPublication() {
+        if (currentPublication < publications.length - 1) {
+          currentPublication++;
+          updateModalData(currentPublication);
+        }
+      }
+
+      // Close modal when clicking outside
+      document.getElementById('modal').addEventListener('click', function(e) {
+        if (e.target === this) closeModal();
       });
-    }
-  </script>
+
+      // Close with ESC key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeModal();
+      });
+    </script>
 {% endblock inline_javascript %}

@@ -99,6 +99,7 @@ THIRD_PARTY_APPS = [
     "auditlog",
     "crispy_forms",
     "crispy_tailwind",
+    'widget_tweaks',
 ]
 
 

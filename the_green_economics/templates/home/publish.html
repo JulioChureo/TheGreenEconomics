@@ -1,0 +1,291 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <!-- Hero Section -->
+    <div class="relative bg-gradient-to-b from-black/70 to-black/50 py-16">
+        <div class="max-w-6xl mx-auto text-center px-4">
+            <div class="mb-8">
+                <h1 class="text-5xl md:text-6xl font-serif font-light text-white mb-4 tracking-wide leading-tight">
+                    Publica con Nosotros
+                </h1>
+                <div class="w-32 h-0.5 bg-green-400 mx-auto mb-6"></div>
+                <p class="text-lg text-white mt-4 max-w-2xl mx-auto font-light leading-relaxed">
+                    Únete a nuestra comunidad de investigadores y comparte tu trabajo con el mundo académico
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            
+            <!-- Benefits Section -->
+            <div class="space-y-8">
+                <div class="border-b border-white/20 pb-6 mb-8">
+                    <h2 class="text-3xl font-serif text-white mb-2">¿Por qué publicar con nosotros?</h2>
+                    <p class="text-white">Descubre las ventajas de formar parte de nuestra comunidad académica</p>
+                </div>
+
+                <!-- DOI Benefits -->
+                <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-8 hover:bg-white/10 transition-all duration-300">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-800 rounded-full flex items-center justify-center flex-shrink-0">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-serif text-white mb-4">Identificador DOI</h3>
+                            <div class="space-y-3 text-white">
+                                <p class="flex items-start">
+                                    <svg class="w-4 h-4 mr-3 mt-1 text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span><strong>Identificación única:</strong> Tu investigación tendrá un identificador digital permanente</span>
+                                </p>
+                                <p class="flex items-start">
+                                    <svg class="w-4 h-4 mr-3 mt-1 text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span><strong>Mayor citabilidad:</strong> Facilita las citas y referencias académicas</span>
+                                </p>
+                                <p class="flex items-start">
+                                    <svg class="w-4 h-4 mr-3 mt-1 text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span><strong>Reconocimiento global:</strong> Estándar internacional reconocido por bases de datos académicas</span>
+                                </p>
+                                <p class="flex items-start">
+                                    <svg class="w-4 h-4 mr-3 mt-1 text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span><strong>Acceso permanente:</strong> Tu trabajo será accesible a largo plazo</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ISSN Benefits -->
+                <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-8 hover:bg-white/10 transition-all duration-300">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-16 h-16 bg-gradient-to-br from-green-600 to-green-800 rounded-full flex items-center justify-center flex-shrink-0">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-serif text-white mb-4">Registro ISSN</h3>
+                            <div class="space-y-3 text-white">
+                                <p class="flex items-start">
+                                    <svg class="w-4 h-4 mr-3 mt-1 text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span><strong>Legitimidad académica:</strong> Código internacional que certifica la calidad editorial</span>
+                                </p>
+                                <p class="flex items-start">
+                                    <svg class="w-4 h-4 mr-3 mt-1 text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span><strong>Indexación en bases de datos:</strong> Facilita la inclusión en índices académicos</span>
+                                </p>
+                                <p class="flex items-start">
+                                    <svg class="w-4 h-4 mr-3 mt-1 text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span><strong>Visibilidad internacional:</strong> Reconocimiento en bibliotecas y universidades globales</span>
+                                </p>
+                                <p class="flex items-start">
+                                    <svg class="w-4 h-4 mr-3 mt-1 text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span><strong>Credibilidad profesional:</strong> Mejora tu perfil académico y profesional</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Benefits -->
+                <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-8 hover:bg-white/10 transition-all duration-300">
+                    <h3 class="text-2xl font-serif text-white mb-6 text-center">Beneficios Adicionales</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="flex items-center space-x-3">
+                            <svg class="w-6 h-6 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                            <span class="text-white">Proceso de revisión riguroso</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <svg class="w-6 h-6 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4.5l2.5 2.5"></path>
+                            </svg>
+                            <span class="text-white">Publicación rápida</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <svg class="w-6 h-6 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945"></path>
+                            </svg>
+                            <span class="text-white">Acceso abierto</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <svg class="w-6 h-6 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                            </svg>
+                            <span class="text-white">Red global de investigadores</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submission Form -->
+            <div class="space-y-8">
+                <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-8">
+                    <h3 class="text-2xl font-serif text-white mb-6 text-center">Envía tu Propuesta</h3>
+                    
+                    <form class="space-y-6" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        
+                        <!-- Personal Information -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="first_name" class="block text-sm font-medium text-white mb-2">Nombre *</label>
+                                <input type="text" id="first_name" name="first_name" required 
+                                       class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400 focus:bg-white/15 transition-all duration-300"
+                                       placeholder="Tu nombre">
+                            </div>
+                            <div>
+                                <label for="last_name" class="block text-sm font-medium text-white mb-2">Apellido *</label>
+                                <input type="text" id="last_name" name="last_name" required 
+                                       class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400 focus:bg-white/15 transition-all duration-300"
+                                       placeholder="Tu apellido">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-white mb-2">Email *</label>
+                            <input type="email" id="email" name="email" required 
+                                   class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400 focus:bg-white/15 transition-all duration-300"
+                                   placeholder="tu.email@universidad.edu">
+                        </div>
+
+                        <div>
+                            <label for="institution" class="block text-sm font-medium text-white mb-2">Institución *</label>
+                            <input type="text" id="institution" name="institution" required 
+                                   class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400 focus:bg-white/15 transition-all duration-300"
+                                   placeholder="Universidad o institución de investigación">
+                        </div>
+
+                        <!-- Research Information -->
+                        <div>
+                            <label for="title" class="block text-sm font-medium text-white mb-2">Título de la Investigación *</label>
+                            <input type="text" id="title" name="title" required 
+                                   class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400 focus:bg-white/15 transition-all duration-300"
+                                   placeholder="Título completo de tu investigación">
+                        </div>
+
+                        <div>
+                            <label for="research_area" class="block text-sm font-medium text-white mb-2">Área de Investigación *</label>
+                            <select id="research_area" name="research_area" required 
+                                    class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-black focus:outline-none focus:ring-2 focus:ring-green-400 focus:bg-white/15 transition-all duration-300">
+                                <option value="">Selecciona un área</option>
+                                <option value="economia_circular">Economía Circular</option>
+                                <option value="energia_renovable">Energía Renovable</option>
+                                <option value="desarrollo_sostenible">Desarrollo Sostenible</option>
+                                <option value="politica_ambiental">Política Ambiental</option>
+                                <option value="finanzas_verdes">Finanzas Verdes</option>
+                                <option value="otros">Otros</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="abstract" class="block text-sm font-medium text-white mb-2">Resumen (Abstract) *</label>
+                            <textarea id="abstract" name="abstract" rows="6" required 
+                                      class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400 focus:bg-white/15 transition-all duration-300 resize-none"
+                                      placeholder="Proporciona un resumen detallado de tu investigación (máximo 300 palabras)"></textarea>
+                        </div>
+
+                        
+
+                        <!-- Submit Button -->
+                        <div class="text-center pt-4">
+                            <button type="submit" 
+                                    class="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white px-8 py-4 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 flex items-center mx-auto">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                                </svg>
+                                Enviar Propuesta
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-8">
+                    <h3 class="text-xl font-serif text-white mb-4 text-center">¿Necesitas ayuda?</h3>
+                    <div class="text-center space-y-2">
+                        <p class="text-white text-sm">
+                            Si tienes preguntas sobre el proceso de envío, contáctanos:
+                        </p>
+                        <p class="text-green-300 font-medium">contacto@thegreeneconomics.com</p>
+                        <p class="text-gray-400 text-xs">Responderemos en un plazo de 48 horas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block inline_javascript %}
+<script>
+    // Form validation and enhancement
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('form');
+        const fileInput = document.getElementById('manuscript');
+        
+        // File size validation
+        fileInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const maxSize = 10 * 1024 * 1024; // 10MB
+                if (file.size > maxSize) {
+                    alert('El archivo es demasiado grande. El tamaño máximo es 10MB.');
+                    this.value = '';
+                }
+            }
+        });
+
+        // Form submission
+        form.addEventListener('submit', function(e) {
+            const requiredFields = form.querySelectorAll('[required]');
+            let valid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.classList.add('border-red-400');
+                    valid = false;
+                } else {
+                    field.classList.remove('border-red-400');
+                }
+            });
+            
+            if (!valid) {
+                e.preventDefault();
+                alert('Por favor, completa todos los campos obligatorios.');
+            }
+        });
+
+        // Real-time field validation
+        const inputs = form.querySelectorAll('input, textarea, select');
+        inputs.forEach(input => {
+            input.addEventListener('blur', function() {
+                if (this.required && !this.value.trim()) {
+                    this.classList.add('border-red-400');
+                } else {
+                    this.classList.remove('border-red-400');
+                }
+            });
+        });
+    });
+</script>
+{% endblock inline_javascript %}
