@@ -9,80 +9,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
       {% block title %}
-        The Green Economics - International Journal
+        The Green Economics | Noticias y Papers Científicos sobre Economía Verde
       {% endblock title %}
     </title>
-    <meta name="author" content="Sebastiano... ,Diego Rivera, Julio Chureo" />
+    <meta name="author" content="Sebastiano..., Diego Rivera, Julio Chureo" />
     <meta name="description"
-          content="The Green Economics International Journal - Leading research in sustainable economic theory, environmental policy, and green development." />
+          content="Explora las últimas noticias y papers científicos sobre economía verde, desarrollo sostenible, energías renovables, y políticas ambientales. Tu fuente principal para la transición hacia una economía circular y justa." />
     <meta name="keywords"
-          content="green economics, sustainable development, environmental economics, circular economy, green finance, academic journal, peer review" />
+          content="economía verde, noticias economía verde, papers científicos economía verde, desarrollo sostenible, energías renovables, política ambiental, economía circular, sostenibilidad, cambio climático, innovación verde, finanzas verdes, biodiversidad, eficiencia energética, impacto ambiental" />
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow" />
     <meta name="googlebot-news"
           content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <link rel="canonical" href="https://www.thegreeneconomics.com/" />
     <meta property="og:title"
-          content="The Green Economics - International Journal of Sustainable Development" />
+          content="The Green Economics | Noticias y Papers Científicos sobre Economía Verde" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.thegreeneconomics.com/" />
     <meta property="og:image"
           content="https://www.thegreeneconomics.com/static/images/logo.png" />
     <meta property="og:description"
-          content="Leading academic journal in green economics and sustainable development research." />
+          content="Explora las últimas noticias y papers científicos sobre economía verde, desarrollo sostenible, energías renovables, y políticas ambientales. Tu fuente principal para la transición hacia una economía circular y justa." />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@thegreeneconomics" />
     <meta name="twitter:creator" content="@thegreeneconomics" />
     <meta name="twitter:title"
-          content="The Green Economics - International Journal" />
+          content="The Green Economics | Noticias y Papers Científicos sobre Economía Verde" />
     <meta name="twitter:description"
-          content="Leading academic journal in green economics and sustainable development research." />
+          content="Explora las últimas noticias y papers científicos sobre economía verde, desarrollo sostenible, energías renovables, y políticas ambientales. Tu fuente principal para la transición hacia una economía circular y justa." />
     <meta name="twitter:image"
           content="https://www.thegreeneconomics.com/static/images/logo.png" />
-    <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}" />
-    
-    <!-- Google Fonts for better typography -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              'serif': ['Crimson Text', 'serif'],
-              'sans': ['Inter', 'sans-serif'],
-            },
-            colors: {
-              'journal-green': {
-                50: '#f0fdfa',
-                100: '#ccfbf1',
-                200: '#99f6e4',
-                300: '#5eead4',
-                400: '#2dd4bf',
-                500: '#14b8a6',
-                600: '#0d9488',
-                700: '#0f766e',
-                800: '#115e59',
-                900: '#134e4a',
-              }
-            }
-          }
-        }
-      }
-    </script>
-    
+    <link async rel="icon" href="{% static 'images/favicons/favicon.ico' %}" />
+    <script async src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/quicklink@3.0.1/dist/quicklink.umd.js"></script>
     {% block css %}
       {% tailwind_css %}
       {% compress css %}
-        <link href="{% static 'css/project.css' %}" rel="stylesheet" />
+        <link preload href="{% static 'css/project.css' %}" rel="stylesheet" />
         <style>
           body {
-            background-image: 
-              linear-gradient(135deg, rgba(15, 118, 110, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%),
-              url('{% static "images/background.jpg" %}');
+            background-image: url('{% static "images/background.jpg" %}');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -148,14 +114,15 @@
         </style>
       {% endcompress %}
     {% endblock css %}
-    
     {# Placed at the top of the document so pages load faster with defer #}
     {% block javascript %}
       <script defer
               src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
       {% compress js %}
-        <script defer src="{% static 'js/project.js' %}"></script>
-        <script defer src="{% static 'js/navbar.js' %}"></script>
+        {% block head_javascript %}
+          <script defer src="{% static 'js/project.js' %}"></script>
+          <script defer src="{% static 'js/navbar.js' %}"></script>
+        {% endblock head_javascript %}
       {% endcompress %}
     {% endblock javascript %}
   </head>
@@ -165,7 +132,6 @@
         {% block header %}
           {% include "components/header.html" %}
         {% endblock header %}
-        
         {% block message %}
           <div class="container mx-auto px-4">
             {% if messages %}
@@ -181,8 +147,8 @@
             {% endif %}
           </div>
         {% endblock message %}
-        
-        <main id="mainContent" class="flex-grow pt-20">
+        <main id="mainContent"
+              class="flex-grow transition-all duration-300 px-4 md:px-8 pt-16">
           {% block main %}
             {% block content %}
               <div class="max-w-4xl mx-auto px-4 py-16 text-center">
@@ -194,28 +160,37 @@
         </main>
       {% endblock body %}
     </div>
-    
     {% block footer %}
       {% include "components/footer.html" %}
     {% endblock footer %}
-    
+    <!-- /container -->
     {% block modal %}
       {% include "components/modal.html" %}
     {% endblock modal %}
-    
     {% compress js %}
+      {% block quicklink_prefetch %}
+        <script>
+          window.addEventListener('load', () => {
+            quicklink.listen();
+
+            quicklink.prefetch(['/about/', '/book/', '/articles/']);
+
+          });
+        </script>
+      {% endblock quicklink_prefetch %}
+      {% block speculation_rules %}
+        <script type="speculationrules">
+          {
+            "prerender": [{
+              "source": "list",
+              "urls": ["/about/", "/book/", "/articles/"]
+            }]
+          }
+        </script>
+      {% endblock speculation_rules %}
       {% block inline_javascript %}
         <script>
-          // Enhanced console logging for development
-          console.log('The Green Economics Journal - Academic Platform Loaded');
-          
-          // Add smooth scroll behavior
-          document.documentElement.style.scrollBehavior = 'smooth';
-          
-          // Add loading states for better UX
-          document.addEventListener('DOMContentLoaded', function() {
-            document.body.classList.add('loaded');
-          });
+          console.log('Hello, world!');
         </script>
       {% endblock inline_javascript %}
     {% endcompress %}

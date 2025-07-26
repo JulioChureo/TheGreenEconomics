@@ -12,13 +12,14 @@
                            class="text-gray-600 hover:text-gray-900 px-1 pt-1 text-sm font-medium">Inicio</a>
                         <a href="{% url 'dashboards:article-list' %}"
                            class="text-gray-600 hover:text-gray-900 px-1 pt-1 text-sm font-medium">Articulos</a>
+                        <a href="{% url 'dashboards:audit-list' %}"
+                           class="text-gray-600 hover:text-gray-900 px-1 pt-1 text-sm font-medium">Sistema de Auditoría</a>
                     </div>
                 </div>
                 <!-- Right side -->
                 <div class="hidden md:flex items-center space-x-4">
-                    <span class="text-gray-600 text-sm">
-                        <a href="{% url 'dashboards:audit-list' %}">Sistema de Auditoría</a>
-                    </span>
+                    <a href="{% url 'pages:home' %}"
+                       class="text-gray-600 hover:text-gray-900 px-1 pt-1 text-sm font-medium">Pagina Publica</a>
                 </div>
                 <!-- Mobile menu button -->
                 <div class="flex items-center md:hidden">

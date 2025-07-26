@@ -11,7 +11,6 @@
             </div>
         </div>
     </div>
-
     <!-- Main Navigation -->
     <div class="relative">
         <button id="menuToggle"
@@ -20,7 +19,6 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
             </svg>
         </button>
-
         <!-- Desktop Navigation -->
         <nav class="hidden lg:block">
             <div class="max-w-7xl mx-auto px-4">
@@ -35,10 +33,9 @@
                             <p class="text-sm text-gray-300">International Journal</p>
                         </div>
                     </div>
-
                     <!-- Navigation Links -->
                     <div class="flex items-center space-x-8">
-                        <a href="{% url 'home:home' %}" 
+                        <a href="{% url 'home:home' %}"
                            class="text-white hover:text-green-300 font-medium transition-colors duration-200 relative group">
                             Inicio
                             <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-400 transition-all duration-200 group-hover:w-full"></span>
@@ -58,20 +55,24 @@
                             Teoría General de la Economía Verde
                             <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-400 transition-all duration-200 group-hover:w-full"></span>
                         </a>
-                        <a href="{% url 'home:publish' %}" 
+                        <a href="{% url 'home:publish' %}"
                            class="text-white hover:text-green-300 font-medium transition-colors duration-200 relative group">
                             Publica con nosotros
                             <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-400 transition-all duration-200 group-hover:w-full"></span>
                         </a>
+                        {% if user.is_staff %}
+                            <a href="{% url 'dashboards:home' %}"
+                               class="text-white hover:text-green-300 transition-colors duration-200 relative group">
+                                Panel de Control
+                            </a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
         </nav>
-
         <!-- Mobile Sidebar -->
         <nav id="sidebar"
              class="fixed inset-y-0 left-0 w-80 bg-gray-900/40 backdrop-blur-md border border-green-500 rounded-lg shadow-2xl transform -translate-x-full transition-transform duration-300 z-40 lg:hidden">
-            
             <!-- Sidebar Header -->
             <div class="p-6 border-b border-green-700 bg-green-800 bg-gradient-to-b from-green-800 to-green-900">
                 <div class="flex items-center space-x-4">
@@ -84,76 +85,102 @@
                     </div>
                 </div>
             </div>
-
             <!-- Navigation Links -->
             <div class="flex flex-col space-y-2 p-6 bg-green-800 backdrop-blur-lg border border-green-400 rounded-lg shadow-lg">
-                <a href="{% url 'home:home' %}" 
-                class="flex items-center space-x-3 rounded-lg px-4 py-3 text-lg font-medium text-white hover:bg-green-700 transition duration-300 group">
-                    <svg class="w-5 h-5 text-green-300 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                <a href="{% url 'home:home' %}"
+                   class="flex items-center space-x-3 rounded-lg px-4 py-3 text-lg font-medium text-white hover:bg-green-700 transition duration-300 group">
+                    <svg class="w-5 h-5 text-green-300 group-hover:text-white"
+                         fill="none"
+                         stroke="currentColor"
+                         viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+                        </path>
                     </svg>
                     <span>Inicio</span>
                 </a>
                 <a href="{% url 'articles:list' %}"
-                class="flex items-center space-x-3 rounded-lg px-4 py-3 text-lg font-medium text-white hover:bg-green-700 transition duration-300 group">
-                    <svg class="w-5 h-5 text-green-300 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 011 1l4 4v9a2 2 0 01-2 2z"></path>
+                   class="flex items-center space-x-3 rounded-lg px-4 py-3 text-lg font-medium text-white hover:bg-green-700 transition duration-300 group">
+                    <svg class="w-5 h-5 text-green-300 group-hover:text-white"
+                         fill="none"
+                         stroke="currentColor"
+                         viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 011 1l4 4v9a2 2 0 01-2 2z">
+                        </path>
                     </svg>
                     <span>Publicaciones</span>
                 </a>
                 <a href="{% url 'about' %}"
-                class="flex items-center space-x-3 rounded-lg px-4 py-3 text-lg font-medium text-white hover:bg-green-700 transition duration-300 group">
-                    <svg class="w-5 h-5 text-green-300 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                   class="flex items-center space-x-3 rounded-lg px-4 py-3 text-lg font-medium text-white hover:bg-green-700 transition duration-300 group">
+                    <svg class="w-5 h-5 text-green-300 group-hover:text-white"
+                         fill="none"
+                         stroke="currentColor"
+                         viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                        </path>
                     </svg>
                     <span>Sobre Nosotros</span>
                 </a>
                 <a href="{% url 'book' %}"
-                class="flex items-center space-x-3 rounded-lg px-4 py-3 text-lg font-medium text-white hover:bg-green-700 transition duration-300 group">
-                    <svg class="w-5 h-5 text-green-300 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                   class="flex items-center space-x-3 rounded-lg px-4 py-3 text-lg font-medium text-white hover:bg-green-700 transition duration-300 group">
+                    <svg class="w-5 h-5 text-green-300 group-hover:text-white"
+                         fill="none"
+                         stroke="currentColor"
+                         viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+                        </path>
                     </svg>
                     <span>Teoría General de la Economía Verde</span>
                 </a>
+                {% if user.is_staff %}
+                    <a href="{% url 'dashboards:home' %}"
+                       class="flex items-center space-x-3 rounded-lg px-4 py-3 text-lg font-medium text-white hover:bg-green-700 transition duration-300 group">
+                        <svg class="w-5 h-5 text-green-300 group-hover:text-white"
+                             fill="none"
+                             stroke="currentColor"
+                             viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 0v4m0-4h4m-4 0H8m6 8H6a2 2 0 01-2-2V6a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2h-6z">
+                            </path>
+                        </svg>
+                        <span>Panel de Control</span>
+                    </a>
+                {% endif %}
             </div>
-
         </nav>
     </div>
-
     <!-- Overlay for mobile sidebar -->
-    <div id="sidebarOverlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden z-30 lg:hidden"></div>
+    <div id="sidebarOverlay"
+         class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden z-30 lg:hidden"></div>
 </header>
-
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function() {
     const menuToggle = document.getElementById('menuToggle');
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('sidebarOverlay');
 
     function openSidebar() {
-        sidebar.classList.remove('-translate-x-full');
-        overlay.classList.remove('hidden');
-        document.body.classList.add('overflow-hidden');
+      sidebar.classList.remove('-translate-x-full');
+      overlay.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
     }
 
     function closeSidebar() {
-        sidebar.classList.add('-translate-x-full');
-        overlay.classList.add('hidden');
-        document.body.classList.remove('overflow-hidden');
+      sidebar.classList.add('-translate-x-full');
+      overlay.classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
     }
 
     if (menuToggle) {
-        menuToggle.addEventListener('click', openSidebar);
+      menuToggle.addEventListener('click', openSidebar);
     }
-    
+
     if (overlay) {
-        overlay.addEventListener('click', closeSidebar);
+      overlay.addEventListener('click', closeSidebar);
     }
 
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            closeSidebar();
-        }
+      if (e.key === 'Escape') {
+        closeSidebar();
+      }
     });
-});
+  });
 </script>
