@@ -1,5 +1,6 @@
 from functools import cached_property
 
+from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.core.cache import cache
@@ -128,10 +129,20 @@ class DetailedFileDownloadView(DetailView):
                 template="404.html",
                 status=404,
             )
-        response: FileResponse = FileResponse(
-            as_attachment=True,
-            filename=file,
-        )
-        response["Content-Disposition"] = "attachment; filename=" + file.name
-        response["X-Accel-Redirect"] = file
+        if settings.DEBUG:
+            import os
+
+            response = FileResponse(
+                file.open("rb"),
+                as_attachment=True,
+                filename=os.path.basename(file.name),
+                content_type="application/octet-stream",
+            )
+        else:
+            response: FileResponse = FileResponse(
+                as_attachment=True,
+                filename=file,
+            )
+            response["Content-Disposition"] = "attachment; filename=" + file.name
+            response["X-Accel-Redirect"] = file
         return response
