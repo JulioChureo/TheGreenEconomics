@@ -12,9 +12,9 @@ class ArticleAdmin(admin.ModelAdmin):
 
 
 class ArticleTagAdmin(admin.ModelAdmin):
-    list_display = ("name", "slug")
-    search_fields = ("name", "slug")
-    ordering = ("name",)
+    list_display = ("tag", "slug")
+    search_fields = ("tag", "slug")
+    ordering = ("tag",)
 
 
 admin.site.register(Article, ArticleAdmin)

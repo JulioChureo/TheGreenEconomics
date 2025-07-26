@@ -8,10 +8,26 @@ from the_green_economics.apps.users.models import User
 
 
 class UserFilter(FilterSet):
-    username = CharFilter(lookup_expr="icontains", label=_("User username"))
-    date_joined = DateFilter(lookup_expr="date", label=_("User data joined"))
-    last_login = DateFilter(lookup_expr="date", label=_("User last login"))
-    is_active = OrderingFilter(fields=("is_active",), label=_("User active"))
+    username = CharFilter(
+        label=_("user:filter_username_label"),
+        help_text=_("user:filter_username_help_text"),
+        lookup_expr="icontains",
+    )
+    date_joined = DateFilter(
+        label=_("user:filter_date_joined_label"),
+        help_text=_("user:filter_date_joined_help_text"),
+        lookup_expr="date",
+    )
+    last_login = DateFilter(
+        label=_("user:filter_last_login_label"),
+        help_text=_("user:filter_last_login_help_text"),
+        lookup_expr="date",
+    )
+    is_active = OrderingFilter(
+        label=_("user:filter_is_active_label"),
+        help_text=_("user:filter_is_active_help_text"),
+        fields=("is_active",),
+    )
 
     class Meta:
         model = User

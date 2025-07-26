@@ -13,7 +13,7 @@ class ArticleFactory(DjangoModelFactory[Article]):
     authors = Faker("name")
     publication_date = Faker("date")
     status = "PB"
-    abstract = Faker("text", max_nb_chars=100)
+    summary = Faker("text", max_nb_chars=100)
     body = Faker("text", max_nb_chars=500)
 
     @classmethod

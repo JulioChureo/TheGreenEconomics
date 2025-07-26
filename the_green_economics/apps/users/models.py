@@ -20,7 +20,11 @@ class User(AbstractUser):
 
     """
 
-    name = CharField(_("Name of user"), blank=True, max_length=255)
+    name = CharField(
+        verbose_name=_("user:model_name_verbose_name"),
+        help_text=_("user:model_name_help_text"),
+        max_length=255,
+    )
 
     def __str__(self) -> str:
         return f"User(pk={self.pk}, username={self.username})"

@@ -6,66 +6,50 @@ from django.utils import timezone
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 
+from the_green_economics.apps.utils.models import Publication
+from the_green_economics.apps.utils.models import PublicationTags
 
-class NewsTag(models.Model):
-    name = models.CharField(_("news tag name"), max_length=50, unique=True)
-    slug = models.SlugField(_("news tag slug"), max_length=50, unique=True)
 
+class NewsTag(PublicationTags):
     class Meta:
-        verbose_name = _("news tag")
-        verbose_name_plural = _("news tags")
+        verbose_name = _("news_tag:model_verbose_name")
+        verbose_name_plural = _("news_tag:model_verbose_name_plural")
         indexes = [
-            models.Index(fields=["name"]),
+            models.Index(fields=["tag"]),
             models.Index(fields=["slug"]),
         ]
 
     def __str__(self):
-        return self.name
+        return f"{self.tag} ({self.slug})"
 
     def get_articles(self):
         return self.news.all()
 
 
-class News(models.Model):
-    class Status(models.TextChoices):
-        DRAFT = "DF", _("Borrador")
-        PUBLISHED = "PB", _("Publicado")
-        ARCHIVED = "AR", _("Archivado")
-
-    title = models.CharField(_("news title"), max_length=200, db_index=True)
-    slug = models.SlugField(_("news slug"), max_length=200, unique=True)
-    body = models.TextField(_("news content"))
-    excerpt = models.CharField(_("news excerpt"), max_length=200, blank=True)
-    featured_image = models.ImageField(
-        _("new featured image"),
-        upload_to="news/images/",
+class News(Publication):
+    excerpt = models.CharField(
+        verbose_name=_("news:model_excerpt_verbose_name"),
+        help_text=_("news:model_excerpt_help_text"),
+        max_length=200,
         blank=True,
+    )
+    featured_image = models.ImageField(
+        verbose_name=_("news:model_featured_image_verbose_name"),
+        help_text=_("news:model_featured_image_help_text"),
+        upload_to="news/images/",
         null=True,
-    )
-    publication_date = models.DateTimeField(
-        _("new publication date"),
-        default=timezone.now,
-        db_index=True,
-    )
-    status = models.CharField(
-        _("news status"),
-        max_length=2,
-        choices=Status.choices,
-        default=Status.DRAFT,
-        db_index=True,
     )
     tags = models.ManyToManyField(
         NewsTag,
-        verbose_name=_("news tags"),
+        verbose_name=_("news:model_tags_verbose_name"),
+        help_text=_("news:model_tags_help_text"),
         related_name="news",
         blank=True,
     )
-    created_at = models.DateTimeField(_("news creation date"), auto_now_add=True)
-    updated_at = models.DateTimeField(_("news update date"), auto_now=True)
 
     class Meta:
-        verbose_name = _("news item")
-        verbose_name_plural = _("news")
+        verbose_name = _("news:model_verbose_name")
+        verbose_name_plural = _("news:model_verbose_name_plural")
         ordering = ["-publication_date"]
         indexes = [
             models.Index(fields=["publication_date", "status"]),

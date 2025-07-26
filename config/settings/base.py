@@ -28,7 +28,6 @@ TIME_ZONE = "UTC"
 # https://docs.djangoproject.com/en/dev/ref/settings/#language-code
 LANGUAGE_CODE = "es-cl"
 # https://docs.djangoproject.com/en/dev/ref/settings/#languages
-# from django.utils.translation import gettext_lazy as _
 LANGUAGES = [
     ("en", _("English")),
     ("es-cl", _("Chilean Spanish")),
@@ -38,7 +37,7 @@ LANGUAGES = [
 # https://docs.djangoproject.com/en/dev/ref/settings/#site-id
 SITE_ID = 1
 # https://docs.djangoproject.com/en/dev/ref/settings/#use-i18n
-USE_I18N = False
+USE_I18N = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#use-tz
 USE_TZ = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#locale-paths
@@ -99,7 +98,7 @@ THIRD_PARTY_APPS = [
     "auditlog",
     "crispy_forms",
     "crispy_tailwind",
-    'widget_tweaks',
+    "widget_tweaks",
 ]
 
 
@@ -259,7 +258,7 @@ EMAIL_TIMEOUT = 5
 ADMIN_URL = "admin/"
 # https://docs.djangoproject.com/en/dev/ref/settings/#admins
 ADMINS = [
-    ("""Diego Rivera, Julio Chureo""", "diego-rivera,-julio-chureo@greeneconomics.com"),
+    ("""Diego Rivera, Julio Chureo""", "contacto@greeneconomics.com"),
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#managers
 MANAGERS = ADMINS

@@ -4,12 +4,14 @@ from django.utils.translation import gettext_lazy as _
 
 from the_green_economics.apps.articles.models import Article
 from the_green_economics.apps.articles.models import ArticleTag
+from the_green_economics.apps.utils.models import PublicationStatus
 
 
 class ArticleForm(forms.ModelForm):
     publication_date = forms.DateField(
+        label=_("article:form_publication_date_label"),
+        help_text=_("article:form_publication_date_help_text"),
         widget=forms.DateInput(attrs={"type": "date"}),
-        label=_("fecha de publicación"),
     )
 
     class Meta:
@@ -18,27 +20,32 @@ class ArticleForm(forms.ModelForm):
             "title",
             "authors",
             "publication_date",
-            "abstract",
+            "summary",
             "body",
             "pdf",
-            # "tags",
             "status",
         ]
         labels = {
-            "title": _("título"),
-            "abstract": _("resumen"),
-            "summary": _("sumario ejecutivo"),
-            "body": _("cuerpo del artículo"),
-            "pdf": _("archivo PDF"),
-            # "tags": _("etiquetas"),
-            "status": _("estado"),
+            "title": _("article:form_title_label"),
+            "authors": _("article:form_authors_label"),
+            "publication_date": _("article:form_publication_date_label"),
+            "summary": _("article:form_summary_label"),
+            "body": _("article:form_body_label"),
+            "pdf": _("article:form_pdf_label"),
+            "status": _("article:form_status_label"),
         }
         help_texts = {
-            "pdf": _("Solo se permiten archivos en formato PDF"),
+            "pdf": _("article:form_pdf_help_text"),
+            "status": _("article:form_status_help_text"),
+            "title": _("article:form_title_help_text"),
+            "authors": _("article:form_authors_help_text"),
+            "publication_date": _("article:form_publication_date_help_text"),
+            "summary": _("article:form_summary_help_text"),
+            "summary": _("article:form_summary_help_text"),
+            "body": _("article:form_body_help_text"),
         }
         widgets = {
-            "status": forms.Select(choices=Article.Status.choices),
-            # "tags": forms.SelectMultiple(attrs={"class": "select2"}),
+            "status": forms.Select(choices=PublicationStatus.choices),
         }
 
     def __init__(self, *args, **kwargs):
@@ -71,9 +78,10 @@ class ArticleRestoreForm(forms.ModelForm):
     class Meta:
         model = Article
         fields = ["status"]
-        labels = {"status": _("estado")}
+        labels = {"status": _("article:form_status")}
+        help_texts = {"status": _("article:form_status_help_text")}
         widgets = {
-            "status": forms.Select(choices=Article.Status.choices),
+            "status": forms.Select(choices=PublicationStatus.choices),
         }
 
     def __init__(self, *args, **kwargs):
@@ -93,12 +101,12 @@ class DeleteArticleForm(forms.ModelForm):
 class ArticleTagForm(forms.ModelForm):
     class Meta:
         model = ArticleTag
-        fields = ["name"]
-        labels = {"name": _("nombre de la etiqueta")}
-        help_texts = {"name": _("Nombre único para la etiqueta")}
+        fields = ["tag"]
+        labels = {"tag": _("nombre de la etiqueta")}
+        help_texts = {"tag": _("Nombre único para la etiqueta")}
 
     def clean_name(self):
-        name = self.cleaned_data["name"]
+        name = self.cleaned_data["tag"]
         if ArticleTag.objects.filter(name__iexact=name).exists():
             if not self.instance or self.instance.name != name:
                 raise forms.ValidationError(_("Esta etiqueta ya existe"))

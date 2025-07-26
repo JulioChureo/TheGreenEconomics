@@ -1,4 +1,5 @@
 from django import forms
+from django.core.validators import EmailValidator
 from django.utils.translation import gettext_lazy as _
 
 from .models import User
@@ -21,19 +22,38 @@ class UserCreationForm(forms.ModelForm):
     """
 
     password = forms.CharField(
+        label=_("user:form_password_label"),
+        help_text=_("user:form_password_help_text"),
         max_length=128,
         required=True,
-        label=_("Password"),
         widget=forms.widgets.PasswordInput,
     )
 
     email = forms.CharField(
-        max_length=128, required=True, label=_("Email"), widget=forms.widgets.TextInput
+        label=_("user:form_email_label"),
+        help_text=_("user:form_email_help_text"),
+        max_length=128,
+        required=True,
+        widget=forms.widgets.TextInput,
+        validators=[
+            EmailValidator(
+                message=_("user:form_email_invalid"),
+                code="invalid_email",
+            ),
+        ],
     )
 
     class Meta:
         model = User
         fields = ("username", "email", "name", "password")
+        labels = {
+            "username": _("user:form_username_label"),
+            "name": _("user:form_name_label"),
+        }
+        help_texts = {
+            "username": _("user:form_username_help_text"),
+            "name": _("user:form_name_help_text"),
+        }
 
 
 class UserLoginForm(forms.Form):
@@ -51,16 +71,18 @@ class UserLoginForm(forms.Form):
     """
 
     username = forms.CharField(
+        label=_("user:form_username_label"),
+        help_text=_("user:form_username_help_text"),
         max_length=128,
         required=True,
-        label=_("Username"),
         widget=forms.widgets.TextInput,
     )
 
     password = forms.CharField(
+        label=_("user:form_password_label"),
+        help_text=_("user:form_password_help_text"),
         max_length=128,
         required=True,
-        label=_("Password"),
         widget=forms.widgets.PasswordInput,
     )
 
@@ -79,7 +101,10 @@ class UserLogOutForm(forms.Form):
     """
 
     confirmation = forms.BooleanField(
-        required=True, label=_("Confirmation"), widget=forms.widgets.CheckboxInput
+        label=_("user:form_logout_confirmation_label"),
+        help_text=_("user:form_logout_confirmation_help_text"),
+        required=True,
+        widget=forms.widgets.CheckboxInput,
     )
 
 
@@ -99,24 +124,27 @@ class UserUpdateForm(forms.ModelForm):
 
     """
 
-    usename = forms.CharField(
+    username = forms.CharField(
+        label=_("user:form_username_label"),
+        help_text=_("user:form_username_help_text"),
         max_length=128,
         required=False,
-        label=_("User username"),
         widget=forms.widgets.TextInput,
     )
 
     email = forms.CharField(
+        label=_("user:form_email_label"),
+        help_text=_("user:form_email_help_text"),
         max_length=128,
         required=False,
-        label=_("User email"),
         widget=forms.widgets.TextInput,
     )
 
     name = forms.CharField(
+        label=_("user:form_name_label"),
+        help_text=_("user:form_name_help_text"),
         max_length=128,
         required=False,
-        label=_("User name"),
         widget=forms.widgets.TextInput,
     )
 

@@ -96,7 +96,7 @@ class UserLogOutView(FormView, LoginRequiredMixin, SuccessMessageMixin):
 
     template_name = "users/user_logout.html"
     form_class = UserLogOutForm
-    success_message = _("Successfully logged out")
+    success_message = _("user:view_logout_success_message")
 
     def get_success_url(self):
         return reverse("home")

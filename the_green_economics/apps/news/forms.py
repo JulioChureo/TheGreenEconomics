@@ -2,6 +2,8 @@ from django import forms
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 
+from the_green_economics.apps.utils.models import PublicationStatus
+
 from .models import News
 from .models import NewsTag
 
@@ -10,15 +12,17 @@ MAX_LENGTH_EXCERPT = 300
 
 class NewsForm(forms.ModelForm):
     publication_date = forms.DateTimeField(
+        label=_("news:form_publication_date_label"),
+        help_text=_("news:form_publication_date_help_text"),
         widget=forms.DateTimeInput(attrs={"type": "datetime-local"}),
-        label=_("Fecha de publicación"),
         input_formats=["%Y-%m-%dT%H:%M"],
     )
 
     tags = forms.ModelMultipleChoiceField(
+        label=_("news:form_tags_label"),
+        help_text=_("news:form_tags_help_text"),
         queryset=NewsTag.objects.all(),
         widget=forms.SelectMultiple(attrs={"class": "select2"}),
-        label=_("Etiquetas"),
         required=False,
     )
 
@@ -34,20 +38,25 @@ class NewsForm(forms.ModelForm):
             "tags",
         ]
         labels = {
-            "title": _("Título"),
-            "body": _("Contenido"),
-            "excerpt": _("Extracto"),
-            "featured_image": _("Imagen destacada"),
-            "status": _("Estado"),
+            "title": _("news:form_title_label"),
+            "body": _("news:form_body_label"),
+            "excerpt": _("news:form_excerpt_label"),
+            "featured_image": _("news:form_featured_image_label"),
+            "status": _("news:form_status_label"),
         }
         widgets = {
-            "status": forms.Select(choices=News.Status.choices),
+            "status": forms.Select(choices=PublicationStatus.choices),
             "excerpt": forms.Textarea(attrs={"rows": 3}),
             "body": forms.Textarea(attrs={"rows": 15, "class": "rich-editor"}),
         }
         help_texts = {
-            "excerpt": _("Breve resumen visible en listados (máximo 300 caracteres)"),
-            "featured_image": _("Imagen representativa de la noticia (opcional)"),
+            "excerpt": _("news:form_excerpt_help_text"),
+            "publication_date": _("news:form_publication_date_help_text"),
+            "status": _("news:form_status_help_text"),
+            "tags": _("news:form_tags_help_text"),
+            "title": _("news:form_title_help_text"),
+            "body": _("news:form_body_help_text"),
+            "featured_image": _("news:form_featured_image_help_text"),
         }
 
     def __init__(self, *args, **kwargs):
@@ -56,7 +65,7 @@ class NewsForm(forms.ModelForm):
             self.fields["slug"] = forms.SlugField(
                 required=False,
                 widget=forms.HiddenInput(),
-                help_text=_("Identificador único generado automáticamente"),
+                help_text=_("news:form_slug_help_text"),
             )
 
     def clean_slug(self):
@@ -106,10 +115,10 @@ class NewsForm(forms.ModelForm):
 
 class DeleteNewsForm(forms.ModelForm):
     confirmation = forms.BooleanField(
+        label=_("news:form_confirmation_label"),
+        help_text=_("news:form_confirmation_help_text"),
         required=True,
         initial=False,
-        label=_("Confirmar eliminación"),
-        help_text=_("Marque esta casilla para confirmar la eliminación permanente"),
     )
 
     class Meta:
@@ -125,7 +134,7 @@ class DeleteNewsForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super().clean()
         if not cleaned_data.get("confirmation"):
-            raise forms.ValidationError(_("Debe confirmar la eliminación"))
+            raise forms.ValidationError(_("news:form_confirmation_error"))
         return cleaned_data
 
     def save(self, commit=True):
@@ -137,12 +146,12 @@ class DeleteNewsForm(forms.ModelForm):
 class NewsTagForm(forms.ModelForm):
     class Meta:
         model = NewsTag
-        fields = ["name"]
-        labels = {"name": _("nombre de la etiqueta")}
-        help_texts = {"name": _("Nombre único para la etiqueta")}
+        fields = ["tag"]
+        labels = {"tag": _("news_tag:form_name_label")}
+        help_texts = {"tag": _("news_tag:form_name_help_text")}
 
     def clean_name(self):
-        name = self.cleaned_data["name"]
+        name = self.cleaned_data["tag"]
         if NewsTag.objects.filter(name__iexact=name).exists():
             if not self.instance or self.instance.name != name:
                 raise forms.ValidationError(_("Esta etiqueta ya existe"))

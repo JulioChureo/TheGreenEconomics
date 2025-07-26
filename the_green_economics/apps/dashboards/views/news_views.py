@@ -12,9 +12,10 @@ from the_green_economics.apps.news.forms import DeleteNewsForm
 from the_green_economics.apps.news.forms import NewsForm
 from the_green_economics.apps.news.models import News
 from the_green_economics.apps.utils.mixins import AdminUserMixin
+from the_green_economics.apps.utils.models import PublicationStatus
 
 DASHBOARD_NEWS_QUERYSET = News.objects.filter(
-    Q(status=News.Status.PUBLISHED) | Q(status=News.Status.DRAFT),
+    Q(status=PublicationStatus.PUBLISHED) | Q(status=PublicationStatus.DRAFT),
 ).order_by("-publication_date")
 
 
@@ -75,7 +76,7 @@ class DashboardNewsDeleteView(AdminUserMixin, DeleteView):
     def form_valid(self, form):
         success_url = self.get_success_url()
         self.object = self.get_object()
-        self.object.status = News.Status.ARCHIVED
+        self.object.status = PublicationStatus.ARCHIVED
         self.object.save()
         return HttpResponseRedirect(success_url)
 

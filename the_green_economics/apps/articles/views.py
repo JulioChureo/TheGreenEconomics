@@ -6,9 +6,10 @@ from the_green_economics.apps.articles.filters import ArticleFilter
 from the_green_economics.apps.articles.forms import Article
 from the_green_economics.apps.utils.mixins import DetailedFileDownloadView
 from the_green_economics.apps.utils.mixins import PaginatedFilteredListView
+from the_green_economics.apps.utils.models import PublicationStatus
 
 ARTICLES_QUERYSET = Article.objects.filter(
-    status=Article.Status.PUBLISHED,
+    status=PublicationStatus.PUBLISHED,
 ).order_by("-publication_date")
 
 
@@ -54,7 +55,7 @@ class ArticleDownloadView(DetailedFileDownloadView):
 
     def get_file(self):
         article = self.get_object()
-        if article.pdf:
+        if hasattr(article, "pdf") and article.pdf:
             return article.pdf
         return None
 

@@ -6,7 +6,7 @@ from django.utils.translation import gettext_lazy as _
 
 class ArticlesConfig(AppConfig):
     name = "the_green_economics.apps.articles"
-    verbose_name = _("Articles")
+    verbose_name = _("article:app_verbose_name")
 
     def ready(self):
         with contextlib.suppress(ImportError):

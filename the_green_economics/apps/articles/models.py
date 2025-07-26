@@ -5,21 +5,34 @@ from django.template.defaultfilters import slugify
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
+from the_green_economics.apps.utils.models import Publication
+from the_green_economics.apps.utils.models import PublicationTags
 
-class ArticleTag(models.Model):
-    name = models.CharField(_("article tag name"), max_length=50, unique=True)
-    slug = models.SlugField(_("article tag slug"), max_length=50, unique=True)
+
+class ArticleTag(PublicationTags):
+    """Model representing a tag for articles.
+
+    Args:
+        models (Model): Django model class.
+
+    Attributes:
+        name (CharField): Name of the article tag.
+        slug (SlugField): Slug for the article tag, used in URLs.
+
+    Returns:
+        Model: ArticleTag instance.
+    """
 
     class Meta:
         verbose_name = _("article tag")
         verbose_name_plural = _("article tags")
         indexes = [
-            models.Index(fields=["name"]),
+            models.Index(fields=["tag"]),
             models.Index(fields=["slug"]),
         ]
 
     def __str__(self):
-        return self.name
+        return f"{self.tag} ({self.slug})"
 
     def get_absolute_url(self):
         return reverse("articles:tag_detail", kwargs={"slug": self.slug})
@@ -28,56 +41,65 @@ class ArticleTag(models.Model):
         return self.articles.all()
 
 
-class Article(models.Model):
-    class Status(models.TextChoices):
-        DRAFT = "DF", _("Borrador")
-        PUBLISHED = "PB", _("Publicado")
-        UNDER_REVIEW = "UR", _("En revisión")
-        ARCHIVED = "AR", _("Archivado")
+class Article(Publication):
+    """Model representing an article.
 
-    title = models.CharField(_("Titulo Articulo"), max_length=200)
-    slug = models.SlugField(_("Slug Articulo"), max_length=200, unique=True)
-    authors = models.CharField(_("article authors"), max_length=200, blank=True)
-    publication_date = models.DateField(
-        _("article publication date"),
-        blank=True,
-        null=True,
-    )
+    Attributes:
+        title (CharField): Title of the article.
+        slug (SlugField): Slug for the article, used in URLs.
+        authors (CharField): Authors of the article.
+        publication_date (DateField): Date of publication.
+        abstract (TextField): Abstract of the article.
+        body (TextField): Body content of the article.
+        pdf (FileField): PDF file of the article.
+        tags (ManyToManyField): Tags associated with the article.
+        status (CharField): Status of the article (draft, published, etc.).
+        created_at (DateTimeField): Date and time of creation.
+        updated_at (DateTimeField): Date and time of last update.
+        doi (CharField): Digital Object Identifier for the article.
+        issn (CharField): International Standard Serial Number for the article.
 
-    abstract = models.TextField(_("article abstract"), blank=True)
-    body = models.TextField(_("article body"), blank=True)
+    Returns:
+        Model: Article instance.
+    """
+
     pdf = models.FileField(
-        _("archivo PDF"),
+        verbose_name=_("article:model_pdf_verbose_name"),
+        help_text=_("article:model_pdf_help_text"),
         upload_to="articles/pdfs/",
         validators=[FileExtensionValidator(["pdf"])],
         null=True,
     )
     tags = models.ManyToManyField(
         ArticleTag,
-        verbose_name=_("etiquetas"),
+        verbose_name=_("article:model_tags_verbose_name"),
+        help_text=_("article:model_tags_help_text"),
         related_name="articles",
+    )
+    doi = models.CharField(
+        verbose_name=_("article:model_doi_verbose_name"),
+        help_text=_("article:model_doi_help_text"),
+        max_length=100,
         blank=True,
+        default="",
     )
-    status = models.CharField(
-        _("article status"),
-        max_length=2,
-        choices=Status.choices,
-        default=Status.DRAFT,
+    issn = models.CharField(
+        verbose_name=_("article:model_issn_verbose_name"),
+        help_text=_("article:model_issn_help_text"),
+        max_length=100,
+        blank=True,
+        default="",
     )
-    created_at = models.DateTimeField(
-        _("fecha de creación"),
-        auto_now_add=True,
-    )
-    updated_at = models.DateTimeField(_("fecha de actualización"), auto_now=True)
 
     class Meta:
-        verbose_name = _("artículo científico")
-        verbose_name_plural = _("artículos científicos")
+        verbose_name = _("article:verbose_name")
+        verbose_name_plural = _("article:verbose_name_plural")
         ordering = ["-publication_date"]
         indexes = [
             models.Index(fields=["publication_date"]),
             models.Index(fields=["status", "publication_date"]),
             models.Index(fields=["slug"]),
+            models.Index(fields=["doi"]),
         ]
 
     def __str__(self):

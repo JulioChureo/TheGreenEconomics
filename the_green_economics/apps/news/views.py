@@ -2,9 +2,10 @@ from django.views.generic import DetailView
 from django.views.generic import ListView
 
 from the_green_economics.apps.news.models import News
+from the_green_economics.apps.utils.models import PublicationStatus
 
 NEWS_QUERYSET = News.objects.filter(
-    status=News.Status.PUBLISHED,
+    status=PublicationStatus.PUBLISHED,
 ).order_by("-publication_date")
 
 

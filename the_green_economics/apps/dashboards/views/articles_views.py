@@ -13,11 +13,12 @@ from the_green_economics.apps.articles.forms import DeleteArticleForm
 from the_green_economics.apps.articles.models import Article
 from the_green_economics.apps.utils.mixins import AdminUserMixin
 from the_green_economics.apps.utils.mixins import PaginatedFilteredListView
+from the_green_economics.apps.utils.models import PublicationStatus
 
 DASHBOARD_ARTICLES_QUERYSET = Article.objects.filter(
-    Q(status=Article.Status.PUBLISHED)
-    | Q(status=Article.Status.DRAFT)
-    | Q(status=Article.Status.UNDER_REVIEW),
+    Q(status=PublicationStatus.PUBLISHED)
+    | Q(status=PublicationStatus.DRAFT)
+    | Q(status=PublicationStatus.UNDER_REVIEW),
 ).order_by("-updated_at")
 
 
@@ -80,7 +81,7 @@ class DashboardArticleDeleteView(AdminUserMixin, DeleteView):
     def form_valid(self, form):
         success_url = self.get_success_url()
         self.object = self.get_object()
-        self.object.status = Article.Status.ARCHIVED
+        self.object.status = PublicationStatus.ARCHIVED
         self.object.save()
         return redirect(success_url)
 
@@ -92,7 +93,7 @@ class DashboardArticleListArchivedView(AdminUserMixin, PaginatedFilteredListView
     model = Article
     template_name = "dashboards/articles/article_list_archived.html"
     context_object_name = "articles"
-    queryset = Article.objects.filter(status=Article.Status.ARCHIVED).order_by(
+    queryset = Article.objects.filter(status=PublicationStatus.ARCHIVED).order_by(
         "-updated_at",
     )
     filterset_class = ArticleFilter
@@ -109,7 +110,7 @@ class DashboardArticleRestoreView(AdminUserMixin, UpdateView):
     success_url = reverse_lazy("dashboards:article-list")
     slug_url_kwarg = "slug"
     context_object_name = "article"
-    queryset = Article.objects.filter(status=Article.Status.ARCHIVED).order_by(
+    queryset = Article.objects.filter(status=PublicationStatus.ARCHIVED).order_by(
         "-updated_at",
     )
 
