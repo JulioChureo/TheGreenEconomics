@@ -24,10 +24,10 @@
     </div>
     <div class="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-8 shadow-xl">
-            {% if article.abstract %}
+            {% if article.summary %}
                 <div class="mb-8 pb-8 border-b border-white/10">
                     <h2 class="text-3xl font-serif text-white mb-4">{% translate "Resumen" %}</h2>
-                    <p class="text-gray-300 leading-relaxed text-lg">{{ article.abstract|linebreaksbr }}</p>
+                    <p class="text-gray-300 leading-relaxed text-lg">{{ article.summary|linebreaksbr }}</p>
                 </div>
             {% endif %}
             {% if article.body %}

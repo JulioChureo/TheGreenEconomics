@@ -37,11 +37,11 @@
         <tr class="hover:bg-gray-50">
           <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ article.title }}</td>
           <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-            {% if PublicationStatus == "DF" %}
+            {% if article.status == "DF" %}
               📝 Borrador
-            {% elif PublicationStatus == "PB" %}
+            {% elif article.status == "PB" %}
               ✅ Publicado
-            {% elif PublicationStatus == "UR" %}
+            {% elif article.status == "UR" %}
               🔍 En Revisión
             {% endif %}
           </td>

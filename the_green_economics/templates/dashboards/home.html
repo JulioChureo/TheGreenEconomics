@@ -7,19 +7,14 @@
         <article class="bg-white shadow-md rounded-lg p-6">
             <h2 class="text-xl font-semibold mb-4">Auditoría</h2>
             <p class="text-gray-700">Revisa y gestiona los cambios</p>
-            <a href="" class="mt-4 inline-block text-blue-600 hover:text-blue-900">Ver Auditoría</a>
+            <a href="{% url 'dashboards:audit-list' %}"
+               class="mt-4 inline-block text-blue-600 hover:text-blue-900">Ver Auditoría</a>
         </article>
         <article class="bg-white shadow-md rounded-lg p-6">
             <h2 class="text-xl font-semibold mb-4">Artículos</h2>
             <p class="text-gray-700">Gestiona los artículos científicos</p>
             <a href="{% url 'dashboards:article-list' %}"
                class="mt-4 inline-block text-blue-600 hover:text-blue-900">Ver Artículos</a>
-        </article>
-        <article class="bg-white shadow-md rounded-lg p-6">
-            <h2 class="text-xl font-semibold mb-4">Noticias</h2>
-            <p class="text-gray-700">Gestiona las noticias</p>
-            <a href="{% url 'dashboards:news-list' %}"
-               class="mt-4 inline-block text-blue-600 hover:text-blue-900">Ver Noticias</a>
         </article>
     </section>
     <section id="dashboard-quick-links"
