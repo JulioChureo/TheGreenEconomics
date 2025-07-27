@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 {% get_current_language as LANGUAGE_CODE %}
-<html lang="{{ LANGUAGE_CODE }}">
+<html lang="{{ LANGUAGE_CODE }}" class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
@@ -12,121 +12,177 @@
         The Green Economics | Noticias y Papers Científicos sobre Economía Verde
       {% endblock title %}
     </title>
+    <!-- Meta Tags Mejorados -->
     <meta name="author" content="Sebastiano..., Diego Rivera, Julio Chureo" />
     <meta name="description"
-          content="Explora las últimas noticias y papers científicos sobre economía verde, desarrollo sostenible, energías renovables, y políticas ambientales. Tu fuente principal para la transición hacia una economía circular y justa." />
+          content="{% block meta_description %}Explora las últimas noticias y papers científicos sobre economía verde, desarrollo sostenible, energías renovables, y políticas ambientales. Tu fuente principal para la transición hacia una economía circular y justa.{% endblock %}" />
     <meta name="keywords"
-          content="economía verde, noticias economía verde, papers científicos economía verde, desarrollo sostenible, energías renovables, política ambiental, economía circular, sostenibilidad, cambio climático, innovación verde, finanzas verdes, biodiversidad, eficiencia energética, impacto ambiental" />
+          content="{% block meta_keywords %}economía verde, noticias economía verde, papers científicos economía verde, desarrollo sostenible, energías renovables, política ambiental, economía circular, sostenibilidad, cambio climático, innovación verde, finanzas verdes, biodiversidad, eficiencia energética, impacto ambiental{% endblock %}" />
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow" />
     <meta name="googlebot-news"
           content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-    <link rel="canonical" href="https://www.thegreeneconomics.com/" />
+    <!-- Open Graph Mejorado -->
     <meta property="og:title"
-          content="The Green Economics | Noticias y Papers Científicos sobre Economía Verde" />
+          content="{% block og_title %}The Green Economics | Noticias y Papers Científicos sobre Economía Verde{% endblock %}" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.thegreeneconomics.com/" />
+    <meta property="og:url" content="{{ request.build_absolute_uri }}" />
     <meta property="og:image"
-          content="https://www.thegreeneconomics.com/static/images/logo.png" />
+          content="{% block og_image %}https://www.thegreeneconomics.com/static/images/logo.png{% endblock %}" />
     <meta property="og:description"
-          content="Explora las últimas noticias y papers científicos sobre economía verde, desarrollo sostenible, energías renovables, y políticas ambientales. Tu fuente principal para la transición hacia una economía circular y justa." />
+          content="{% block og_description %}Explora las últimas noticias y papers científicos sobre economía verde, desarrollo sostenible, energías renovables, y políticas ambientales.{% endblock %}" />
+    <meta property="og:site_name" content="The Green Economics" />
+    <meta property="og:locale" content="{{ LANGUAGE_CODE }}" />
+    <!-- Twitter Cards Mejoradas -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@thegreeneconomics" />
     <meta name="twitter:creator" content="@thegreeneconomics" />
     <meta name="twitter:title"
-          content="The Green Economics | Noticias y Papers Científicos sobre Economía Verde" />
+          content="{% block twitter_title %}The Green Economics | Noticias y Papers Científicos sobre Economía Verde{% endblock %}" />
     <meta name="twitter:description"
-          content="Explora las últimas noticias y papers científicos sobre economía verde, desarrollo sostenible, energías renovables, y políticas ambientales. Tu fuente principal para la transición hacia una economía circular y justa." />
+          content="{% block twitter_description %}Explora las últimas noticias y papers científicos sobre economía verde, desarrollo sostenible, energías renovables, y políticas ambientales.{% endblock %}" />
     <meta name="twitter:image"
-          content="https://www.thegreeneconomics.com/static/images/logo.png" />
-    <link async rel="icon" href="{% static 'images/favicons/favicon.ico' %}" />
-    <script async src="https://cdn.tailwindcss.com"></script>
-    <script defer src="https://unpkg.com/quicklink@3.0.1/dist/quicklink.umd.js"></script>
+          content="{% block twitter_image %}https://www.thegreeneconomics.com/static/images/logo.png{% endblock %}" />
+    <!-- Favicons Mejorados -->
+    <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}" />
+    <link rel="apple-touch-icon"
+          sizes="180x180"
+          href="{% static 'images/favicons/apple-touch-icon.png' %}" />
+    <link rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="{% static 'images/favicons/favicon-32x32.png' %}" />
+    <link rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="{% static 'images/favicons/favicon-16x16.png' %}" />
+    <link rel="manifest" href="{% static 'images/favicons/site.webmanifest' %}" />
+    <!-- Preconexión para mejorar rendimiento -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="preconnect" href="https://unpkg.com" crossorigin />
+    <!-- Precarga de recursos críticos -->
+    <link rel="preload" as="style" href="{% static 'css/project.css' %}" />
+    <link rel="preload" as="script" href="{% static 'js/project.js' %}" />
+    <link rel="preload" as="script" href="{% static 'js/navbar.js' %}" />
+    <!-- Tailwind CSS -->
     {% block css %}
       {% tailwind_css %}
       {% compress css %}
-        <link preload href="{% static 'css/project.css' %}" rel="stylesheet" />
+        <link rel="stylesheet" href="{% static 'css/project.css' %}" />
         <style>
+          /* Estilos optimizados */
           body {
             background-image: url('{% static "images/background.jpg" %}');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
-            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            /* Fallback para cuando la imagen no cargue */
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+          }
+
+          .line-clamp-2,
+          .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
           }
 
           .line-clamp-2 {
-            display: -webkit-box;
             -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
           }
 
           .line-clamp-3 {
-            display: -webkit-box;
             -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
           }
 
-          /* Custom scrollbar */
+          /* Scrollbar mejorada */
+          :root {
+            --scrollbar-thumb: rgba(20, 184, 166, 0.5);
+            --scrollbar-thumb-hover: rgba(20, 184, 166, 0.7);
+          }
+
           ::-webkit-scrollbar {
-            width: 8px;
+            width: 10px;
           }
 
           ::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
           }
 
           ::-webkit-scrollbar-thumb {
-            background: rgba(20, 184, 166, 0.5);
-            border-radius: 4px;
+            background: var(--scrollbar-thumb);
+            border-radius: 5px;
           }
 
           ::-webkit-scrollbar-thumb:hover {
-            background: rgba(20, 184, 166, 0.7);
+            background: var(--scrollbar-thumb-hover);
           }
 
-          /* Enhanced academic styling */
+          /* Cards académicas */
           .academic-card {
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(10px);
+            background: rgba(15, 23, 42, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
           }
 
           .academic-card:hover {
             border-color: rgba(20, 184, 166, 0.3);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.35);
+            transform: translateY(-2px);
           }
 
-          /* Typography improvements */
+          /* Tipografía */
           .journal-title {
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            letter-spacing: 0.05em;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+            letter-spacing: 0.025em;
           }
 
-          /* Smooth transitions */
+          /* Transiciones optimizadas */
           * {
-            transition-property: color, background-color, border-color, transform, box-shadow;
+            transition-duration: 200ms;
             transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-property: color, background-color, border-color, transform, box-shadow, opacity;
           }
         </style>
       {% endcompress %}
     {% endblock css %}
-    {# Placed at the top of the document so pages load faster with defer #}
-    {% block javascript %}
-      <script defer
-              src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- JavaScript en head solo si es necesario -->
+    {% block javascript_head %}
       {% compress js %}
-        {% block head_javascript %}
-          <script defer src="{% static 'js/project.js' %}"></script>
-          <script defer src="{% static 'js/navbar.js' %}"></script>
-        {% endblock head_javascript %}
+        <script defer
+                src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+        <script defer src="https://unpkg.com/quicklink@3.0.1/dist/quicklink.umd.js"></script>
+        <script defer src="{% static 'js/project.js' %}"></script>
+        <script defer src="{% static 'js/navbar.js' %}"></script>
       {% endcompress %}
-    {% endblock javascript %}
+    {% endblock javascript_head %}
+    <!-- Schema Markup para SEO -->
+    {% block schema_markup %}
+      <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "The Green Economics",
+          "url": "https://www.thegreeneconomics.com/",
+          "description": "Sitio web especializado en economía verde y desarrollo sostenible",
+          "publisher": {
+            "@type": "Organization",
+            "name": "The Green Economics",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://www.thegreeneconomics.com/static/images/logo.png"
+            }
+          }
+        }
+      </script>
+    {% endblock %}
   </head>
-  <body class="{% block bodyclass %}min-h-screen{% endblock bodyclass %}">
+  <body class="{% block bodyclass %} min-h-screen bg-cover bg-center bg-fixed {% endblock bodyclass %}">
+    <!-- Enlace para saltar navegación (accesibilidad) -->
+    <a href="#mainContent" class="skip-link sr-only focus:not-sr-only">Saltar al contenido principal</a>
     <div class="flex flex-col min-h-screen">
       {% block body %}
         {% block header %}
@@ -136,19 +192,26 @@
           <div class="container mx-auto px-4">
             {% if messages %}
               {% for message in messages %}
-                <div class="alert alert-dismissible {% if message.tags %}alert-{{ message.tags }}{% endif %} mb-4 p-4 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20">
+                <div class="alert alert-dismissible {% if message.tags %}alert-{{ message.tags }}{% endif %} mb-4 p-4 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20"
+                     role="alert"
+                     aria-live="assertive"
+                     aria-atomic="true">
                   {{ message }}
                   <button type="button"
                           class="btn-close ml-auto"
                           data-bs-dismiss="alert"
-                          aria-label="Close"></button>
+                          aria-label="Cerrar mensaje">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
                 </div>
               {% endfor %}
             {% endif %}
           </div>
         {% endblock message %}
         <main id="mainContent"
-              class="flex-grow transition-all duration-300 px-4 md:px-8 pt-16">
+              class="flex-grow transition-all duration-300 px-4 md:px-8 pt-16"
+              tabindex="-1">
+          <!-- Para que funcione con skip link -->
           {% block main %}
             {% block content %}
               <div class="max-w-4xl mx-auto px-4 py-16 text-center">
@@ -163,36 +226,59 @@
     {% block footer %}
       {% include "components/footer.html" %}
     {% endblock footer %}
-    <!-- /container -->
     {% block modal %}
       {% include "components/modal.html" %}
     {% endblock modal %}
+    <!-- JavaScript al final del body -->
     {% compress js %}
-      {% block quicklink_prefetch %}
-        <script>
-          window.addEventListener('load', () => {
-            quicklink.listen();
+      {% block javascript %}
+        {% block quicklink_prefetch %}
+          <script>
+            document.addEventListener('DOMContentLoaded', () => {
+              // Prefetch solo en conexiones rápidas
+              if (navigator.connection?.effectiveType === '4g' ||
+                navigator.connection?.saveData === false) {
+                quicklink.listen({
+                  origins: [window.location.origin],
+                  ignores: [
+                    (uri, elem) => elem.hasAttribute('noprefetch'),
+                    /\.(pdf|zip|tar)$/i
+                  ]
+                });
 
-            quicklink.prefetch(['/about/', '/book/', '/articles/']);
+                // Prefetch específico
+                quicklink.prefetch(['/about/', '/book/', '/articles/']);
+              }
+            });
+          </script>
+        {% endblock quicklink_prefetch %}
+        {% block speculation_rules %}
+          <script type="speculationrules">
+            {
+              "prerender": [{
+                "source": "list",
+                "urls": ["/about/", "/book/", "/articles/"]
+              }]
+            }
+          </script>
+        {% endblock speculation_rules %}
+        {% block inline_javascript %}
+          <script>
+            // Inicialización de componentes
+            document.addEventListener('DOMContentLoaded', () => {
+              console.log('The Green Economics - Iniciado');
 
-          });
-        </script>
-      {% endblock quicklink_prefetch %}
-      {% block speculation_rules %}
-        <script type="speculationrules">
-          {
-            "prerender": [{
-              "source": "list",
-              "urls": ["/about/", "/book/", "/articles/"]
-            }]
-          }
-        </script>
-      {% endblock speculation_rules %}
-      {% block inline_javascript %}
-        <script>
-          console.log('Hello, world!');
-        </script>
-      {% endblock inline_javascript %}
+              // Mejorar accesibilidad de mensajes
+              const alerts = document.querySelectorAll('.alert');
+              alerts.forEach(alert => {
+                setTimeout(() => {
+                  alert.style.display = 'none';
+                }, 5000);
+              });
+            });
+          </script>
+        {% endblock inline_javascript %}
+      {% endblock javascript %}
     {% endcompress %}
   </body>
 </html>

@@ -1,0 +1,59 @@
+{% extends "dashboards/_base.html" %}
+
+{% block title %}
+    Propuestas de Investigación
+{% endblock title %}
+{% block content %}
+    <h1 class="text-3xl font-bold mb-6 text-gray-800">Propuestas de Investigación</h1>
+    <div class="overflow-x-auto bg-white rounded-lg shadow-md">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-100">
+                <tr>
+                    <th scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                    <th scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Título
+                    </th>
+                    <th scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Investigador
+                    </th>
+                    <th scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Institución
+                    </th>
+                    <th scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Área
+                    </th>
+                    <th scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Fecha Creación
+                    </th>
+                    <th scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Detalles
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+                {% for proposal in research_proposals %}
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ proposal.pk }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ proposal.title|truncatechars:30 }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ proposal.first_name }} {{ proposal.last_name }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ proposal.institution|truncatechars:20 }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ proposal.get_research_area_display }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ proposal.creation_date|date:"d/m/Y H:i" }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                            <a href="{{ proposal.get_absolute_url }}"
+                               class="text-blue-600 hover:text-blue-900">Ver</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% include "components/paginator.html" %}
+{% endblock content %}

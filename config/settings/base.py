@@ -118,10 +118,6 @@ INSTALLED_APPS = PRIORITY_APPS + DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 # https://docs.djangoproject.com/en/dev/ref/settings/#migration-modules
 # MIGRATION_MODULES = {"sites": "the_green_economics.contrib.sites.migrations"}
 
-# Tailwind
-# ------------------------------------------------------------------------------
-# https://django-tailwind.readthedocs.io/en/latest/configuration.html#tailwind-settings
-
 
 # AUTHENTICATION
 # ------------------------------------------------------------------------------
@@ -173,6 +169,15 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+# Tailwind CSS
+# ------------------------------------------------------------------------------
+INSTALLED_APPS += ["tailwind", "the_green_economics.theme"]
+TAILWIND_APP_NAME = "theme"
+NPM_BIN_PATH = env.str(
+    "NPM_BIN_PATH",
+    default="C:\\Program Files\\nodejs\\npm.cmd",
+)
+
 # STATIC
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#static-root
@@ -180,7 +185,7 @@ STATIC_ROOT = str(BASE_DIR / "staticfiles")
 # https://docs.djangoproject.com/en/dev/ref/settings/#static-url
 STATIC_URL = "/static/"
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
-STATICFILES_DIRS = [str(APPS_DIR / "static")]
+STATICFILES_DIRS = [str(APPS_DIR / "static"), str(APPS_DIR / "theme" / "static")]
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
