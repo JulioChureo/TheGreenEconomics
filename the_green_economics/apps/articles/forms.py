@@ -21,18 +21,20 @@ class ArticleForm(forms.ModelForm):
             "authors",
             "publication_date",
             "summary",
-            "body",
             "pdf",
             "status",
+            "doi",
+            "issn",
         ]
         labels = {
             "title": _("article:form_title_label"),
             "authors": _("article:form_authors_label"),
             "publication_date": _("article:form_publication_date_label"),
             "summary": _("article:form_summary_label"),
-            "body": _("article:form_body_label"),
             "pdf": _("article:form_pdf_label"),
             "status": _("article:form_status_label"),
+            "doi": _("article:form_doi_label"),
+            "issn": _("article:form_issn_label"),
         }
         help_texts = {
             "pdf": _("article:form_pdf_help_text"),
@@ -41,8 +43,8 @@ class ArticleForm(forms.ModelForm):
             "authors": _("article:form_authors_help_text"),
             "publication_date": _("article:form_publication_date_help_text"),
             "summary": _("article:form_summary_help_text"),
-            "summary": _("article:form_summary_help_text"),
-            "body": _("article:form_body_help_text"),
+            "doi": _("article:form_doi_help_text"),
+            "issn": _("article:form_issn_help_text"),
         }
         widgets = {
             "status": forms.Select(choices=PublicationStatus.choices),
