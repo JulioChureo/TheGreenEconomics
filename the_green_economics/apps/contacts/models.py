@@ -78,4 +78,4 @@ class ResearchProposal(models.Model):
         return f"{self.first_name} {self.last_name} - {self.title}"
 
     def get_absolute_url(self):
-        return reverse("research_proposal_detail", kwargs={"pk": self.pk})
+        return reverse("dashboards:research-proposal-detail", kwargs={"pk": self.pk})

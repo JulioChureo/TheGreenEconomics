@@ -1,59 +1,97 @@
 {% extends "dashboards/_base.html" %}
 
 {% block title %}
-    Propuestas de Investigación
+    Detalles de Propuesta: {{ research_proposal.title|truncatechars:50 }}
 {% endblock title %}
 {% block content %}
-    <h1 class="text-3xl font-bold mb-6 text-gray-800">Propuestas de Investigación</h1>
-    <div class="overflow-x-auto bg-white rounded-lg shadow-md">
-        <table class="min-w-full divide-y divide-gray-200">
-            <thead class="bg-gray-100">
-                <tr>
-                    <th scope="col"
-                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
-                    <th scope="col"
-                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Título
-                    </th>
-                    <th scope="col"
-                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Investigador
-                    </th>
-                    <th scope="col"
-                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Institución
-                    </th>
-                    <th scope="col"
-                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Área
-                    </th>
-                    <th scope="col"
-                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Fecha Creación
-                    </th>
-                    <th scope="col"
-                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Detalles
-                    </th>
-                </tr>
-            </thead>
-            <tbody class="bg-white divide-y divide-gray-200">
-                {% for proposal in research_proposals %}
-                    <tr>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ proposal.pk }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ proposal.title|truncatechars:30 }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ proposal.first_name }} {{ proposal.last_name }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ proposal.institution|truncatechars:20 }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ proposal.get_research_area_display }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ proposal.creation_date|date:"d/m/Y H:i" }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                            <a href="{{ proposal.get_absolute_url }}"
-                               class="text-blue-600 hover:text-blue-900">Ver</a>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+    <div class="container mx-auto px-4 py-8">
+        <div class="flex items-center justify-between mb-8">
+            <h1 class="text-4xl font-extrabold text-gray-900 flex items-center">
+                <i class="fas fa-file-alt mr-4 text-blue-600"></i>Detalles de Propuesta
+            </h1>
+            <a href="{% url 'dashboards:research-proposal-list' %}"
+               class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition duration-150 ease-in-out">
+                <i class="fas fa-arrow-left mr-2"></i> Volver a la Lista
+            </a>
+        </div>
+        <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200 mb-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b pb-4 border-gray-200">{{ research_proposal.title }}</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 mb-8">
+                {# Investigator Information #}
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-700 mb-3 flex items-center">
+                        <i class="fas fa-user-tie mr-3 text-blue-500"></i>Información del Investigador
+                    </h3>
+                    <p class="text-gray-700 mb-2">
+                        <strong class="text-gray-900">Nombre Completo:</strong> {{ research_proposal.first_name }} {{ research_proposal.last_name }}
+                    </p>
+                    <p class="text-gray-700 mb-2">
+                        <strong class="text-gray-900">Institución:</strong> {{ research_proposal.institution }}
+                    </p>
+                    {# Add more investigator details if available, e.g., email, department #}
+                    {% if research_proposal.email %}
+                        <p class="text-gray-700 mb-2">
+                            <strong class="text-gray-900">Email:</strong> <a href="mailto:{{ research_proposal.email }}"
+    class="text-blue-600 hover:underline">{{ research_proposal.email }}</a>
+                        </p>
+                    {% endif %}
+                </div>
+                {# Proposal Details #}
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-700 mb-3 flex items-center">
+                        <i class="fas fa-info-circle mr-3 text-blue-500"></i>Detalles de la Propuesta
+                    </h3>
+                    <p class="text-gray-700 mb-2">
+                        <strong class="text-gray-900">ID:</strong> {{ research_proposal.pk }}
+                    </p>
+                    <p class="text-gray-700 mb-2">
+                        <strong class="text-gray-900">Área de Investigación:</strong>
+                        <span class="px-3 py-1 inline-flex text-sm leading-5 font-semibold rounded-full bg-blue-100 text-blue-800 ml-2">
+                            {{ research_proposal.get_research_area_display }}
+                        </span>
+                    </p>
+                    <p class="text-gray-700 mb-2">
+                        <strong class="text-gray-900">Fecha de Creación:</strong> {{ research_proposal.creation_date|date:"d/m/Y H:i" }}
+                    </p>
+                    {% if research_proposal.last_updated %}
+                        <p class="text-gray-700 mb-2">
+                            <strong class="text-gray-900">Última Actualización:</strong> {{ research_proposal.last_updated|date:"d/m/Y H:i" }}
+                        </p>
+                    {% endif %}
+                    {# Add status, budget, duration if available in your model #}
+                    {% if research_proposal.status %}
+                        <p class="text-gray-700 mb-2">
+                            <strong class="text-gray-900">Estado:</strong>
+                            <span class="px-3 py-1 inline-flex text-sm leading-5 font-semibold rounded-full {% if research_proposal.status == 'approved' %} bg-green-100 text-green-800 {% elif research_proposal.status == 'pending' %} bg-yellow-100 text-yellow-800 {% elif research_proposal.status == 'rejected' %} bg-red-100 text-red-800 {% else %} bg-gray-100 text-gray-800 {% endif %} ml-2">
+                                {{ research_proposal.get_status_display }}
+                            </span>
+                        </p>
+                    {% endif %}
+                </div>
+            </div>
+            {# Abstract/Description Section #}
+            <div class="mb-8">
+                <h3 class="text-xl font-semibold text-gray-700 mb-3 flex items-center">
+                    <i class="fas fa-pencil-alt mr-3 text-blue-500"></i>Resumen / Descripción
+                </h3>
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-100 prose prose-blue max-w-none text-gray-800 leading-relaxed">
+                    {{ research_proposal.abstract|linebreaksbr }} {# Or research_proposal.abstract if you have one #}
+                </div>
+            </div>
+            {# Optional: Edit/Delete Actions #}
+            <div class="flex justify-end space-x-4 pt-6 border-t border-gray-200 mt-8">
+                {% if request.user.is_authenticated and request.user == research_proposal.researcher %}
+                    {# Example condition #}
+                    <a href=""
+                       class="inline-flex items-center px-5 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-yellow-500 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 transition duration-150 ease-in-out">
+                        <i class="fas fa-edit mr-2"></i> Editar
+                    </a>
+                    <a href=""
+                       class="inline-flex items-center px-5 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition duration-150 ease-in-out">
+                        <i class="fas fa-trash-alt mr-2"></i> Eliminar
+                    </a>
+                {% endif %}
+            </div>
+        </div>
     </div>
-    {% include "components/paginator.html" %}
 {% endblock content %}

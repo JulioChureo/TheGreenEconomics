@@ -1,10 +1,21 @@
 {% extends "dashboards/_base.html" %}
 
+{% load crispy_forms_tags %}
+
 {% block title %}
     Propuestas de Investigación
 {% endblock title %}
 {% block content %}
     <h1 class="text-3xl font-bold mb-6 text-gray-800">Propuestas de Investigación</h1>
+    <section class="bg-white rounded-lg shadow-md mt-4">
+        <div class="p-4">
+            <form method="get" class="items-center space-x-4">
+                {{ filter.form|crispy }}
+                <button type="submit"
+                        class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Buscar</button>
+            </form>
+        </div>
+    </section>
     <div class="overflow-x-auto bg-white rounded-lg shadow-md">
         <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-100">
