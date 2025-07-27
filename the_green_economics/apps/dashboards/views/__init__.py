@@ -3,7 +3,7 @@ from django.views.generic import TemplateView
 from the_green_economics.apps.utils.mixins import AdminUserMixin
 
 
-class DashboardHomeView(TemplateView, AdminUserMixin):
+class DashboardHomeView(AdminUserMixin, TemplateView):
     template_name = "dashboards/home.html"
 
     # def get_context_data(self, **kwargs):
