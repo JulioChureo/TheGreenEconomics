@@ -5,136 +5,613 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.1.0\n"
+"Project-Id-Version: 0.1.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-07 20:13-0400\n"
+"POT-Creation-Date: 2025-07-27 02:09+0000\n"
 "Language: en-US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: config/settings/base.py:32
 msgid "English"
 msgstr ""
 
+#: config/settings/base.py:33
 msgid "Chilean Spanish"
 msgstr ""
 
+#: config/settings/base.py:34
 msgid "Spanish"
 msgstr ""
 
-msgid "Articles"
+#: the_green_economics/apps/articles/apps.py:9
+msgid "article:app_verbose_name"
 msgstr ""
 
-msgid "post date"
+#: the_green_economics/apps/articles/filters.py:10
+msgid "article:filter_title_label"
 msgstr ""
 
-msgid "article body"
+#: the_green_economics/apps/articles/filters.py:11
+msgid "article:filter_title_help_text"
 msgstr ""
 
-msgid "article authors"
+#: the_green_economics/apps/articles/filters.py:34
+msgid "article_tag:filter_name_label"
 msgstr ""
 
-msgid "article abstract"
+#: the_green_economics/apps/articles/filters.py:35
+msgid "article_tag:filter_slug_label"
 msgstr ""
 
-msgid "article date"
+#: the_green_economics/apps/articles/filters.py:38
+msgid "article_tag:filter_name_help_text"
 msgstr ""
 
+#: the_green_economics/apps/articles/filters.py:39
+msgid "article_tag:filter_slug_help_text"
+msgstr ""
+
+#: the_green_economics/apps/articles/forms.py:12
+#: the_green_economics/apps/articles/forms.py:31
+msgid "article:form_publication_date_label"
+msgstr ""
+
+#: the_green_economics/apps/articles/forms.py:13
+#: the_green_economics/apps/articles/forms.py:42
+msgid "article:form_publication_date_help_text"
+msgstr ""
+
+#: the_green_economics/apps/articles/forms.py:29
+msgid "article:form_title_label"
+msgstr ""
+
+#: the_green_economics/apps/articles/forms.py:30
+msgid "article:form_authors_label"
+msgstr ""
+
+#: the_green_economics/apps/articles/forms.py:32
+msgid "article:form_summary_label"
+msgstr ""
+
+#: the_green_economics/apps/articles/forms.py:33
+msgid "article:form_body_label"
+msgstr ""
+
+#: the_green_economics/apps/articles/forms.py:34
+msgid "article:form_pdf_label"
+msgstr ""
+
+#: the_green_economics/apps/articles/forms.py:35
+msgid "article:form_status_label"
+msgstr ""
+
+#: the_green_economics/apps/articles/forms.py:38
+msgid "article:form_pdf_help_text"
+msgstr ""
+
+#: the_green_economics/apps/articles/forms.py:39
+#: the_green_economics/apps/articles/forms.py:82
+msgid "article:form_status_help_text"
+msgstr ""
+
+#: the_green_economics/apps/articles/forms.py:40
+msgid "article:form_title_help_text"
+msgstr ""
+
+#: the_green_economics/apps/articles/forms.py:41
+msgid "article:form_authors_help_text"
+msgstr ""
+
+#: the_green_economics/apps/articles/forms.py:43
+#: the_green_economics/apps/articles/forms.py:44
+msgid "article:form_summary_help_text"
+msgstr ""
+
+#: the_green_economics/apps/articles/forms.py:45
+msgid "article:form_body_help_text"
+msgstr ""
+
+#: the_green_economics/apps/articles/forms.py:81
+msgid "article:form_status"
+msgstr ""
+
+#: the_green_economics/apps/articles/forms.py:105
+msgid "nombre de la etiqueta"
+msgstr ""
+
+#: the_green_economics/apps/articles/forms.py:106
+msgid "Nombre único para la etiqueta"
+msgstr ""
+
+#: the_green_economics/apps/articles/forms.py:112
+#: the_green_economics/apps/news/forms.py:157
+msgid "Esta etiqueta ya existe"
+msgstr ""
+
+#: the_green_economics/apps/articles/models.py:27
+msgid "article tag"
+msgstr ""
+
+#: the_green_economics/apps/articles/models.py:28
 msgid "article tags"
 msgstr ""
 
-msgid "related links"
+#: the_green_economics/apps/articles/models.py:67
+msgid "article:model_pdf_verbose_name"
 msgstr ""
 
-msgid "common page configuration"
+#: the_green_economics/apps/articles/models.py:68
+msgid "article:model_pdf_help_text"
 msgstr ""
 
-msgid "article name page related link"
+#: the_green_economics/apps/articles/models.py:75
+msgid "article:model_tags_verbose_name"
 msgstr ""
 
-msgid "article url page related link"
+#: the_green_economics/apps/articles/models.py:76
+msgid "article:model_tags_help_text"
 msgstr ""
 
-msgid "Home"
+#: the_green_economics/apps/articles/models.py:80
+msgid "article:model_doi_verbose_name"
 msgstr ""
 
-msgid "News"
+#: the_green_economics/apps/articles/models.py:81
+msgid "article:model_doi_help_text"
 msgstr ""
 
-msgid "news tag"
+#: the_green_economics/apps/articles/models.py:87
+msgid "article:model_issn_verbose_name"
 msgstr ""
 
-msgid "news tags"
+#: the_green_economics/apps/articles/models.py:88
+msgid "article:model_issn_help_text"
 msgstr ""
 
-msgid "news body"
+#: the_green_economics/apps/articles/models.py:95
+msgid "article:verbose_name"
 msgstr ""
 
-msgid "news date"
+#: the_green_economics/apps/articles/models.py:96
+msgid "article:verbose_name_plural"
 msgstr ""
 
-msgid "new date"
+#: the_green_economics/apps/contacts/apps.py:9
+msgid "contacts:app_verbose_name"
 msgstr ""
 
-msgid "related link"
+#: the_green_economics/apps/contacts/filters.py:10
+msgid "research_proposal:filter_title_label"
 msgstr ""
 
-msgid "feed image"
+#: the_green_economics/apps/contacts/filters.py:11
+msgid "research_proposal:filter_title_help_text"
 msgstr ""
 
-msgid "news name page related link"
+#: the_green_economics/apps/contacts/filters.py:16
+msgid "research_proposal:filter_research_area_label"
 msgstr ""
 
-msgid "news url page related link"
+#: the_green_economics/apps/contacts/filters.py:17
+msgid "research_proposal:filter_research_area_help_text"
 msgstr ""
 
-msgid "Users"
+#: the_green_economics/apps/contacts/filters.py:23
+msgid "research_proposal:filter_first_name_label"
 msgstr ""
 
-msgid "User username"
+#: the_green_economics/apps/contacts/filters.py:24
+msgid "research_proposal:filter_first_name_help_text"
 msgstr ""
 
-msgid "User data joined"
+#: the_green_economics/apps/contacts/models.py:9
+msgid "Economía Circular"
 msgstr ""
 
-msgid "User last login"
+#: the_green_economics/apps/contacts/models.py:10
+msgid "Energía Renovable"
 msgstr ""
 
-msgid "User active"
+#: the_green_economics/apps/contacts/models.py:11
+msgid "Desarrollo Sostenible"
 msgstr ""
 
-msgid "Password"
+#: the_green_economics/apps/contacts/models.py:12
+msgid "Política Ambiental"
 msgstr ""
 
-msgid "Email"
+#: the_green_economics/apps/contacts/models.py:13
+msgid "Finanzas Verdes"
 msgstr ""
 
-msgid "Username"
+#: the_green_economics/apps/contacts/models.py:14
+msgid "Otros"
 msgstr ""
 
-msgid "Confirmation"
+#: the_green_economics/apps/contacts/models.py:65
+msgid "research_proposal:verbose_name"
 msgstr ""
 
-msgid "User email"
+#: the_green_economics/apps/contacts/models.py:66
+msgid "research_proposal:verbose_name_plural"
 msgstr ""
 
-msgid "User name"
+#: the_green_economics/apps/contacts/views.py:15
+msgid "Your research proposal has been submitted successfully."
 msgstr ""
 
-msgid "Name of user"
+#: the_green_economics/apps/dashboards/apps.py:9
+msgid "Dashboards"
 msgstr ""
 
+#: the_green_economics/apps/news/apps.py:9
+msgid "news:app_verbose_name"
+msgstr ""
+
+#: the_green_economics/apps/news/forms.py:15
+msgid "news:form_publication_date_label"
+msgstr ""
+
+#: the_green_economics/apps/news/forms.py:16
+#: the_green_economics/apps/news/forms.py:54
+msgid "news:form_publication_date_help_text"
+msgstr ""
+
+#: the_green_economics/apps/news/forms.py:22
+msgid "news:form_tags_label"
+msgstr ""
+
+#: the_green_economics/apps/news/forms.py:23
+#: the_green_economics/apps/news/forms.py:56
+msgid "news:form_tags_help_text"
+msgstr ""
+
+#: the_green_economics/apps/news/forms.py:41
+msgid "news:form_title_label"
+msgstr ""
+
+#: the_green_economics/apps/news/forms.py:42
+msgid "news:form_body_label"
+msgstr ""
+
+#: the_green_economics/apps/news/forms.py:43
+msgid "news:form_excerpt_label"
+msgstr ""
+
+#: the_green_economics/apps/news/forms.py:44
+msgid "news:form_featured_image_label"
+msgstr ""
+
+#: the_green_economics/apps/news/forms.py:45
+msgid "news:form_status_label"
+msgstr ""
+
+#: the_green_economics/apps/news/forms.py:53
+msgid "news:form_excerpt_help_text"
+msgstr ""
+
+#: the_green_economics/apps/news/forms.py:55
+msgid "news:form_status_help_text"
+msgstr ""
+
+#: the_green_economics/apps/news/forms.py:57
+msgid "news:form_title_help_text"
+msgstr ""
+
+#: the_green_economics/apps/news/forms.py:58
+msgid "news:form_body_help_text"
+msgstr ""
+
+#: the_green_economics/apps/news/forms.py:59
+msgid "news:form_featured_image_help_text"
+msgstr ""
+
+#: the_green_economics/apps/news/forms.py:68
+msgid "news:form_slug_help_text"
+msgstr ""
+
+#: the_green_economics/apps/news/forms.py:90
+msgid "Este identificador URL ya está en uso"
+msgstr ""
+
+#: the_green_economics/apps/news/forms.py:99
+msgid "El extracto no puede exceder los 300 caracteres"
+msgstr ""
+
+#: the_green_economics/apps/news/forms.py:118
+msgid "news:form_confirmation_label"
+msgstr ""
+
+#: the_green_economics/apps/news/forms.py:119
+msgid "news:form_confirmation_help_text"
+msgstr ""
+
+#: the_green_economics/apps/news/forms.py:137
+msgid "news:form_confirmation_error"
+msgstr ""
+
+#: the_green_economics/apps/news/forms.py:150
+msgid "news_tag:form_name_label"
+msgstr ""
+
+#: the_green_economics/apps/news/forms.py:151
+msgid "news_tag:form_name_help_text"
+msgstr ""
+
+#: the_green_economics/apps/news/models.py:15
+msgid "news_tag:model_verbose_name"
+msgstr ""
+
+#: the_green_economics/apps/news/models.py:16
+msgid "news_tag:model_verbose_name_plural"
+msgstr ""
+
+#: the_green_economics/apps/news/models.py:31
+msgid "news:model_excerpt_verbose_name"
+msgstr ""
+
+#: the_green_economics/apps/news/models.py:32
+msgid "news:model_excerpt_help_text"
+msgstr ""
+
+#: the_green_economics/apps/news/models.py:37
+msgid "news:model_featured_image_verbose_name"
+msgstr ""
+
+#: the_green_economics/apps/news/models.py:38
+msgid "news:model_featured_image_help_text"
+msgstr ""
+
+#: the_green_economics/apps/news/models.py:44
+msgid "news:model_tags_verbose_name"
+msgstr ""
+
+#: the_green_economics/apps/news/models.py:45
+msgid "news:model_tags_help_text"
+msgstr ""
+
+#: the_green_economics/apps/news/models.py:51
+msgid "news:model_verbose_name"
+msgstr ""
+
+#: the_green_economics/apps/news/models.py:52
+msgid "news:model_verbose_name_plural"
+msgstr ""
+
+#: the_green_economics/apps/pages/apps.py:9
+msgid "pages:app_verbose_name"
+msgstr ""
+
+#: the_green_economics/apps/users/apps.py:9
+msgid "user:app_verbose_name"
+msgstr ""
+
+#: the_green_economics/apps/users/filters.py:12
+msgid "user:filter_username_label"
+msgstr ""
+
+#: the_green_economics/apps/users/filters.py:13
+msgid "user:filter_username_help_text"
+msgstr ""
+
+#: the_green_economics/apps/users/filters.py:17
+msgid "user:filter_date_joined_label"
+msgstr ""
+
+#: the_green_economics/apps/users/filters.py:18
+msgid "user:filter_date_joined_help_text"
+msgstr ""
+
+#: the_green_economics/apps/users/filters.py:22
+msgid "user:filter_last_login_label"
+msgstr ""
+
+#: the_green_economics/apps/users/filters.py:23
+msgid "user:filter_last_login_help_text"
+msgstr ""
+
+#: the_green_economics/apps/users/filters.py:27
+msgid "user:filter_is_active_label"
+msgstr ""
+
+#: the_green_economics/apps/users/filters.py:28
+msgid "user:filter_is_active_help_text"
+msgstr ""
+
+#: the_green_economics/apps/users/forms.py:25
+#: the_green_economics/apps/users/forms.py:82
+msgid "user:form_password_label"
+msgstr ""
+
+#: the_green_economics/apps/users/forms.py:26
+#: the_green_economics/apps/users/forms.py:83
+msgid "user:form_password_help_text"
+msgstr ""
+
+#: the_green_economics/apps/users/forms.py:33
+#: the_green_economics/apps/users/forms.py:136
+msgid "user:form_email_label"
+msgstr ""
+
+#: the_green_economics/apps/users/forms.py:34
+#: the_green_economics/apps/users/forms.py:137
+msgid "user:form_email_help_text"
+msgstr ""
+
+#: the_green_economics/apps/users/forms.py:40
+msgid "user:form_email_invalid"
+msgstr ""
+
+#: the_green_economics/apps/users/forms.py:50
+#: the_green_economics/apps/users/forms.py:74
+#: the_green_economics/apps/users/forms.py:128
+msgid "user:form_username_label"
+msgstr ""
+
+#: the_green_economics/apps/users/forms.py:51
+#: the_green_economics/apps/users/forms.py:144
+msgid "user:form_name_label"
+msgstr ""
+
+#: the_green_economics/apps/users/forms.py:54
+#: the_green_economics/apps/users/forms.py:75
+#: the_green_economics/apps/users/forms.py:129
+msgid "user:form_username_help_text"
+msgstr ""
+
+#: the_green_economics/apps/users/forms.py:55
+#: the_green_economics/apps/users/forms.py:145
+msgid "user:form_name_help_text"
+msgstr ""
+
+#: the_green_economics/apps/users/forms.py:104
+msgid "user:form_logout_confirmation_label"
+msgstr ""
+
+#: the_green_economics/apps/users/forms.py:105
+msgid "user:form_logout_confirmation_help_text"
+msgstr ""
+
+#: the_green_economics/apps/users/models.py:24
+msgid "user:model_name_verbose_name"
+msgstr ""
+
+#: the_green_economics/apps/users/models.py:25
+msgid "user:model_name_help_text"
+msgstr ""
+
+#: the_green_economics/apps/users/tests/test_forms.py:36
 msgid "This username has already been taken."
 msgstr ""
 
+#: the_green_economics/apps/users/tests/test_views.py:72
 msgid "Information successfully updated"
 msgstr ""
 
-msgid "Successfully logged out"
+#: the_green_economics/apps/users/views.py:99
+msgid "user:view_logout_success_message"
 msgstr ""
 
-msgid "Related links"
+#: the_green_economics/apps/utils/apps.py:7
+msgid "Utils"
 msgstr ""
 
-msgid "Tags"
+#: the_green_economics/apps/utils/models.py:15
+msgid "publication:status_draft"
+msgstr ""
+
+#: the_green_economics/apps/utils/models.py:16
+msgid "publication:status_published"
+msgstr ""
+
+#: the_green_economics/apps/utils/models.py:17
+msgid "publication:status_under_review"
+msgstr ""
+
+#: the_green_economics/apps/utils/models.py:18
+msgid "publication:status_archived"
+msgstr ""
+
+#: the_green_economics/apps/utils/models.py:36
+#: the_green_economics/apps/utils/models.py:83
+msgid "publication:model_slug_verbose_name"
+msgstr ""
+
+#: the_green_economics/apps/utils/models.py:37
+#: the_green_economics/apps/utils/models.py:84
+msgid "publication:model_slug_help_text"
+msgstr ""
+
+#: the_green_economics/apps/utils/models.py:44
+msgid "publication:model_tag_verbose_name"
+msgstr ""
+
+#: the_green_economics/apps/utils/models.py:45
+msgid "publication:model_tag_help_text"
+msgstr ""
+
+#: the_green_economics/apps/utils/models.py:91
+msgid "publication:model_title_verbose_name"
+msgstr ""
+
+#: the_green_economics/apps/utils/models.py:92
+msgid "publication:model_title_help_text"
+msgstr ""
+
+#: the_green_economics/apps/utils/models.py:99
+msgid "publication:model_summary_verbose_name"
+msgstr ""
+
+#: the_green_economics/apps/utils/models.py:100
+msgid "publication:model_summary_help_text"
+msgstr ""
+
+#: the_green_economics/apps/utils/models.py:106
+msgid "publication:model_body_verbose_name"
+msgstr ""
+
+#: the_green_economics/apps/utils/models.py:107
+msgid "publication:model_body_help_text"
+msgstr ""
+
+#: the_green_economics/apps/utils/models.py:111
+msgid "publication:model_authors_verbose_name"
+msgstr ""
+
+#: the_green_economics/apps/utils/models.py:112
+msgid "publication:model_authors_help_text"
+msgstr ""
+
+#: the_green_economics/apps/utils/models.py:118
+msgid "publication:model_status_verbose_name"
+msgstr ""
+
+#: the_green_economics/apps/utils/models.py:119
+msgid "publication:model_status_help_text"
+msgstr ""
+
+#: the_green_economics/apps/utils/models.py:125
+msgid "publication:model_publication_date_verbose_name"
+msgstr ""
+
+#: the_green_economics/apps/utils/models.py:126
+msgid "publication:model_publication_date_help_text"
+msgstr ""
+
+#: the_green_economics/apps/utils/models.py:131
+msgid "publication:model_created_at_verbose_name"
+msgstr ""
+
+#: the_green_economics/apps/utils/models.py:132
+msgid "publication:model_created_at_help_text"
+msgstr ""
+
+#: the_green_economics/apps/utils/models.py:137
+msgid "publication:model_updated_at_verbose_name"
+msgstr ""
+
+#: the_green_economics/apps/utils/models.py:138
+msgid "publication:model_updated_at_help_text"
+msgstr ""
+
+#: the_green_economics/templates/articles/articles_detail.html:16
+msgid "Por"
+msgstr ""
+
+#: the_green_economics/templates/articles/articles_detail.html:20
+msgid "Publicado el"
+msgstr ""
+
+#: the_green_economics/templates/articles/articles_detail.html:29
+msgid "Resumen"
+msgstr ""
+
+#: the_green_economics/templates/articles/articles_detail.html:38
+msgid "Etiquetas"
+msgstr ""
+
+#: the_green_economics/templates/articles/articles_detail.html:55
+msgid "Volver a Publicaciones"
 msgstr ""
