@@ -4,20 +4,8 @@ from django.contrib import admin
 from django.urls import include
 from django.urls import path
 from django.views import defaults as default_views
-from django.views.generic import TemplateView
 
 urlpatterns = [
-    # --- about ---
-    path(
-        "about/",
-        TemplateView.as_view(template_name="pages/about.html"),
-        name="about",
-    ),
-    path(
-        "book/",
-        TemplateView.as_view(template_name="pages/book.html"),
-        name="book",
-    ),
     # --- Django JET URLS ---
     path("jet/", include("jet.urls", "jet")),  # Django JET URLS
     path(
@@ -34,6 +22,7 @@ urlpatterns = [
         include("the_green_economics.apps.articles.urls", namespace="articles"),
     ),
     path("news/", include("the_green_economics.apps.news.urls", namespace="news")),
+    path("", include("the_green_economics.apps.contacts.urls", namespace="contacts")),
     path(
         "dashboards/",
         include("the_green_economics.apps.dashboards.urls", namespace="dashboards"),

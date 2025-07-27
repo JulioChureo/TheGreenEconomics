@@ -42,28 +42,15 @@
     <meta name="twitter:description"
           content="{% block twitter_description %}Explora las últimas noticias y papers científicos sobre economía verde, desarrollo sostenible, energías renovables, y políticas ambientales.{% endblock %}" />
     <meta name="twitter:image"
-          content="{% block twitter_image %}https://www.thegreeneconomics.com/static/images/logo.png{% endblock %}" />
+          content="{% block twitter_image %} https://www.thegreeneconomics.com/static/images/logo.png{% endblock %}" />
     <!-- Favicons Mejorados -->
-    <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}" />
-    <link rel="apple-touch-icon"
-          sizes="180x180"
-          href="{% static 'images/favicons/apple-touch-icon.png' %}" />
-    <link rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="{% static 'images/favicons/favicon-32x32.png' %}" />
-    <link rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href="{% static 'images/favicons/favicon-16x16.png' %}" />
+    <link async rel="icon" href="{% static 'images/logos/logo_2.png' %}" />
     <link rel="manifest" href="{% static 'images/favicons/site.webmanifest' %}" />
     <!-- Preconexión para mejorar rendimiento -->
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <link rel="preconnect" href="https://unpkg.com" crossorigin />
     <!-- Precarga de recursos críticos -->
     <link rel="preload" as="style" href="{% static 'css/project.css' %}" />
-    <link rel="preload" as="script" href="{% static 'js/project.js' %}" />
-    <link rel="preload" as="script" href="{% static 'js/navbar.js' %}" />
     <!-- Tailwind CSS -->
     {% block css %}
       {% tailwind_css %}
@@ -150,13 +137,12 @@
       {% endcompress %}
     {% endblock css %}
     <!-- JavaScript en head solo si es necesario -->
+    <script defer
+            src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://unpkg.com/quicklink@3.0.1/dist/quicklink.umd.js"></script>
     {% block javascript_head %}
       {% compress js %}
-        <script defer
-                src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-        <script defer src="https://unpkg.com/quicklink@3.0.1/dist/quicklink.umd.js"></script>
-        <script defer src="{% static 'js/project.js' %}"></script>
-        <script defer src="{% static 'js/navbar.js' %}"></script>
+        <script src="{% static 'js/modals.js' %}"></script>
       {% endcompress %}
     {% endblock javascript_head %}
     <!-- Schema Markup para SEO -->
@@ -236,19 +222,16 @@
           <script>
             document.addEventListener('DOMContentLoaded', () => {
               // Prefetch solo en conexiones rápidas
-              if (navigator.connection?.effectiveType === '4g' ||
-                navigator.connection?.saveData === false) {
-                quicklink.listen({
-                  origins: [window.location.origin],
-                  ignores: [
-                    (uri, elem) => elem.hasAttribute('noprefetch'),
-                    /\.(pdf|zip|tar)$/i
-                  ]
-                });
+              quicklink.listen({
+                origins: [window.location.origin],
+                ignores: [
+                  (uri, elem) => elem.hasAttribute('noprefetch'),
+                  /\.(pdf|zip|tar)$/i
+                ]
+              });
 
-                // Prefetch específico
-                quicklink.prefetch(['/about/', '/book/', '/articles/']);
-              }
+              // Prefetch específico
+              quicklink.prefetch(["/about/", "/book/", "/articles/", "/publish/"]);
             });
           </script>
         {% endblock quicklink_prefetch %}
@@ -257,7 +240,7 @@
             {
               "prerender": [{
                 "source": "list",
-                "urls": ["/about/", "/book/", "/articles/"]
+                "urls": ["/about/", "/book/", "/articles/", "/publish/"]
               }]
             }
           </script>

@@ -1,11 +1,11 @@
 <article class="group cursor-pointer transform transition-all duration-300 hover:scale-[1.02]"
          data-title="{{ article.title|escapejs }}"
          data-slug="{{ article.slug }}"
-         data-content="{{ article.summary }}"
          data-date="{{ article.publication_date|date:'d/m/Y' }}"
          data-download="{% url 'articles:download' article.slug %}"
          aria-labelledby="article-title-{{ article.slug }}"
          aria-describedby="article-summary-{{ article.slug }}"
+         data-content="{{ article.summary }}"
          tabindex="0"
          role="article"
          itemscope

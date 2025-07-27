@@ -25,7 +25,9 @@ class ArticleListView(PaginatedFilteredListView):
 
     def get_queryset(self):
         return list(
-            super().get_queryset().values("id", "title", "slug", "publication_date"),
+            super()
+            .get_queryset()
+            .values("id", "title", "slug", "publication_date", "summary"),
         )
 
 

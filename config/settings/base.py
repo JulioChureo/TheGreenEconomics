@@ -107,6 +107,7 @@ LOCAL_APPS = [
     "the_green_economics.apps.users",
     "the_green_economics.apps.articles",
     "the_green_economics.apps.news",
+    "the_green_economics.apps.contacts",
     "the_green_economics.apps.dashboards",
     # Your stuff: custom apps go here
 ]
