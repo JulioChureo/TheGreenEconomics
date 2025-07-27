@@ -20,3 +20,4 @@ django-compressor==4.5.1  # https://github.com/django-compressor/django-compress
 django-cotton==1.5.1  # https://github.com/wrabit/django-cotton
 diskcache2==0.1.2 # https://github.com/grantjenks/python-diskcache
 django-widget-tweaks==1.5.0
+django-tasks==0.8.1 # https://github.com/RealOrangeOne/django-tasks
