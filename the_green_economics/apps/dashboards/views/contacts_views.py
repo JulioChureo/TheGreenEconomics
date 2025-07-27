@@ -1,11 +1,6 @@
-from django.shortcuts import redirect
-from django.urls import reverse_lazy
-from django.views.generic import DeleteView
 from django.views.generic import DetailView
-from regex import R
 
 from the_green_economics.apps.contacts.filters import ResearchProposalFilter
-from the_green_economics.apps.contacts.forms import ResearchProposalForm
 from the_green_economics.apps.contacts.models import ResearchProposal
 from the_green_economics.apps.utils.mixins import AdminUserMixin
 from the_green_economics.apps.utils.mixins import PaginatedFilteredListView
