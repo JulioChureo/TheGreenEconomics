@@ -79,3 +79,18 @@ class ResearchProposal(models.Model):
 
     def get_absolute_url(self):
         return reverse("dashboards:research-proposal-detail", kwargs={"pk": self.pk})
+
+    def to_dict(self):
+        """Convert the model instance to a dictionary."""
+        return {
+            "id": self.pk,
+            "first_name": self.first_name,
+            "last_name": self.last_name,
+            "email": self.email,
+            "phone": self.phone,
+            "institution": self.institution,
+            "title": self.title,
+            "research_area": self.research_area,
+            "abstract": self.abstract,
+            "creation_date": self.creation_date.isoformat(),
+        }

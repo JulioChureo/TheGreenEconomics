@@ -1,0 +1,22 @@
+Asunto: Confirmación de recepción de su propuesta
+
+Estimado/a {{ proposal.first_name }},
+
+Hemos recibido su propuesta titulada "{{ proposal.title }}" correctamente.
+
+Detalles de su propuesta:
+- Título: {{ proposal.title }}
+- Remitente: {{ proposal.first_name }} {{ proposal.last_name }}
+- Fecha de envío: {{ proposal.created_at|date:"d/m/Y H:i" }}
+- Resumen: {{ proposal.abstract|truncatechars:200 }}
+- Estado actual: En planes
+
+Su propuesta será revisada por nuestro equipo editorial. Le notificaremos cualquier actualización en el estado de su propuesta.
+
+si necesita comunicar, por favor responda a este correo electrónico
+
+Gracias por contribuir a nuestra plataforma.
+
+Atentamente,
+El Equipo Editorial de The Green Economics
+-----------------------------------------

@@ -56,7 +56,7 @@ CACHES = {
         "TIMEOUT": 300,
         # ^-- Django setting for default timeout of each key.
         "SHARDS": 8,
-        "DATABASE_TIMEOUT": 0.010,  # 10 milliseconds
+        "DATABASE_TIMEOUT": 0.100,  # 10 milliseconds
         # ^-- Timeout for each DjangoCache database transaction.
         "OPTIONS": {
             "size_limit": 2**30,  # 1 gigabyte
@@ -265,6 +265,7 @@ ADMIN_URL = "admin/"
 # https://docs.djangoproject.com/en/dev/ref/settings/#admins
 ADMINS = [
     ("""Diego Rivera, Julio Chureo""", "contacto@greeneconomics.com"),
+    ("Contactos Green Economics", "contacto@greeneconomics.com"),
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#managers
 MANAGERS = ADMINS
@@ -292,9 +293,6 @@ LOGGING = {
     "root": {"level": "INFO", "handlers": ["console"]},
 }
 
-# REDIS_URL = env("REDIS_URL", default="redis://localhost:6379/0")
-# REDIS_SSL = REDIS_URL.startswith("rediss://")
-
 
 # django-compressor
 # ------------------------------------------------------------------------------
@@ -302,9 +300,18 @@ LOGGING = {
 INSTALLED_APPS += ["compressor"]
 STATICFILES_FINDERS += ["compressor.finders.CompressorFinder"]
 
-# Cache
+# Tasks
 # ------------------------------------------------------------------------------
-
-
+INSTALLED_APPS += ["django_tasks", "django_tasks.backends.database"]
+TASKS = {
+    "default": {
+        "BACKEND": "django_tasks.backends.database.DatabaseBackend",
+        "QUEUES": ["email", "cron", "default"],
+    },
+    "immediate": {
+        "BACKEND": "django_tasks.backends.immediate.ImmediateBackend",
+        "QUEUES": ["immediate"],
+    },
+}
 # Your stuff...
 # ------------------------------------------------------------------------------

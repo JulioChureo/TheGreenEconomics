@@ -1,0 +1,24 @@
+Asunto: Nueva propuesta enviada - Requiere revisión
+
+Se ha recibido una nueva propuesta que requiere atención:
+
+Detalles de la propuesta:
+- Título: {{ proposal.title }}
+- Remitente: {{ proposal.first_name }} {{ proposal.last_name }}
+- Email: {{ proposal.email }}
+- Institución: {{ proposal.institution }}
+- Fecha de envío: {{ proposal.created_at|date:"d/m/Y H:i" }}
+- Resumen: {{ proposal.summary|truncatechars:200 }}
+
+
+Acciones requeridas:
+1. Revisar contenido completo
+2. Verificar información de autores
+3. Asignar revisores
+4. Actualizar estado según corresponda
+
+Acceso rápido:
+- Panel de administración: {{ proposal.get_absolute_url }}
+
+Atentamente,
+Sistema de Gestión de Propuestas
