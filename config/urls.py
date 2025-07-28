@@ -28,6 +28,7 @@ urlpatterns = [
         include("the_green_economics.apps.dashboards.urls", namespace="dashboards"),
     ),
     path("i18n/", include("django.conf.urls.i18n")),
+    path("captcha/", include("captcha.urls")),
 ]
 
 

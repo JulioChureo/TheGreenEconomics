@@ -44,26 +44,6 @@ USE_TZ = True
 LOCALE_PATHS = [str(BASE_DIR / "locale")]
 
 
-# CACHES
-# ------------------------------------------------------------------------------
-# https://docs.djangoproject.com/en/dev/ref/settings/#caches
-cache_path = BASE_DIR / ".cache"
-cache_path.mkdir(exist_ok=True)
-CACHES = {
-    "default": {
-        "BACKEND": "diskcache.DjangoCache",
-        "LOCATION": str(BASE_DIR / ".cache"),
-        "TIMEOUT": 300,
-        # ^-- Django setting for default timeout of each key.
-        "SHARDS": 8,
-        "DATABASE_TIMEOUT": 0.100,  # 10 milliseconds
-        # ^-- Timeout for each DjangoCache database transaction.
-        "OPTIONS": {
-            "size_limit": 2**30,  # 1 gigabyte
-        },
-    },
-}
-
 # https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-DEFAULT_AUTO_FIELD
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
@@ -99,6 +79,7 @@ THIRD_PARTY_APPS = [
     "crispy_forms",
     "crispy_tailwind",
     "widget_tweaks",
+    "django_minify_html",
 ]
 
 
@@ -156,6 +137,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # MIDDLEWARE
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#middleware
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
@@ -313,5 +295,27 @@ TASKS = {
         "QUEUES": ["immediate"],
     },
 }
+# Django Axes
+# ------------------------------------------------------------------------------
+INSTALLED_APPS += ["axes"]
+AUTHENTICATION_BACKENDS += ["axes.backends.AxesBackend"]
+MIDDLEWARE += ["axes.middleware.AxesMiddleware"]
+
+
+# django-honeypot
+# ------------------------------------------------------------------------------
+INSTALLED_APPS += ["honeypot"]
+HONEYPOT_VALUE = env("DJANGO_HONEYPOT_VALUE", default="usuario")
+HONEYPOT_FIELD_NAME = env(
+    "DJANGO_HONEYPOT_FIELD_NAME",
+    default="usuario",
+)  # The name of the honeypot field in forms
+
+
+# django-simple-captcha
+# ------------------------------------------------------------------------------
+INSTALLED_APPS += ["captcha"]
+CAPTCHA_CHALLENGE_FUNCT = "captcha.helpers.random_char_challenge"
+
 # Your stuff...
 # ------------------------------------------------------------------------------

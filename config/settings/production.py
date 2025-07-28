@@ -3,7 +3,7 @@ import pymysql
 
 from config.settings.base import *  # noqa: F403
 from config.settings.base import BASE_DIR
-from config.settings.base import INSTALLED_APPS
+from config.settings.base import MIDDLEWARE
 from config.settings.base import env
 
 pymysql.install_as_MySQLdb()
@@ -28,6 +28,26 @@ DATABASES = {
 }
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
 DATABASES["default"]["CONN_MAX_AGE"] = env.int("CONN_MAX_AGE", default=60)
+
+# CACHES
+# ------------------------------------------------------------------------------
+# https://docs.djangoproject.com/en/dev/ref/settings/#caches
+cache_path = BASE_DIR / ".cache"
+cache_path.mkdir(exist_ok=True)
+CACHES = {
+    "default": {
+        "BACKEND": "diskcache.DjangoCache",
+        "LOCATION": str(BASE_DIR / ".cache"),
+        "TIMEOUT": 300,
+        # ^-- Django setting for default timeout of each key.
+        "SHARDS": 8,
+        "DATABASE_TIMEOUT": 0.100,  # 10 milliseconds
+        # ^-- Timeout for each DjangoCache database transaction.
+        "OPTIONS": {
+            "size_limit": 2**30,  # 1 gigabyte
+        },
+    },
+}
 
 # SECURITY
 # ------------------------------------------------------------------------------
@@ -58,6 +78,16 @@ SECURE_HSTS_PRELOAD = env.bool("DJANGO_SECURE_HSTS_PRELOAD", default=True)
 SECURE_CONTENT_TYPE_NOSNIFF = env.bool(
     "DJANGO_SECURE_CONTENT_TYPE_NOSNIFF",
     default=True,
+)
+DISALLOWED_USER_AGENTS = env.list(
+    "DJANGO_DISALLOWED_USER_AGENTS",
+    default=[
+        "curl",
+        "wget",
+        "python-requests",
+        "python-urllib",
+        "python-httpx",
+    ],
 )
 
 # STATIC & MEDIA
@@ -120,7 +150,7 @@ MEDIA_URL = env(
 # https://django-compressor.readthedocs.io/en/latest/settings/#django.conf.settings.COMPRESS_ENABLED
 COMPRESS_ENABLED = env.bool("COMPRESS_ENABLED", default=True)
 # https://django-compressor.readthedocs.io/en/latest/settings/#django.conf.settings.COMPRESS_STORAGE
-COMPRESS_STORAGE = "compressor.storage.GzipCompressorFileStorage"
+COMPRESS_STORAGE = "compressor.storage.BrotliCompressorFileStorage"
 # https://django-compressor.readthedocs.io/en/latest/settings/#django.conf.settings.COMPRESS_URL
 COMPRESS_URL = STATIC_URL  # noqa: F405
 # https://django-compressor.readthedocs.io/en/latest/settings/#django.conf.settings.COMPRESS_OFFLINE
@@ -133,6 +163,13 @@ COMPRESS_FILTERS = {
     ],
     "js": ["compressor.filters.jsmin.JSMinFilter"],
 }
+
+
+MIDDLEWARE = [
+    "django.middleware.gzip.GZipMiddleware",
+    "the_green_economics.apps.utils.middlewares.ProjectMinifyHtmlMiddleware",
+    *MIDDLEWARE,
+]
 
 # LOGGING
 # ------------------------------------------------------------------------------
@@ -178,6 +215,10 @@ LOGGING = {
     },
 }
 
-
-# Your stuff...
+# Django-Axes
 # ------------------------------------------------------------------------------
+AXES_ENABLED = True
+AXES_FAILURE_LIMIT = 7
+AXES_LOCKOUT_PARAMETERS = ["ip_address", "username", "user_agent"]
+AXES_COOLOFF_TIME = 2.0
+AXES_ENABLE_ADMIN = True

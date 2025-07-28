@@ -10,3 +10,14 @@ django-tailwind==4.0.1
 # Django
 # ------------------------------------------------------------------------------
 django-anymail==12.0  # https://github.com/anymail/django-anymail
+
+# Compressor
+# ------------------------------------------------------------------------------
+Brotli==1.1.0
+django-minify-html==1.12.0
+
+# Protection
+# ------------------------------------------------------------------------------
+django-axes[ipware]==8.0.0 # https://django-axes.readthedocs.io/en/latest/
+django-honeypot==1.3.0 # https://github.com/jamesturk/django-honeypot/
+django-simple-captcha==0.6.2 # https://django-simple-captcha.readthedocs.io/en/latest/
