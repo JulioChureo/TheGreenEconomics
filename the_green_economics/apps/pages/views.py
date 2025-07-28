@@ -1,10 +1,13 @@
 from django.core.cache import cache
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 from django.views.generic import TemplateView
 
 from the_green_economics.apps.articles.models import Article
+from the_green_economics.apps.utils.models import PublicationStatus
 
 HOME_QUERYSET = (
-    Article.objects.all()
+    Article.objects.filter(status=PublicationStatus.PUBLISHED)
     .order_by("-created_at")[:15]
     .values("id", "title", "slug", "publication_date", "summary")
 )
@@ -36,6 +39,10 @@ class HomeView(TemplateView):
 home_view = HomeView.as_view()
 
 
+@method_decorator(
+    cache_page(timeout=60, key_prefix="about-view-"),
+    name="dispatch",
+)
 class AboutView(TemplateView):
     """About view"""
 
@@ -45,6 +52,10 @@ class AboutView(TemplateView):
 about_view = AboutView.as_view()
 
 
+@method_decorator(
+    cache_page(timeout=60, key_prefix="book-view-"),
+    name="dispatch",
+)
 class BookView(TemplateView):
     """Book view"""
 
