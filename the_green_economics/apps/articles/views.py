@@ -14,7 +14,9 @@ ARTICLES_QUERYSET = Article.objects.filter(
 
 
 # Vistas para Artículos Científicos
-@method_decorator(cache_page(timeout=60, key_prefix="articles-list-"), name="dispatch")
+"""@method_decorator(cache_page(timeout=60, key_prefix="articles-list-"), name="dispatch")"""
+
+
 class ArticleListView(PaginatedFilteredListView):
     model = Article
     template_name = "articles/articles_list.html"
@@ -34,10 +36,12 @@ class ArticleListView(PaginatedFilteredListView):
 article_list_view = ArticleListView.as_view()
 
 
-@method_decorator(
+"""@method_decorator(
     cache_page(timeout=60, key_prefix="articles-detail-"),
     name="dispatch",
-)
+)"""
+
+
 class ArticleDetailView(DetailView):
     model = Article
     template_name = "articles/articles_detail.html"

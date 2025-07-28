@@ -1,4 +1,6 @@
 # ruff: noqa: E501
+import re
+
 import pymysql
 
 from config.settings.base import *  # noqa: F403
@@ -79,17 +81,21 @@ SECURE_CONTENT_TYPE_NOSNIFF = env.bool(
     "DJANGO_SECURE_CONTENT_TYPE_NOSNIFF",
     default=True,
 )
-DISALLOWED_USER_AGENTS = env.list(
-    "DJANGO_DISALLOWED_USER_AGENTS",
-    default=[
-        "curl",
-        "wget",
-        "python-requests",
-        "python-urllib",
-        "python-httpx",
-    ],
-)
 
+
+DISALLOWED_USER_AGENTS = [
+    re.compile(pattern)
+    for pattern in env.list(
+        "DJANGO_DISALLOWED_USER_AGENTS",
+        default=[
+            r"curl",
+            r"wget",
+            r"python-requests",
+            r"python-urllib",
+            r"python-httpx",
+        ],
+    )
+]
 # STATIC & MEDIA
 # ------------------------
 STORAGES = {

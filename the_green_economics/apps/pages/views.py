@@ -39,10 +39,12 @@ class HomeView(TemplateView):
 home_view = HomeView.as_view()
 
 
-@method_decorator(
+"""@method_decorator(
     cache_page(timeout=60, key_prefix="about-view-"),
     name="dispatch",
-)
+)"""
+
+
 class AboutView(TemplateView):
     """About view"""
 
@@ -52,10 +54,12 @@ class AboutView(TemplateView):
 about_view = AboutView.as_view()
 
 
-@method_decorator(
+"""@method_decorator(
     cache_page(timeout=60, key_prefix="book-view-"),
     name="dispatch",
-)
+)"""
+
+
 class BookView(TemplateView):
     """Book view"""
 
