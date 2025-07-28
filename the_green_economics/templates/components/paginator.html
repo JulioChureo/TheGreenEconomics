@@ -7,29 +7,32 @@
                 <!-- Previous Button -->
                 <button {% if page_obj.has_previous %}onclick="window.location.href='?{% param_replace page=page_obj.previous_page_number %}'" {% else %} disabled {% endif %}
                         class="flex items-center px-4 py-2 rounded-md transition-all duration-200 {% if page_obj.has_previous %}bg-green-600 hover:bg-green-700 text-white{% else %}bg-gray-600 text-gray-400 cursor-not-allowed{% endif %}">
-                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-4 h-4 mr-2"
+                         fill="none"
+                         stroke="currentColor"
+                         viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                     </svg>
                     Previous
                 </button>
-
                 <!-- Page Info -->
                 <div class="px-4 py-2 {% if text_color %}{{ text_color }}{% else %}text-white{% endif %} font-medium">
                     <span class="text-sm">Page</span>
                     <span class="text-lg font-bold mx-2">{{ page_obj.number }}</span>
                     <span class="text-sm">of {{ page_obj.paginator.num_pages }}</span>
                 </div>
-
                 <!-- Next Button -->
                 <button {% if page_obj.has_next %}onclick="window.location.href='?{% param_replace page=page_obj.next_page_number %}'" {% else %} disabled {% endif %}
                         class="flex items-center px-4 py-2 rounded-md transition-all duration-200 {% if page_obj.has_next %}bg-green-600 hover:bg-green-700 text-white{% else %}bg-gray-600 text-gray-400 cursor-not-allowed{% endif %}">
                     Next
-                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-4 h-4 ml-2"
+                         fill="none"
+                         stroke="currentColor"
+                         viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                     </svg>
                 </button>
             </div>
-            
             <!-- Page indicators for larger page counts -->
             {% if page_obj.paginator.num_pages > 3 %}
                 <div class="flex justify-center mt-2 space-x-1">
