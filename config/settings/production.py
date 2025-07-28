@@ -41,7 +41,7 @@ CACHES = {
         "TIMEOUT": 300,
         # ^-- Django setting for default timeout of each key.
         "SHARDS": 8,
-        "DATABASE_TIMEOUT": 0.100,  # 10 milliseconds
+        "DATABASE_TIMEOUT": 0.050,  # 10 milliseconds
         # ^-- Timeout for each DjangoCache database transaction.
         "OPTIONS": {
             "size_limit": 2**30,  # 1 gigabyte
