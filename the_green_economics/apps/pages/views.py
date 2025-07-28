@@ -17,14 +17,14 @@ class HomeView(TemplateView):
 
     def get_queryset(self):
         queryset = cache.get_or_set(
-            "home-articles",
+            "articles:home_articles",
             HOME_QUERYSET,
             timeout=60 * 15,
         )
 
         if queryset is None:
             queryset = HOME_QUERYSET
-            cache.set("home-articles", queryset, timeout=60 * 15)
+            cache.set("articles:home_articles", queryset, timeout=60 * 15)
         return queryset
 
     def get_context_data(self, **kwargs):
