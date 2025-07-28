@@ -12,37 +12,39 @@
         The Green Economics | Noticias y Papers Científicos sobre Economía Verde
       {% endblock title %}
     </title>
-    <!-- Meta Tags Mejorados -->
-    <meta name="author" content="Sebastiano..., Diego Rivera, Julio Chureo" />
-    <meta name="description"
-          content="{% block meta_description %}Explora las últimas noticias y papers científicos sobre economía verde, desarrollo sostenible, energías renovables, y políticas ambientales. Tu fuente principal para la transición hacia una economía circular y justa.{% endblock %}" />
-    <meta name="keywords"
-          content="{% block meta_keywords %}economía verde, noticias economía verde, papers científicos economía verde, desarrollo sostenible, energías renovables, política ambiental, economía circular, sostenibilidad, cambio climático, innovación verde, finanzas verdes, biodiversidad, eficiencia energética, impacto ambiental{% endblock %}" />
-    <meta name="robots" content="index, follow" />
-    <meta name="googlebot" content="index, follow" />
-    <meta name="googlebot-news"
-          content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-    <!-- Open Graph Mejorado -->
-    <meta property="og:title"
-          content="{% block og_title %}The Green Economics | Noticias y Papers Científicos sobre Economía Verde{% endblock %}" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="{{ request.build_absolute_uri }}" />
-    <meta property="og:image"
-          content="{% block og_image %}https://www.thegreeneconomics.com/static/images/logo.png{% endblock %}" />
-    <meta property="og:description"
-          content="{% block og_description %}Explora las últimas noticias y papers científicos sobre economía verde, desarrollo sostenible, energías renovables, y políticas ambientales.{% endblock %}" />
-    <meta property="og:site_name" content="The Green Economics" />
-    <meta property="og:locale" content="{{ LANGUAGE_CODE }}" />
-    <!-- Twitter Cards Mejoradas -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@thegreeneconomics" />
-    <meta name="twitter:creator" content="@thegreeneconomics" />
-    <meta name="twitter:title"
-          content="{% block twitter_title %}The Green Economics | Noticias y Papers Científicos sobre Economía Verde{% endblock %}" />
-    <meta name="twitter:description"
-          content="{% block twitter_description %}Explora las últimas noticias y papers científicos sobre economía verde, desarrollo sostenible, energías renovables, y políticas ambientales.{% endblock %}" />
-    <meta name="twitter:image"
-          content="{% block twitter_image %} https://www.thegreeneconomics.com/static/images/logo.png{% endblock %}" />
+    {% block seo_tags %}
+      <!-- Meta Tags Mejorados -->
+      <meta name="author" content="Sebastiano..., Diego Rivera, Julio Chureo" />
+      <meta name="description"
+            content="{% block meta_description %}Explora las últimas noticias y papers científicos sobre economía verde, desarrollo sostenible, energías renovables, y políticas ambientales. Tu fuente principal para la transición hacia una economía circular y justa.{% endblock %}" />
+      <meta name="keywords"
+            content="{% block meta_keywords %}economía verde, noticias economía verde, papers científicos economía verde, desarrollo sostenible, energías renovables, política ambiental, economía circular, sostenibilidad, cambio climático, innovación verde, finanzas verdes, biodiversidad, eficiencia energética, impacto ambiental{% endblock %}" />
+      <meta name="robots" content="index, follow" />
+      <meta name="googlebot" content="index, follow" />
+      <meta name="googlebot-news"
+            content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+      <!-- Open Graph Mejorado -->
+      <meta property="og:title"
+            content="{% block og_title %}The Green Economics | Noticias y Papers Científicos sobre Economía Verde{% endblock %}" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+      <meta property="og:image"
+            content="{% block og_image %}https://www.thegreeneconomics.com/static/images/logo.png{% endblock %}" />
+      <meta property="og:description"
+            content="{% block og_description %}Explora las últimas noticias y papers científicos sobre economía verde, desarrollo sostenible, energías renovables, y políticas ambientales.{% endblock %}" />
+      <meta property="og:site_name" content="The Green Economics" />
+      <meta property="og:locale" content="{{ LANGUAGE_CODE }}" />
+      <!-- Twitter Cards Mejoradas -->
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:site" content="@thegreeneconomics" />
+      <meta name="twitter:creator" content="@thegreeneconomics" />
+      <meta name="twitter:title"
+            content="{% block twitter_title %}The Green Economics | Noticias y Papers Científicos sobre Economía Verde{% endblock %}" />
+      <meta name="twitter:description"
+            content="{% block twitter_description %}Explora las últimas noticias y papers científicos sobre economía verde, desarrollo sostenible, energías renovables, y políticas ambientales.{% endblock %}" />
+      <meta name="twitter:image"
+            content="{% block twitter_image %} https://www.thegreeneconomics.com/static/images/logo.png{% endblock %}" />
+    {% endblock seo_tags %}
     <!-- Favicons Mejorados -->
     <link async rel="icon" href="{% static 'images/logos/logo_2.png' %}" />
     <!-- Preconexión para mejorar rendimiento -->
@@ -198,58 +200,57 @@
       {% endblock body %}
     </div>
     {% block footer %}
+      {% cache 600 footer_content %}
       {% include "components/footer.html" %}
-    {% endblock footer %}
-    {% block modal %}
-      {% include "components/modal.html" %}
-    {% endblock modal %}
-    <!-- JavaScript al final del body -->
-    {% compress js %}
-      {% block javascript %}
-        {% block quicklink_prefetch %}
-          <script>
-            document.addEventListener('DOMContentLoaded', () => {
-              // Prefetch solo en conexiones rápidas
-              quicklink.listen({
-                origins: [window.location.origin],
-                ignores: [
-                  (uri, elem) => elem.hasAttribute('noprefetch'),
-                  /\.(pdf|zip|tar)$/i
-                ]
-              });
-
-              // Prefetch específico
-              quicklink.prefetch(["/about/", "/book/", "/articles/", "/publish/"]);
+    {% endcache %}
+  {% endblock footer %}
+  <!-- JavaScript al final del body -->
+  {% compress js %}
+    {% block javascript %}
+      {% block quicklink_prefetch %}
+        <script>
+          document.addEventListener('DOMContentLoaded', () => {
+            // Prefetch solo en conexiones rápidas
+            quicklink.listen({
+              origins: [window.location.origin],
+              ignores: [
+                (uri, elem) => elem.hasAttribute('noprefetch'),
+                /\.(pdf|zip|tar)$/i
+              ]
             });
-          </script>
-        {% endblock quicklink_prefetch %}
-        {% block speculation_rules %}
-          <script type="speculationrules">
-            {
-              "prerender": [{
-                "source": "list",
-                "urls": ["/about/", "/book/", "/articles/", "/publish/"]
-              }]
-            }
-          </script>
-        {% endblock speculation_rules %}
-        {% block inline_javascript %}
-          <script>
-            // Inicialización de componentes
-            document.addEventListener('DOMContentLoaded', () => {
-              console.log('The Green Economics - Iniciado');
 
-              // Mejorar accesibilidad de mensajes
-              const alerts = document.querySelectorAll('.alert');
-              alerts.forEach(alert => {
-                setTimeout(() => {
-                  alert.style.display = 'none';
-                }, 5000);
-              });
+            // Prefetch específico
+            quicklink.prefetch(["/about/", "/book/", "/articles/", "/publish/"]);
+          });
+        </script>
+      {% endblock quicklink_prefetch %}
+      {% block speculation_rules %}
+        <script type="speculationrules">
+          {
+            "prerender": [{
+              "source": "list",
+              "urls": ["/about/", "/book/", "/articles/", "/publish/"]
+            }]
+          }
+        </script>
+      {% endblock speculation_rules %}
+      {% block inline_javascript %}
+        <script>
+          // Inicialización de componentes
+          document.addEventListener('DOMContentLoaded', () => {
+            console.log('The Green Economics - Iniciado');
+
+            // Mejorar accesibilidad de mensajes
+            const alerts = document.querySelectorAll('.alert');
+            alerts.forEach(alert => {
+              setTimeout(() => {
+                alert.style.display = 'none';
+              }, 5000);
             });
-          </script>
-        {% endblock inline_javascript %}
-      {% endblock javascript %}
-    {% endcompress %}
-  </body>
+          });
+        </script>
+      {% endblock inline_javascript %}
+    {% endblock javascript %}
+  {% endcompress %}
+</body>
 </html>
