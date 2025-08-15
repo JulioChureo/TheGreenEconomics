@@ -19,6 +19,26 @@ CACHE_KEY_ERROR_MESSAGE = "Cache key not set"
 
 
 class PaginatedFilteredListView(ListView):
+    """PaginatedFilteredListView class. a mixin for views that require pagination and filtering.
+
+    Attributes:
+        filterset_class (FilterSet): The filterset class to use for filtering the queryset.
+        paginate_by (int): The number of items to display per page.
+        queryset (QuerySet): The queryset to filter and paginate.
+
+    Raises:
+        AttributeError: If the filterset_class is not set or is None.
+
+    Example:
+        >>> class MyView(PaginatedFilteredListView, View):
+        ...     filterset_class = MyFilterSet
+        ...     paginate_by = 10
+        ...     queryset = MyModel.objects.all()
+        ...     template_name = "my_template.html"
+        ...     context_object_name = "my_objects"
+        ...
+    """
+
     filterset_class = None
     paginate_by = 10
 
@@ -28,7 +48,7 @@ class PaginatedFilteredListView(ListView):
             raise AttributeError(FILTERSET_ERROR_MESSAGE)
         return self.filterset_class
 
-    def get_queryset(self):
+    def get_queryset(self) -> QuerySet:
         queryset = super().get_queryset()
         self.filterset = self.get_filterset_class(self.request.GET, queryset=queryset)
         return self.filterset.qs.distinct()
@@ -143,6 +163,8 @@ class DetailedFileDownloadView(DetailView):
                 as_attachment=True,
                 filename=file,
             )
-            response["Content-Disposition"] = "attachment; filename=" + file.name
+            response["Content-Disposition"] = (
+                "attachment; filename=" + settings.MEDIA_ROOT + "/" + file.name
+            )
             response["X-Accel-Redirect"] = file
         return response

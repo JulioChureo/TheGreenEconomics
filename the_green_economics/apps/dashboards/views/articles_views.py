@@ -65,6 +65,16 @@ class DashboardArticleUpdateView(AdminUserMixin, UpdateView):
     context_object_name = "article"
     queryset = DASHBOARD_ARTICLES_QUERYSET
 
+    def get_initial(self):
+        """Set initial data for the form."""
+        initial = super().get_initial()
+        if self.form_class is None:
+            return initial
+        for field in self.form_class.base_fields:
+            if field not in initial and self.object:
+                initial[field] = getattr(self.object, field, None)
+        return initial
+
 
 dashboard_article_update_view = DashboardArticleUpdateView.as_view()
 
