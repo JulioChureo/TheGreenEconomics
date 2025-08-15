@@ -1,3 +1,4 @@
+import logging
 from functools import cached_property
 
 from django.conf import settings
@@ -6,6 +7,10 @@ from django.contrib.auth.mixins import UserPassesTestMixin
 from django.core.cache import cache
 from django.db.models import QuerySet
 from django.http import FileResponse
+from django.http import HttpResponse
+from django.http import HttpResponsePermanentRedirect
+from django.http import HttpResponseRedirect
+from django.shortcuts import redirect
 from django.template.response import SimpleTemplateResponse
 from django.views.decorators.cache import cache_page
 from django.views.generic import DetailView
@@ -149,22 +154,18 @@ class DetailedFileDownloadView(DetailView):
                 template="404.html",
                 status=404,
             )
-        if settings.DEBUG:
-            import os
+        import os
 
-            response = FileResponse(
-                file.open("rb"),
-                as_attachment=True,
-                filename=os.path.basename(file.name),
-                content_type="application/octet-stream",
+        # todo rewrite to use headers for content-disposition and redirect to media url
+        response = FileResponse(
+            file.open("rb"),
+            as_attachment=True,
+            filename=os.path.basename(file.name),
+            content_type="application/octet-stream",
+        )
+        if not response:
+            return SimpleTemplateResponse(
+                template="404.html",
+                status=404,
             )
-        else:
-            response: FileResponse = FileResponse(
-                as_attachment=True,
-                filename=file,
-            )
-            response["Content-Disposition"] = (
-                "attachment; filename=" + settings.MEDIA_ROOT + "/" + file.name
-            )
-            response["X-Accel-Redirect"] = file
         return response
