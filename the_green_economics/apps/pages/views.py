@@ -1,16 +1,7 @@
 from django.core.cache import cache
-from django.utils.decorators import method_decorator
-from django.views.decorators.cache import cache_page
 from django.views.generic import TemplateView
 
-from the_green_economics.apps.articles.models import Article
-from the_green_economics.apps.utils.models import PublicationStatus
-
-HOME_QUERYSET = (
-    Article.objects.filter(status=PublicationStatus.PUBLISHED)
-    .order_by("-created_at")[:15]
-    .values("id", "title", "slug", "publication_date", "summary")
-)
+from the_green_economics.apps.articles.querysets import HOME_QUERYSET
 
 
 class HomeView(TemplateView):
@@ -19,7 +10,7 @@ class HomeView(TemplateView):
     template_name = "pages/home.html"
 
     def get_queryset(self):
-        queryset = cache.get_or_set(
+        """queryset = cache.get_or_set(
             "articles:home_articles",
             HOME_QUERYSET,
             timeout=60 * 15,
@@ -27,12 +18,12 @@ class HomeView(TemplateView):
 
         if queryset is None:
             queryset = HOME_QUERYSET
-            cache.set("articles:home_articles", queryset, timeout=60 * 15)
-        return queryset
+            cache.set("articles:home_articles", queryset, timeout=60 * 15)"""
+        return HOME_QUERYSET
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["articles"] = list(self.get_queryset())
+        context["articles"] = tuple(self.get_queryset())
         return context
 
 

@@ -29,14 +29,13 @@ class ArticleListView(PaginatedFilteredListView):
     def get_queryset(self):
         queryset: QuerySet[Article] = super().get_queryset()
         return tuple(
-            article
-            for article in queryset.values(
+            queryset.values(
                 "id",
                 "title",
                 "slug",
                 "publication_date",
                 "summary",
-            )
+            ),
         )
 
 

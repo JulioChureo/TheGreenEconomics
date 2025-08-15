@@ -12,10 +12,18 @@ CACHE_ARTICLE_KEYS = ()
 @receiver(post_save, sender=Article)
 def article_post_save(sender, instance: Article, created, **kwargs):
     """cache invalidation signal for article save"""
-    cache.delete("articles:home_articles")
+    cache.set(
+        "articles:home_articles",
+        None,
+        timeout=60 * 15,
+    )
 
 
 @receiver(post_delete, sender=Article)
 def article_pre_delete(sender, instance: Article, **kwargs):
     """cache invalidation signal for article delete"""
-    cache.delete("articles:home_articles")
+    cache.set(
+        "articles:home_articles",
+        None,
+        timeout=60 * 15,
+    )
