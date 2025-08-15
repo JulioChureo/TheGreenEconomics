@@ -5,9 +5,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.1.1\n"
+"Project-Id-Version: 0.1.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-27 02:09+0000\n"
+"POT-Creation-Date: 2025-07-27 21:53+0000\n"
 "Language: es-ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -54,30 +54,26 @@ msgid "article_tag:filter_slug_help_text"
 msgstr "Filtrar etiquetas por slug."
 
 #: the_green_economics/apps/articles/forms.py:12
-#: the_green_economics/apps/articles/forms.py:31
+#: the_green_economics/apps/articles/forms.py:32
 msgid "article:form_publication_date_label"
 msgstr "Fecha de publicación"
 
 #: the_green_economics/apps/articles/forms.py:13
-#: the_green_economics/apps/articles/forms.py:42
+#: the_green_economics/apps/articles/forms.py:44
 msgid "article:form_publication_date_help_text"
 msgstr "Fecha en que será publicado el artículo."
 
-#: the_green_economics/apps/articles/forms.py:29
+#: the_green_economics/apps/articles/forms.py:30
 msgid "article:form_title_label"
 msgstr "Título"
 
-#: the_green_economics/apps/articles/forms.py:30
+#: the_green_economics/apps/articles/forms.py:31
 msgid "article:form_authors_label"
 msgstr "Autores"
 
-#: the_green_economics/apps/articles/forms.py:32
-msgid "article:form_summary_label"
-msgstr "Sumario"
-
 #: the_green_economics/apps/articles/forms.py:33
-msgid "article:form_body_label"
-msgstr "Contenido"
+msgid "article:form_summary_label"
+msgstr "Resumen"
 
 #: the_green_economics/apps/articles/forms.py:34
 msgid "article:form_pdf_label"
@@ -87,45 +83,64 @@ msgstr "PDF"
 msgid "article:form_status_label"
 msgstr "Estado"
 
-#: the_green_economics/apps/articles/forms.py:38
+#: the_green_economics/apps/articles/forms.py:36
+#, fuzzy
+#| msgid "article:form_pdf_label"
+msgid "article:form_doi_label"
+msgstr "DOI"
+
+#: the_green_economics/apps/articles/forms.py:37
+#, fuzzy
+#| msgid "article:form_status_label"
+msgid "article:form_issn_label"
+msgstr "ISSN"
+
+#: the_green_economics/apps/articles/forms.py:40
 msgid "article:form_pdf_help_text"
 msgstr "Subir versión PDF del artículo."
 
-#: the_green_economics/apps/articles/forms.py:39
-#: the_green_economics/apps/articles/forms.py:82
+#: the_green_economics/apps/articles/forms.py:41
+#: the_green_economics/apps/articles/forms.py:84
 msgid "article:form_status_help_text"
 msgstr "Estado actual de publicación."
 
-#: the_green_economics/apps/articles/forms.py:40
+#: the_green_economics/apps/articles/forms.py:42
 msgid "article:form_title_help_text"
 msgstr "Título completo del artículo."
 
-#: the_green_economics/apps/articles/forms.py:41
+#: the_green_economics/apps/articles/forms.py:43
 msgid "article:form_authors_help_text"
 msgstr "Autores del artículo."
 
-#: the_green_economics/apps/articles/forms.py:43
-#: the_green_economics/apps/articles/forms.py:44
-msgid "article:form_summary_help_text"
-msgstr "Sumario extendido del artículo."
-
 #: the_green_economics/apps/articles/forms.py:45
-msgid "article:form_body_help_text"
-msgstr "Contenido completo del artículo."
+msgid "article:form_summary_help_text"
+msgstr "Resumen extendido del artículo."
 
-#: the_green_economics/apps/articles/forms.py:81
+#: the_green_economics/apps/articles/forms.py:46
+#, fuzzy
+#| msgid "article:form_pdf_help_text"
+msgid "article:form_doi_help_text"
+msgstr "Subir versión PDF del artículo."
+
+#: the_green_economics/apps/articles/forms.py:47
+#, fuzzy
+#| msgid "article:form_status_help_text"
+msgid "article:form_issn_help_text"
+msgstr "Estado actual de publicación."
+
+#: the_green_economics/apps/articles/forms.py:83
 msgid "article:form_status"
 msgstr "Estado de publicación"
 
-#: the_green_economics/apps/articles/forms.py:105
+#: the_green_economics/apps/articles/forms.py:107
 msgid "nombre de la etiqueta"
 msgstr "Nombre de la etiqueta"
 
-#: the_green_economics/apps/articles/forms.py:106
+#: the_green_economics/apps/articles/forms.py:108
 msgid "Nombre único para la etiqueta"
 msgstr "Nombre único para la etiqueta"
 
-#: the_green_economics/apps/articles/forms.py:112
+#: the_green_economics/apps/articles/forms.py:114
 #: the_green_economics/apps/news/forms.py:157
 msgid "Esta etiqueta ya existe"
 msgstr "Esta etiqueta ya existe"
@@ -542,7 +557,7 @@ msgstr "Título principal."
 
 #: the_green_economics/apps/utils/models.py:99
 msgid "publication:model_summary_verbose_name"
-msgstr "Sumario"
+msgstr "Resumen"
 
 #: the_green_economics/apps/utils/models.py:100
 msgid "publication:model_summary_help_text"
@@ -615,3 +630,9 @@ msgstr "Etiquetas"
 #: the_green_economics/templates/articles/articles_detail.html:55
 msgid "Volver a Publicaciones"
 msgstr "Volver a Publicaciones"
+
+#~ msgid "article:form_body_label"
+#~ msgstr "Contenido"
+
+#~ msgid "article:form_body_help_text"
+#~ msgstr "Contenido completo del artículo."
