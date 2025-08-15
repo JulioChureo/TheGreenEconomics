@@ -1,3 +1,4 @@
+from django.db.models import QuerySet
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
 from django.views.generic import DetailView
@@ -8,7 +9,7 @@ from the_green_economics.apps.utils.mixins import DetailedFileDownloadView
 from the_green_economics.apps.utils.mixins import PaginatedFilteredListView
 from the_green_economics.apps.utils.models import PublicationStatus
 
-ARTICLES_QUERYSET = Article.objects.filter(
+ARTICLES_QUERYSET: QuerySet[Article] = Article.objects.filter(
     status=PublicationStatus.PUBLISHED,
 ).order_by("-publication_date")
 
@@ -26,10 +27,16 @@ class ArticleListView(PaginatedFilteredListView):
     filterset_class = ArticleFilter
 
     def get_queryset(self):
-        return list(
-            super()
-            .get_queryset()
-            .values("id", "title", "slug", "publication_date", "summary"),
+        queryset: QuerySet[Article] = super().get_queryset()
+        return tuple(
+            article
+            for article in queryset.values(
+                "id",
+                "title",
+                "slug",
+                "publication_date",
+                "summary",
+            )
         )
 
 

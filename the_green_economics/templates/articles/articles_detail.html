@@ -56,7 +56,9 @@
                 </a>
                 {% if article.pdf or True %}
                     <button class="flex items-center px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors duration-200">
-                        <a href="" id="modal-download-link" class="flex items-center text-white">
+                        <a href="{% url 'articles:download' article.slug %}"
+                           id="modal-download-link"
+                           class="flex items-center text-white">
                             <svg class="w-4 h-4 mr-2"
                                  fill="none"
                                  stroke="currentColor"
@@ -136,7 +138,8 @@
         }
         "image": "https://www.thegreeneconomics.com/static/images/logo.png",
         {
-          % endif %
+          %
+          endif %
         }
         "author": {
           "@type": "Person",
@@ -162,7 +165,8 @@
           "value": "{{ article.doi }}"
         },
         {
-          % endif %
+          %
+          endif %
         }
         "articleSection": "{% for tag in article.tags.all %}{{ tag.tag }}{% if not forloop.last %}, {% endif %}{% endfor %}",
         "keywords": "{% for tag in article.tags.all %}{{ tag.tag }}{% if not forloop.last %}, {% endif %}{% endfor %}"
