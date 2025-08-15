@@ -12,6 +12,7 @@ class ArticleForm(forms.ModelForm):
         label=_("article:form_publication_date_label"),
         help_text=_("article:form_publication_date_help_text"),
         widget=forms.DateInput(attrs={"type": "date"}),
+        required=False,
     )
 
     class Meta:
