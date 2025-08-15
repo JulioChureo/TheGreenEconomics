@@ -26,6 +26,29 @@ class ArticleFilter(django_filters.FilterSet):
         self.filters["title"].field.widget.attrs["class"] = "w-full"
 
 
+class AdvancedArticleFilter(ArticleFilter):
+    class Meta:
+        model = Article
+        fields = (
+            "title",
+            "doi",
+            "issn",
+            "created_at",
+        )
+        labels = {
+            "created_at": _("article:filter_created_at_label"),
+            "doi": _("article:filter_doi_label"),
+            "issn": _("article:filter_issn_label"),
+            "title": _("article:filter_title_label"),
+        }
+        help_texts = {
+            "created_at": _("article:filter_created_at_help_text"),
+            "doi": _("article:filter_doi_help_text"),
+            "issn": _("article:filter_issn_help_text"),
+            "title": _("article:filter_title_help_text"),
+        }
+
+
 class ArticleTagFilter(django_filters.FilterSet):
     class Meta:
         model = ArticleTag

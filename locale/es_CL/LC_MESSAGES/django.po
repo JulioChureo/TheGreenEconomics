@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-27 21:53+0000\n"
+"POT-Creation-Date: 2025-08-15 03:30+0000\n"
 "Language: es-Cl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,26 +30,52 @@ msgid "article:app_verbose_name"
 msgstr "Artículos"
 
 #: the_green_economics/apps/articles/filters.py:10
+#: the_green_economics/apps/articles/filters.py:42
 msgid "article:filter_title_label"
 msgstr "Título del artículo"
 
 #: the_green_economics/apps/articles/filters.py:11
+#: the_green_economics/apps/articles/filters.py:48
 msgid "article:filter_title_help_text"
 msgstr "Buscar artículos por título."
 
-#: the_green_economics/apps/articles/filters.py:34
+#: the_green_economics/apps/articles/filters.py:39
+msgid "article:filter_created_at_label"
+msgstr "Título del artículo"
+
+#: the_green_economics/apps/articles/filters.py:40
+msgid "article:filter_doi_label"
+msgstr "Título del artículo"
+
+#: the_green_economics/apps/articles/filters.py:41
+msgid "article:filter_issn_label"
+msgstr "ISSN"
+
+#: the_green_economics/apps/articles/filters.py:45
+msgid "article:filter_created_at_help_text"
+msgstr "Buscar artículos por título."
+
+#: the_green_economics/apps/articles/filters.py:46
+msgid "article:filter_doi_help_text"
+msgstr "Buscar artículos por título."
+
+#: the_green_economics/apps/articles/filters.py:47
+msgid "article:filter_issn_help_text"
+msgstr "Ingresar ISSN"
+
+#: the_green_economics/apps/articles/filters.py:57
 msgid "article_tag:filter_name_label"
 msgstr "Nombre de la etiqueta"
 
-#: the_green_economics/apps/articles/filters.py:35
+#: the_green_economics/apps/articles/filters.py:58
 msgid "article_tag:filter_slug_label"
 msgstr "Slug de la etiqueta"
 
-#: the_green_economics/apps/articles/filters.py:38
+#: the_green_economics/apps/articles/filters.py:61
 msgid "article_tag:filter_name_help_text"
 msgstr "Filtrar etiquetas por nombre."
 
-#: the_green_economics/apps/articles/filters.py:39
+#: the_green_economics/apps/articles/filters.py:62
 msgid "article_tag:filter_slug_help_text"
 msgstr "Filtrar etiquetas por slug."
 
@@ -84,14 +110,10 @@ msgid "article:form_status_label"
 msgstr "Estado"
 
 #: the_green_economics/apps/articles/forms.py:36
-#, fuzzy
-#| msgid "article:form_pdf_label"
 msgid "article:form_doi_label"
 msgstr "DOI"
 
 #: the_green_economics/apps/articles/forms.py:37
-#, fuzzy
-#| msgid "article:form_status_label"
 msgid "article:form_issn_label"
 msgstr "ISSN"
 
@@ -117,14 +139,10 @@ msgid "article:form_summary_help_text"
 msgstr "Resumen extendido del artículo."
 
 #: the_green_economics/apps/articles/forms.py:46
-#, fuzzy
-#| msgid "article:form_pdf_help_text"
 msgid "article:form_doi_help_text"
 msgstr "Ingresar DOI"
 
 #: the_green_economics/apps/articles/forms.py:47
-#, fuzzy
-#| msgid "article:form_status_help_text"
 msgid "article:form_issn_help_text"
 msgstr "Ingresar ISSN"
 
@@ -253,7 +271,7 @@ msgstr "Propuesta de investigación"
 msgid "research_proposal:verbose_name_plural"
 msgstr "Propuestas de investigación"
 
-#: the_green_economics/apps/contacts/views.py:15
+#: the_green_economics/apps/contacts/views.py:18
 msgid "Your research proposal has been submitted successfully."
 msgstr "Su propuesta de investigación ha sido enviada con éxito."
 
