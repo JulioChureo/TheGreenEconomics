@@ -16,22 +16,22 @@
       <!-- Meta Tags Mejorados -->
       <meta name="author" content="Sebastiano..., Diego Rivera, Julio Chureo" />
       <meta name="description"
-            content="{% block meta_description %}Explora las últimas noticias y papers científicos sobre economía verde, desarrollo sostenible, energías renovables, y políticas ambientales. Tu fuente principal para la transición hacia una economía circular y justa.{% endblock %}" />
+            content="{% block meta_description %}Journal Científico sobre Economía Verde{% endblock meta_description %}" />
       <meta name="keywords"
-            content="{% block meta_keywords %}economía verde, noticias economía verde, papers científicos economía verde, desarrollo sostenible, energías renovables, política ambiental, economía circular, sostenibilidad, cambio climático, innovación verde, finanzas verdes, biodiversidad, eficiencia energética, impacto ambiental{% endblock %}" />
+            content="{% block meta_keywords %}economía verde, noticias economía verde, papers científicos economía verde, desarrollo sostenible, energías renovables, política ambiental, economía circular, sostenibilidad, cambio climático, innovación verde, finanzas verdes, biodiversidad, eficiencia energética, impacto ambiental{% endblock meta_keywords %}" />
       <meta name="robots" content="index, follow" />
       <meta name="googlebot" content="index, follow" />
       <meta name="googlebot-news"
             content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
       <!-- Open Graph Mejorado -->
       <meta property="og:title"
-            content="{% block og_title %}The Green Economics | Noticias y Papers Científicos sobre Economía Verde{% endblock %}" />
+            content="{% block og_title %}The Green Economics | Noticias y Papers Científicos sobre Economía Verde{% endblock og_title %}" />
       <meta property="og:type" content="website" />
       <meta property="og:url" content="{{ request.build_absolute_uri }}" />
       <meta property="og:image"
-            content="{% block og_image %}https://www.thegreeneconomics.com/static/images/logo.png{% endblock %}" />
+            content="{% block og_image %}https://www.thegreeneconomics.com/static/images/logo.png{% endblock og_image %}" />
       <meta property="og:description"
-            content="{% block og_description %}Explora las últimas noticias y papers científicos sobre economía verde, desarrollo sostenible, energías renovables, y políticas ambientales.{% endblock %}" />
+            content="{% block og_description %}Journal Científico sobre Economía Verde{% endblock og_description %}" />
       <meta property="og:site_name" content="The Green Economics" />
       <meta property="og:locale" content="{{ LANGUAGE_CODE }}" />
       <!-- Twitter Cards Mejoradas -->
@@ -39,11 +39,11 @@
       <meta name="twitter:site" content="@thegreeneconomics" />
       <meta name="twitter:creator" content="@thegreeneconomics" />
       <meta name="twitter:title"
-            content="{% block twitter_title %}The Green Economics | Noticias y Papers Científicos sobre Economía Verde{% endblock %}" />
+            content="{% block twitter_title %}The Green Economics | Journal Científico sobre Economía Verde{% endblock twitter_title %}" />
       <meta name="twitter:description"
-            content="{% block twitter_description %}Explora las últimas noticias y papers científicos sobre economía verde, desarrollo sostenible, energías renovables, y políticas ambientales.{% endblock %}" />
+            content="{% block twitter_description %}Journal Científico sobre Economía Verde{% endblock twitter_description %}" />
       <meta name="twitter:image"
-            content="{% block twitter_image %} https://www.thegreeneconomics.com/static/images/logo.png{% endblock %}" />
+            content="{% block twitter_image %} https://www.thegreeneconomics.com/static/images/logo.png{% endblock twitter_image %}" />
     {% endblock seo_tags %}
     <!-- Favicons Mejorados -->
     <link async rel="icon" href="{% static 'images/logos/logo_2.avif' %}" />
@@ -124,6 +124,8 @@
             transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
           }
         </style>
+        {% block extra_css %}
+        {% endblock extra_css %}
       {% endcompress %}
     {% endblock css %}
     <!-- JavaScript en head solo si es necesario -->
@@ -154,7 +156,7 @@
           }
         }
       </script>
-    {% endblock %}
+    {% endblock schema_markup %}
   </head>
   <body class="{% block bodyclass %} min-h-screen bg-cover bg-center bg-fixed {% endblock bodyclass %}">
     <!-- Enlace para saltar navegación (accesibilidad) -->
