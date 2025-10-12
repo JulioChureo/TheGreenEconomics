@@ -164,7 +164,7 @@
     <div class="flex flex-col min-h-screen">
       {% block body %}
         {% block header %}
-          {% include "components/header.html" %}
+          <div id="headerVisibilitySpacer">{% include "components/header.html" %}</div>
         {% endblock header %}
         {% block message %}
           <div class="container mx-auto px-4">
