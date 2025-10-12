@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+  Leer el libro - The Green Economics
+{% endblock title %}
+{% block seo_tags %}
+  {% comment "no index this page" %}{% endcomment %}
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="googlebot" content="noindex, nofollow" />
+  <meta name="googlebot-news" content="noindex, nofollow" />
+{% endblock seo_tags %}
+{% block javascript_head %}
+  <script src="{% static 'js/pdf/pdfViewer.js' %}" type="module"></script>
+{% endblock javascript_head %}
+{% block content %}
+  <section aria-labelledby="reader-controls-heading">
+    <div class="reader-layout">
+      <!-- 75 % VISOR -->
+      <div class="pdf-viewer-wrapper">
+        <figure class="pdf-viewer-container">
+          <canvas id="the-canvas"
+                  class="pdf-viewer"
+                  role="document"
+                  aria-label="Visor del libro {{ book.title }}"
+                  pdf-url="{% static 'pdfs/libro.pdf' %}"
+                  tabindex="0">
+          </canvas>
+        </figure>
+      </div>
+      <!-- 25 % CONTROLES -->
+      <aside class="controls-wrapper">
+        <nav id="controls" aria-label="Controles del lector">
+          <div class="page-controls">
+            <button id="prev" aria-label="Página anterior">← Anterior</button>
+            <button id="next" aria-label="Página siguiente">Siguiente →</button>
+            <button id="fullScreen" aria-label="full-screen">Pantalla Completa</button>
+            <input type="range" id="scale" value="1" min="0.1" max="3" step="0.1" />
+          </div>
+        </nav>
+      </aside>
+    </div>
+  </section>
+{% endblock content %}
+{% block extra_css %}
+  <style>
+    /* ---------- CONTENEDOR GENERAL ---------- */
+    .lecture-container {
+      margin: 0 auto;
+      max-width: 75rem;
+      /* opcional: ancho máx. total */
+      padding: 1rem;
+    }
+
+    /* ---------- LAYOUT 75 / 25 ---------- */
+    .reader-layout {
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+    }
+
+    /* 75 % izquierda → visor PDF */
+    .pdf-viewer-wrapper {
+      flex: 0 0 75%;
+      padding: 2rem;
+      position: relative;
+    }
+
+    /* 25 % derecha → controles */
+    .controls-wrapper {
+      flex: 0 0 25%;
+      position: sticky;
+      top: 10rem;
+      right: 5rem;
+      /* pegajoso pero con algo de aire */
+      z-index: 100;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, .1);
+      background: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+    }
+
+    /* ---------- BOTONES ---------- */
+    .page-controls {
+      display: flex;
+      flex-direction: column;
+      /* uno encima del otro */
+      gap: .75rem;
+    }
+
+    .page-controls button {
+      width: 100%;
+      /* ocupan todo el ancho disponible */
+      padding: .5rem 1rem;
+      background: #6F4E37;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: opacity .2s;
+    }
+
+    .page-controls button:hover {
+      opacity: .9;
+    }
+
+    .page-controls button:focus {
+      outline: 2px solid #8B6B4F;
+    }
+
+    /* ---------- VISOR PDF ---------- */
+    .pdf-viewer {
+      border: 2px solid #6F4E37;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(111, 78, 55, .1);
+      width: 80%;
+      height: 100vh;
+      /* altura razonable */
+      background: white;
+      display: block;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 768px) {
+      .reader-layout {
+        flex-direction: column;
+      }
+
+      .pdf-viewer-wrapper,
+      .controls-wrapper {
+        flex: 1 1 100%;
+      }
+
+      .controls-wrapper {
+        position: static;
+        /* deja de ser sticky en móvil */
+      }
+
+      .page-controls {
+        flex-direction: row;
+        justify-content: center;
+      }
+    }
+  </style>
+{% endblock extra_css %}
