@@ -66,7 +66,7 @@ class ArticleDownloadView(DetailedFileDownloadView):
     queryset = ARTICLES_QUERYSET
 
     def get_file(self):
-        article = self.get_object()
+        article: Article = self.get_object()
         if hasattr(article, "pdf") and article.pdf:
             return article.pdf
         return None
