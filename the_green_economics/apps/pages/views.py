@@ -58,12 +58,3 @@ class BookView(TemplateView):
 
 
 book_view = BookView.as_view()
-
-
-class BookReadView(TemplateView):
-    """Book read view"""
-
-    template_name = "pages/book_read.html"
-
-
-book_read_view = BookReadView.as_view()
