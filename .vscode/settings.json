@@ -6,22 +6,29 @@
     "[python]": {
         "editor.formatOnSave": true,
         "editor.codeActionsOnSave": {
-            "source.convertImportFormat": "explicit",
-            "source.organizeImports": "explicit",
-            "source.fixAll": "explicit",
-            "source.fixAll.ruff": "explicit"
+            "source.organizeImports.ruff": "explicit"
         },
-        "editor.defaultFormatter": "charliermarsh.ruff"
+        "editor.defaultFormatter": "charliermarsh.ruff",
     },
     "[shellscript]": {
         "files.eol": "\n",
         "editor.defaultColorDecorators": "never"
     },
-    "files.eol": "\n",
     "python.testing.pytestArgs": [
         "the_green_economics"
     ],
     "python.testing.unittestEnabled": false,
     "python.testing.pytestEnabled": true,
-    "cSpell.language": "es,en"
+    "cSpell.language": "es,en",
+    "cSpell.words": [
+        "filterset",
+        "issn"
+    ],
+    "editor.quickSuggestionsDelay": 10,
+    "editor.quickSuggestions": {
+        "other": true,
+        "comments": false,
+        "strings": false
+    },
+
 }
