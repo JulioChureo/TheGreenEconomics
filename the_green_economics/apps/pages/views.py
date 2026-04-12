@@ -58,3 +58,17 @@ class BookView(TemplateView):
 
 
 book_view = BookView.as_view()
+
+class DescView(TemplateView):
+    """Description view"""
+
+    template_name = "pages/OJS.html"
+
+
+desc_view = DescView.as_view()
+
+
+"""@method_decorator(
+    cache_page(timeout=60, key_prefix="book-view-"),
+    name="dispatch",
+)"""

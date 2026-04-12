@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% load static cache %}
+
+{% block content %}
+    {% cache 300 desc_content %}
+    <!-- Hero Section -->
+    <div class="relative bg-gradient-to-b from-black/70 to-black/50 py-16">
+        <div class="max-w-6xl mx-auto text-center px-4">
+            <div class="mb-8">
+                <h1 class="text-5xl md:text-6xl font-serif font-light text-white mb-4 tracking-wide leading-tight">Contamos con OJS</h1>
+                <div class="w-32 h-0.5 bg-green-400 mx-auto mb-6"></div>
+                <p class="text-lg text-white mt-4 max-w-2xl mx-auto font-light leading-relaxed">
+                    ¿Qué es OJS y como lo implementamos?
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <!-- Founder Section -->
+        <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-8 mb-16">
+            <div class="border-b border-white/20 pb-6 mb-8">
+                <h2 class="text-3xl font-serif text-white mb-2 text-center">The Green Economics Journal se gestiona mediante e sistema de Open Journal System (OJS)</h2>
+            </div>
+            <div class="grid grid-cols-1 gap-8 items-center">
+                <div class="text-center lg:text-left">
+                    <p class="text-white leading-relaxed mb-6">
+                        <strong>Editores:</strong> Nuestros editores son la cara visible de un importante número de académicos que trabaja en la revista en pos de las ciencias. Una labor relevante del editor es elegir e ingresar a los revisores al sistema OJS, estos revisores son académicos altamente competentes quienes deben someterse a estrictos filtros éticos. Por ejemplo, un revisor de trabajos en The Green Economics Journal nunca conoce a los autores que le son asignados, de esta forma, toda observación o crítica se realiza de manera independiente.
+                    </p>
+                    <p class="text-white leading-relaxed mb-6">
+                        <strong>Revisores:</strong> Los revisores de nuestra revista, al utilizar el sistema OJS, dejan una trazabilidad del proceso de revisión de los trabajos. Estos revisores exigen una serie de requisitos para lograr la publicación (detallados al autor cuando obtiene sus claves en la revista), publicación que también implica la entrega del número identificatorio estandarizado de trabajos científicos (DOI) y la asociación con nuestro ISSN.
+                    </p>
+                    <p class="text-white leading-relaxed">
+                        <strong>Autores:</strong> Los autores que eligen a The Green Economics Journal, tienen la opción de ser ayudados en cada paso del proceso de publicación de un trabajo, es decir, pueden ser ayudados en la gestión del autor para una revista que utiliza Open Journal System. Esto quiere decir que procesos como el registro en OJS o la comunicación de las observaciones de los revisores pueden ser realizadas, tanto de forma totalmente independiente o con el apoyo de un editor, de esta forma, se brinda una experiencia más personal. Lo anterior, es totalmente independiente de los veredictos que determinen los revisores, es decir, no interviene en la revisión misma, sino que se refiere a que creemos que el proceso debe ser un poco más personal y menos automático en lo relativo a la gestión.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endcache %}
+{% endblock %}

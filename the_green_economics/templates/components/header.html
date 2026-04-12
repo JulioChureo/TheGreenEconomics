@@ -6,8 +6,8 @@
         <div class="max-w-7xl mx-auto px-4 flex justify-between items-center text-sm">
             <div class="flex items-center space-x-6">
                 <span class="font-medium">ISSN: 3087-2405</span>
-                <span>IF: 2.847</span>
-                <span>Acceso Abierto</span>
+                <span>OJS implementado </span>
+                <span>Acceso abierto</span>
             </div>
         </div>
     </div>
@@ -50,9 +50,9 @@
                             Sobre Nosotros
                             <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-400 transition-all duration-200 group-hover:w-full"></span>
                         </a>
-                        <a href="{% url 'pages:book' %}"
+                        <a href="{% url 'pages:OJS' %}"
                            class="text-white hover:text-green-300 font-medium transition-colors duration-200 relative group">
-                            Teoría General de la Economía Verde
+                            OJS Implementado
                             <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-400 transition-all duration-200 group-hover:w-full"></span>
                         </a>
                         <a href="{% url 'contacts:create' %}"
@@ -120,7 +120,7 @@
                     </svg>
                     <span>Sobre Nosotros</span>
                 </a>
-                <a href="{% url 'pages:book' %}"
+                <a href="{% url 'pages:OJS' %}"
                    class="flex items-center space-x-3 rounded-lg px-4 py-3 text-lg font-medium text-white hover:bg-green-700 transition duration-300 group">
                     <svg class="w-5 h-5 text-green-300 group-hover:text-white"
                          fill="none"
@@ -129,7 +129,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
                         </path>
                     </svg>
-                    <span>Teoría General de la Economía Verde</span>
+                    <span>OJS Implementado</span>
                 </a>
                 {% if user.is_staff %}
                     <a href="{% url 'dashboards:home' %}"
