@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 
 {% load crispy_forms_tags static widget_tweaks %}
-
+{% block canonical %}
+      <link  rel="canonical" href="https://www.thegreeneconomics.com/articles/"/>
+{% endblock canonical %}
 {% block content %}
   <!-- Hero Section similar al home -->
   <div class="relative bg-gradient-to-b from-black/70 to-black/50 py-16">

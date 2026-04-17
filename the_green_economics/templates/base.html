@@ -45,8 +45,12 @@
             content="{% block twitter_description %}Journal Científico sobre Economía Verde{% endblock twitter_description %}" />
       <meta name="twitter:image"
             content="{% block twitter_image %} https://www.thegreeneconomics.com/static/images/logo.png{% endblock twitter_image %}" />
-      <link  rel="canonical" href="https://www.thegreeneconomics.com/"/>
     {% endblock seo_tags %}
+    
+    {% block canonical %}
+      <link  rel="canonical" href="https://www.thegreeneconomics.com/"/>
+    {% endblock canonical %}
+      
     <!-- Favicons Mejorados -->
     <link async rel="icon" href="{% static 'images/logos/logo_2.avif' %}" />
     <!-- Preconexión para mejorar rendimiento -->
